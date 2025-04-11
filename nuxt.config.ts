@@ -37,7 +37,7 @@ export default defineNuxtConfig({
         // In dev, use local proxy, in production use deployed URL
         baseURL: process.env.NODE_ENV === 'development' 
           ? '/api/images'
-          : 'https://your-deployed-app.nuxt.dev/api/images'
+          : 'https://portfolio-v2-patrity.nuxt.dev/api/images'
       }
     }
   }

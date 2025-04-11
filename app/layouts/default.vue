@@ -32,7 +32,7 @@ const socials = [
     <template #right>
       <div class="flex flex-row items-center gap-2">
         <UColorModeButton size="xl" />
-        <UButton v-for="social in socials" :key="social.to" :to="social.to" :icon="social.icon" size="xl" variant="ghost" color="neutral" />
+        <UButton v-for="social in socials" :key="social.to" :to="social.to" :icon="social.icon" size="xl" variant="ghost" color="neutral" class="hover:text-(--ui-primary) transition transform duration-200" />
       </div>
     </template>
 
@@ -54,7 +54,7 @@ const socials = [
       <UNavigationMenu :items="items" variant="link" />
 
       <template #right>
-        <UButton v-for="social in socials" :key="social.to" :to="social.to" :icon="social.icon" size="xl" variant="ghost" color="neutral" />
+        <UButton v-for="social in socials" :key="social.to" :to="social.to" :icon="social.icon" size="xl" variant="ghost" color="neutral" class="hover:text-(--ui-primary) transition transform duration-200" />
       </template>
     </UFooter>
   </UMain>
