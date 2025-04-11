@@ -1,2 +1,18 @@
 @import "tailwindcss";
 @import "@nuxt/ui-pro";
+
+@theme static {
+  --font-teko: "Teko", sans-serif;
+
+  --color-green-50: #f0fae8;
+  --color-green-100: #dff4cf;
+  --color-green-200: #c4e9a7;
+  --color-green-300: #96d76c;
+  --color-green-400: #46c211;
+  --color-green-500: #39a10e;
+  --color-green-600: #2e850b;
+  --color-green-700: #256a09;
+  --color-green-800: #1d520a;
+  --color-green-900: #174209;
+  --color-green-950: #0c2604;
+}

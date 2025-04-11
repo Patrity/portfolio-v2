@@ -1,0 +1,53 @@
+<script lang="ts" setup>
+import { UButton, UColorModeButton, ULink, UNavigationMenu } from '#components';
+
+const items = [
+  { label: 'Home', to: '/' },
+  { label: 'Portfolio', to: '/portfolio' },
+  { label: 'Blog', to: '/blog' },
+  { label: 'About', to: '/about' },
+  { label: 'Contact', to: '/contact' },
+]
+</script>
+
+<template>
+  <UHeader mode="drawer">
+    <template #left>
+      <NuxtLink to="/" class="flex items-center flex-row gap-2 bg-white/5 rounded-xl px-2 py-1 hover:bg-white/10 transition-all duration-200 hover:scale-110 hover:rotate-3">
+        <GlobalIcon class="size-10" />
+        <h1 class="font-teko text-4xl text-bold">
+          TechHive Labs
+        </h1>
+      </NuxtLink>
+    </template>
+
+    <UNavigationMenu :items />
+
+    <template #right>
+      <div class="flex flex-row items-center gap-2">
+        <UColorModeButton size="xl" />
+      </div>
+    </template>
+
+    <template #body>
+      <UNavigationMenu :items="items" orientation="vertical" mode="slideover"/>
+    </template>
+  </UHeader>
+  <UMain>
+    <UPage>
+      <slot />
+    </UPage>
+    <UFooter class="bg-white/5">
+      <template #left>
+        <p class="text-(--ui-text-muted) text-sm">
+          Copyright © {{ new Date().getFullYear() }}
+        </p>
+      </template>
+
+      <UNavigationMenu :items="items" variant="link" />
+
+      <template #right>
+      </template>
+    </UFooter>
+  </UMain>
+</template>
