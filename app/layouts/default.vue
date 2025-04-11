@@ -8,6 +8,12 @@ const items = [
   { label: 'About', to: '/about' },
   { label: 'Contact', to: '/contact' },
 ]
+
+const socials = [
+  { to: 'https://github.com/Patrity/portfolio-v2', icon: 'i-fa6-brands-github' },
+  { to: 'https://x.com/ThePatrity', icon: 'i-fa6-brands-x-twitter' },
+  { to: 'https://bsky.app/profile/patrity.bsky.social', icon: 'i-fa6-brands-bluesky' },
+]
 </script>
 
 <template>
@@ -26,6 +32,7 @@ const items = [
     <template #right>
       <div class="flex flex-row items-center gap-2">
         <UColorModeButton size="xl" />
+        <UButton v-for="social in socials" :key="social.to" :to="social.to" :icon="social.icon" size="xl" variant="ghost" color="neutral" />
       </div>
     </template>
 
@@ -47,6 +54,7 @@ const items = [
       <UNavigationMenu :items="items" variant="link" />
 
       <template #right>
+        <UButton v-for="social in socials" :key="social.to" :to="social.to" :icon="social.icon" size="xl" variant="ghost" color="neutral" />
       </template>
     </UFooter>
   </UMain>
