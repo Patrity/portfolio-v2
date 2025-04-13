@@ -24,6 +24,8 @@ export default defineContentConfig({
         description: z.string().optional(),
         tags: z.array(z.string()).optional(),
         images: z.array(z.string()).optional(),
+        featured: z.boolean().optional(),
+        type: z.enum(['video', 'code']).optional(),
       })
     })
   }
