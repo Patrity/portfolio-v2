@@ -5,12 +5,12 @@ const heroLinks = [
     { label: 'Contact Me', to: '/contact', color: 'secondary', variant: 'outline', icon: 'i-fa6-solid-envelope' },
 ]
 const heroImages = [
-    { src: '/api/images/assets/programming.webp', alt: 'Programming' },
-    { src: '/api/images/assets/editing.webp', alt: 'Video Editing' },
-    { src: '/api/images/assets/webdev.webp', alt: 'Web Development' },
+    { src: '/api/images/programming.webp', alt: 'Programming' },
+    { src: '/api/images/editing.webp', alt: 'Video Editing' },
+    { src: '/api/images/webdev.webp', alt: 'Web Development' },
 ]
 
-const { data: blog } = await useAsyncData('blog-posts', () => {
+const { data: blog } = await useAsyncData('blog-index', () => {
   return queryCollection('blog')
     .select('title', 'author', 'date', 'draft', 'description', 'image', 'tags', 'navigation', 'path', 'stem', 'id')
     .where('draft', '=', false)
@@ -18,6 +18,56 @@ const { data: blog } = await useAsyncData('blog-posts', () => {
     .limit(3)
     .all()
 })
+const { data: projects } = await useAsyncData('projects-index', () => {
+  return queryCollection('projects')
+    .select('title', 'description', 'images', 'path', 'tags', 'id', 'type', 'featured')
+    .where('featured', '=', true)
+    .limit(4)
+    .all()
+})
+interface Card {
+    title: string,
+    description: string,
+    icon: string,
+    to: string,
+    class: string,
+    image: {
+        path: string
+    },
+    orientation: string,
+    variant: string,
+}
+const cards = computed(() => {
+    return projects.value.map((project: any, index: number) => {
+        const isWide = index === 0 || index === 3
+        return {
+            title: project.title,
+            description: project.description,
+            icon: getIconFromType(project.type),
+            to: project.path,
+            class: isWide ? 'lg:col-span-2' : 'lg:col-span-1',
+            image: {
+                path: project.images[0],
+                width: 250,
+                height: 100,
+            },
+            orientation: isWide ? 'horizontal' : 'vertical',
+            variant: isWide ? 'outline' : 'subtle',
+            spotlight: true,
+        }
+    })
+})
+
+const getIconFromType = (type: string) => {
+    switch (type) {
+        case 'code':
+            return 'i-heroicons-code-bracket'
+        case 'video':
+            return 'i-heroicons-video-camera'
+        default:
+            return ''
+    }
+}
 </script>
 
 <template>
@@ -38,7 +88,6 @@ const { data: blog } = await useAsyncData('blog-posts', () => {
             class="mx-auto w-full h-full items-center"
             :ui="{ item: 'basis-[85%] h-full' }"  >
             <img :src="item.src" :alt="item.alt" class="object-cover w-full h-72 rounded-lg shadow-lg" />
-            <NuxtImg provider="blobStorage" src="/webdev.webp" />
         </UCarousel>
     </UPageHero>
 
@@ -66,34 +115,36 @@ const { data: blog } = await useAsyncData('blog-posts', () => {
         title="About Me"
         :ui=" {title: 'font-teko'}"
         description="A brief introduction about my background, skills, and interests."
+        id="about"
     >
 			<div class="flex flex-col-reverse md:flex-row gap-8 items-center max-w-4xl mx-auto">
 				<UCard class="max-w-xs">
-					<img src="https://ovzjdhllnxrizgszqlsi.supabase.co/storage/v1/object/public/tech-hive/tony.webp" sizes="sm:400px md:460px" loading="lazy" :preload="true" format="webp" width="460" height="460" alt="Tony"
+					<img :src="'/api/images/tony.webp'" sizes="sm:400px md:460px" loading="lazy" :preload="true" format="webp" width="460" height="460" alt="Tony"
 					     class="rounded-full border-neutral-400 border-2 mx-auto mt-6 shadow-neutral-950 shadow-lg"/>
-					<div class="text-white">
-						<p class="pt-4 font-medium text-xl">
+					<div class="text-center">
+						<p class="pt-4 font-medium text-3xl font-teko">
 							Tony Costanzo
 						</p>
-						<p class="text-sm italic text-neutral-300">
+						<p class="text-sm italic">
 							TechHive Labs Founder
 						</p>
-						<div class="flex flex-row items-center justify-center gap-1 mt-2">
-							<a href="https://github.com/Patrity" aria-label="Github" class="w-6 h-6 hover:text-(--ui-primary) hover:scale-105 transition transform duration-100">
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none"><g clip-path="url(#akarIconsGithubFill0)"><path fill="currentColor" fill-rule="evenodd" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385c.6.105.825-.255.825-.57c0-.285-.015-1.23-.015-2.235c-3.015.555-3.795-.735-4.035-1.41c-.135-.345-.72-1.41-1.23-1.695c-.42-.225-1.02-.78-.015-.795c.945-.015 1.62.87 1.845 1.23c1.08 1.815 2.805 1.305 3.495.99c.105-.78.42-1.305.765-1.605c-2.67-.3-5.46-1.335-5.46-5.925c0-1.305.465-2.385 1.23-3.225c-.12-.3-.54-1.53.12-3.18c0 0 1.005-.315 3.3 1.23c.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23c.66 1.65.24 2.88.12 3.18c.765.84 1.23 1.905 1.23 3.225c0 4.605-2.805 5.625-5.475 5.925c.435.375.81 1.095.81 2.22c0 1.605-.015 2.895-.015 3.3c0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12Z" clip-rule="evenodd"/></g><defs><clipPath id="akarIconsGithubFill0"><path fill="#fff" d="M0 0h24v24H0z"/></clipPath></defs></g></svg>
-							</a>
-							<a href="https://twitter.com/ThePatrity" aria-label="Tony's Twitter" class="w-7 h-7 ml-1 hover:text-(--ui-primary) hover:scale-105 transition transform duration-100">
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 15"><path fill="currentColor" d="m14.478 1.5l.5-.033a.5.5 0 0 0-.871-.301l.371.334Zm-.498 2.959a.5.5 0 1 0-1 0h1Zm-6.49.082h-.5h.5Zm0 .959h.5h-.5Zm-6.99 7V12a.5.5 0 0 0-.278.916L.5 12.5Zm.998-11l.469-.175a.5.5 0 0 0-.916-.048l.447.223Zm3.994 9l.354.353a.5.5 0 0 0-.195-.827l-.159.474Zm7.224-8.027l-.37.336l.18.199l.265-.04l-.075-.495Zm1.264-.94c.051.778.003 1.25-.123 1.606c-.122.345-.336.629-.723 1l.692.722c.438-.42.776-.832.974-1.388c.193-.546.232-1.178.177-2.006l-.998.066Zm0 3.654V4.46h-1v.728h1Zm-6.99-.646V5.5h1v-.959h-1Zm0 .959V6h1v-.5h-1ZM10.525 1a3.539 3.539 0 0 0-3.537 3.541h1A2.539 2.539 0 0 1 10.526 2V1Zm2.454 4.187C12.98 9.503 9.487 13 5.18 13v1c4.86 0 8.8-3.946 8.8-8.813h-1ZM1.03 1.675C1.574 3.127 3.614 6 7.49 6V5C4.174 5 2.421 2.54 1.966 1.325l-.937.35Zm.021-.398C.004 3.373-.157 5.407.604 7.139c.759 1.727 2.392 3.055 4.73 3.835l.317-.948c-2.155-.72-3.518-1.892-4.132-3.29c-.612-1.393-.523-3.11.427-5.013l-.895-.446Zm4.087 8.87C4.536 10.75 2.726 12 .5 12v1c2.566 0 4.617-1.416 5.346-2.147l-.708-.706Zm7.949-8.009A3.445 3.445 0 0 0 10.526 1v1c.721 0 1.37.311 1.82.809l.74-.671Zm-.296.83a3.513 3.513 0 0 0 2.06-1.134l-.744-.668a2.514 2.514 0 0 1-1.466.813l.15.989ZM.222 12.916C1.863 14.01 3.583 14 5.18 14v-1c-1.63 0-3.048-.011-4.402-.916l-.556.832Z"/></svg>
-							</a>
-							<a href="https://www.linkedin.com/in/tonycos/" aria-label="Tony's LinkedIn" class="w-8 h-8 hover:text-(--ui-primary) hover:scale-105 transition transform duration-100">
-								<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-									<path fill="currentColor" d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17A1.4 1.4 0 0 1 15.71 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z" />
-								</svg>
-							</a>
+						<div class="flex flex-row items-center justify-around gap-3 mt-2">
+                            <NuxtLink to="https://github.com/Patrity" aria-label="Github" class="hover:text-(--ui-primary) hover:scale-105 transition transform duration-100">
+                                <UIcon name="i-fa6-brands-github" class="size-8" />
+                            </NuxtLink>
+                            <NuxtLink to="https://x.com/ThePatrity" aria-label="Tony's Twitter" class="hover:text-(--ui-primary) hover:scale-105 transition transform duration-100">
+                                <UIcon name="i-fa6-brands-x-twitter" class="size-8" />
+                            </NuxtLink>
+                            <NuxtLink to="https://bsky.app/profile/patrity.bsky.social" aria-label="Tony's Bluesky" class="hover:text-(--ui-primary) hover:scale-105 transition transform duration-100">
+                                <UIcon name="i-fa6-brands-bluesky" class="size-8" />
+                            </NuxtLink>
+                            <NuxtLink to="https://www.linkedin.com/in/tonycos/" aria-label="Tony's LinkedIn" class="hover:text-(--ui-primary) hover:scale-105 transition transform duration-100">
+                                <UIcon name="i-fa6-brands-linkedin" class="size-8" />
+                            </NuxtLink>
 						</div>
 					</div>
 				</UCard>
-				<div class="text-center md:text-left mx-auto text-neutral-100 w-full sm:w-2/3 space-y-3">
+				<div class="text-center md:text-left mx-auto w-full sm:w-2/3 space-y-3">
 					<p>
 						Hi! My name is Tony, I have also gone by the name Patrity for many years. I am a full stack developer
 						with a passion for problem solving, and a love for learning. I have been programming for over 20
@@ -110,11 +161,41 @@ const { data: blog } = await useAsyncData('blog-posts', () => {
 					</p>
 					<p>
 						Professionally for my day job, I work in the industrial construction industry on mega projects in the
-						project controls department. I manage data such as progress, forecasts, projects, and budgets on
+						project controls department. I manage data such as progress, forecasts, projections, and budgets on
                         multi-billion dollar projects. This allows me to utilize my software development background to aggregate,
                         manipulate, visualize and manage data.
 					</p>
 				</div>
 			</div>
+    </UPageSection>
+
+    <UPageSection
+        title="Featured Projects"
+        :ui=" {title: 'font-teko'}"
+    >
+        <template #description>
+            <p class="text-center">
+                A selection of my favorite projects that I have worked on. These projects showcase my skills and
+                experience in web development, video production, and more.
+            </p>
+            <UButton to="/projects" class="mt-4" color="primary" variant="solid" trailing-icon="i-fa6-solid-arrow-right">
+                View All Projects
+            </UButton>
+        </template>
+        <UPageGrid>
+          <UPageCard
+            v-for="(card, index) in cards"
+            :key="index"
+            v-bind="card"
+          >
+            <img
+                v-if="card.image"
+                :src="card.image.path"
+                :alt="card.title"
+                class="object-cover rounded-lg shadow-lg mx-auto"
+                :class="card.orientation==='horizontal' ? 'h-48' : 'h-24'"
+            />
+          </UPageCard>
+        </UPageGrid>
     </UPageSection>
 </template>
