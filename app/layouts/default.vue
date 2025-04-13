@@ -3,7 +3,7 @@ import { UButton, UColorModeButton, ULink, UNavigationMenu } from '#components';
 
 const items = [
   { label: 'Home', to: '/' },
-  { label: 'Portfolio', to: '/portfolio' },
+  { label: 'Portfolio', to: '/projects' },
   { label: 'Blog', to: '/blog' },
   { label: 'About', to: '/about' },
   { label: 'Contact', to: '/contact' },
@@ -42,8 +42,12 @@ const socials = [
   </UHeader>
   <UMain>
     <UPage>
-      <slot />
+      <UContainer v-if="useRoute().path !== '/'">
+        <slot />
+      </UContainer>
+      <slot v-else />
     </UPage>
+  </UMain>
     <UFooter class="bg-white/5">
       <template #left>
         <p class="text-(--ui-text-muted) text-sm">
@@ -57,5 +61,4 @@ const socials = [
         <UButton v-for="social in socials" :key="social.to" :to="social.to" :icon="social.icon" size="xl" variant="ghost" color="neutral" class="hover:text-(--ui-primary) transition transform duration-200" />
       </template>
     </UFooter>
-  </UMain>
 </template>
