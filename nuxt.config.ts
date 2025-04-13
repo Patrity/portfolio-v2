@@ -24,21 +24,16 @@ export default defineNuxtConfig({
   },
   $development: {
     hub: {
-      remote: true
+      remote: 'production'
     }
   },
   hub: {
     blob: true
   },
-  image: {
-    providers: {
-      blobStorage: {
-        provider: 'ipx',
-        // In dev, use local proxy, in production use deployed URL
-        baseURL: process.env.NODE_ENV === 'development' 
-          ? '/api/images'
-          : 'https://portfolio-v2-patrity.nuxt.dev/api/images'
-      }
-    }
+  routeRules: {
+    '/': { prerender: true },
+    '/blog/**': { prerender: true },
+    '/projects/**': { prerender: true },
+    '/about': { prerender: true },
   }
 })
