@@ -44,7 +44,8 @@ export default defineNuxtConfig({
   },
   $development: {
     hub: {
-      remote: 'production'
+      remote: 'production',
+      database: true
     }
   },
   hub: {
@@ -63,8 +64,6 @@ export default defineNuxtConfig({
       // add any routes to prerender
       routes: [
         '/',
-        '/blog/**',
-        '/projects/**',
         '/about',
         '/sitemap.xml'
       ]
@@ -72,6 +71,10 @@ export default defineNuxtConfig({
     }
   },
   content: {
+    database: {
+      type: 'd1',
+      binding: 'DB'
+    },
     preview: {
       api: 'https://api.nuxt.studio'
     }

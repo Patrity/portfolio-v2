@@ -75,7 +75,13 @@ if (isHome.value) {
   <UPage v-if="navigation">
     <template #default>
       <div v-if="!isHome && page">
-        <UPageHeader :title="page.title" :description="page.description" />
+        <UPageHeader :title="page.title" :description="page.description">
+          <template #links>
+            <span class="text-muted italic">
+              {{ new Date(page.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) }}
+            </span>
+          </template>
+        </UPageHeader>
         <ContentRenderer :value="page" />
       </div>
       <div v-else-if="isHome">
