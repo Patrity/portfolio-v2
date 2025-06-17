@@ -1,9 +1,6 @@
 ---
 title: Fireship
-description: In my years working with Fireship, I have been responsible for
-  sponsorship sourcing, community management, customer support, content creation
-  and curation, and video editing. I have also been involved in the development
-  of the Fireship.
+description: A comprehensive overview of my work with Fireship, highlighting key contributions and lessons learned.
 tags:
   - Marketing
   - Community Management

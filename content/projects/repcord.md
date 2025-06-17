@@ -1,9 +1,6 @@
 ---
 title: RepCord
-description: A Discord bot and web applications that allowed users to report
-  their interactions with others on the popular chat platform, Discord. The
-  platform recorded over 250,000 user-submitted reports and was used by over
-  75,000 users.
+description: A small Discord bot that turned into a large-scale web application that allowed users to report bad actors in Discord servers.
 tags:
   - Java
   - Kotlin

@@ -1,8 +1,6 @@
 ---
 title: Safemoon's MoonCraft
-description: A large-scale Minecraft server that I was responsible for the
-  development of, leading a team of six developers and managing a community of
-  over 1 million users.
+description: A comprehensive overview of my work on Safemoon's MoonCraft project, highlighting key contributions and lessons learned.
 tags:
   - GameDev
   - Java

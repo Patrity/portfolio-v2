@@ -1,8 +1,6 @@
 ---
 title: Nobility Tracker
-description: A web3 dApp that allowed users to track various metrics and
-  statistics related to the cryptocurrency project Nobility. The application was
-  later acquired by the Nobility team and became part of their official website.
+description: A comprehensive overview of my work on the Nobility Tracker project, an open source web3 dApp.
 tags:
   - VueJS
   - Nuxt

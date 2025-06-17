@@ -1,5 +1,17 @@
 <script lang="ts" setup>
+// SEO Metadata
+definePageMeta({
+  title: 'About - TechHive Labs',
+  description: 'Learn about the technology stack and infrastructure behind TechHive Labs. Built with Nuxt 4, deployed on Cloudflare Pages.',
+})
 
+useSeoMeta({
+  title: 'About - TechHive Labs',
+  description: 'Learn about the technology stack and infrastructure behind TechHive Labs. Built with Nuxt 4, deployed on Cloudflare Pages.',
+  ogTitle: 'About - TechHive Labs',
+  ogDescription: 'Learn about the technology stack and infrastructure behind TechHive Labs.',
+  ogUrl: 'https://techhivelabs.net/about',
+})
 </script>
 
 <template>

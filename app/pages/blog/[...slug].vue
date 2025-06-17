@@ -33,6 +33,39 @@ const breadcrumbs = computed(() => {
     { label: page.value.title, to: route.path },
   ]
 })
+
+// SEO Metadata for individual blog posts
+if (!isHome.value && page.value) {
+  useSeoMeta({
+    title: `${page.value.title} - Blog | TechHive Labs`,
+    description: page.value.description || `Read "${page.value.title}" on the TechHive Labs blog`,
+    ogTitle: `${page.value.title} - TechHive Labs Blog`,
+    ogDescription: page.value.description || `Read "${page.value.title}" on the TechHive Labs blog`,
+    ogUrl: `https://techhivelabs.net${route.path}`,
+    ogImage: page.value.image || '/og-image.png',
+    twitterTitle: `${page.value.title} - TechHive Labs Blog`,
+    twitterDescription: page.value.description || `Read "${page.value.title}" on the TechHive Labs blog`,
+    twitterCard: 'summary_large_image',
+    articleAuthor: page.value.author || 'Tony Costanzo',
+    articlePublishedTime: page.value.date,
+    articleModifiedTime: page.value.updated || page.value.date,
+    articleTag: page.value.tags?.join(', '),
+  })
+}
+
+// SEO Metadata for blog index page
+if (isHome.value) {
+  useSeoMeta({
+    title: 'Blog - TechHive Labs',
+    description: 'Read the latest articles about web development, programming, and technology on the TechHive Labs blog.',
+    ogTitle: 'Blog - TechHive Labs',
+    ogDescription: 'Read the latest articles about web development, programming, and technology.',
+    ogUrl: 'https://techhivelabs.net/blog',
+    twitterTitle: 'Blog - TechHive Labs',
+    twitterDescription: 'Read the latest articles about web development, programming, and technology.',
+    twitterCard: 'summary_large_image',
+  })
+}
 </script>
 
 <template>

@@ -30,6 +30,35 @@ const breadcrumbs = computed(() => {
     { label: page.value?.title, to: route.path },
   ]
 })
+
+// SEO Metadata for individual project pages
+if (!isHome.value && page.value) {
+  useSeoMeta({
+    title: `${page.value.title} - Projects | TechHive Labs`,
+    description: page.value.description || `View the ${page.value.title} project by TechHive Labs`,
+    ogTitle: `${page.value.title} - TechHive Labs`,
+    ogDescription: page.value.description || `View the ${page.value.title} project`,
+    ogUrl: `https://techhivelabs.net${route.path}`,
+    ogImage: page.value.images?.[0] || '/og-image.png',
+    twitterTitle: `${page.value.title} - TechHive Labs`,
+    twitterDescription: page.value.description || `View the ${page.value.title} project`,
+    twitterCard: 'summary_large_image',
+  })
+}
+
+// SEO Metadata for projects index page
+if (isHome.value) {
+  useSeoMeta({
+    title: 'Projects - TechHive Labs',
+    description: 'Explore my portfolio of web development, video production, and digital solution projects.',
+    ogTitle: 'Projects - TechHive Labs',
+    ogDescription: 'Explore my portfolio of web development and digital solution projects.',
+    ogUrl: 'https://techhivelabs.net/projects',
+    twitterTitle: 'Projects - TechHive Labs',
+    twitterDescription: 'Explore my portfolio of web development and digital solution projects.',
+    twitterCard: 'summary_large_image',
+  })
+}
 </script>
 
 <template>

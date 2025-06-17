@@ -1,5 +1,17 @@
 <script lang="ts" setup>
+// SEO Metadata
+definePageMeta({
+  title: 'Contact - TechHive Labs',
+  description: 'Get in touch with Tony Costanzo at TechHive Labs for web development, video production, and digital consulting services.',
+})
 
+useSeoMeta({
+  title: 'Contact - TechHive Labs',
+  description: 'Get in touch with Tony Costanzo at TechHive Labs for web development, video production, and digital consulting services.',
+  ogTitle: 'Contact - TechHive Labs',
+  ogDescription: 'Get in touch for web development, video production, and digital consulting services.',
+  ogUrl: 'https://techhivelabs.net/contact',
+})
 </script>
 
 <template>

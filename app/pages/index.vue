@@ -1,4 +1,21 @@
 <script setup lang="ts">
+// SEO Metadata
+definePageMeta({
+  title: 'TechHive Labs - Full-Stack Development & Digital Solutions',
+  description: 'Full-stack developer specializing in web development, video production, and digital solutions. Founder of TechHive Labs. 20+ years of programming experience.',
+})
+
+useSeoMeta({
+  title: 'TechHive Labs - Full-Stack Development & Digital Solutions',
+  description: 'Full-stack developer specializing in web development, video production, and digital solutions. Founder of TechHive Labs. 20+ years of programming experience.',
+  ogTitle: 'TechHive Labs - Full-Stack Development & Digital Solutions',
+  ogDescription: 'Full-stack developer specializing in web development, video production, and digital solutions. Founder of TechHive Labs.',
+  ogUrl: 'https://techhivelabs.net/',
+  ogImage: '/og-image.png', // This will be auto-generated based on the meta tags
+  twitterTitle: 'TechHive Labs - Full-Stack Development & Digital Solutions',
+  twitterDescription: 'Full-stack developer specializing in web development, video production, and digital solutions.',
+  twitterCard: 'summary_large_image',
+})
 
 const heroLinks = [
     { label: 'Learn More', to: '#about', color: 'primary', variant: 'solid', icon: 'i-fa6-solid-angle-down' },

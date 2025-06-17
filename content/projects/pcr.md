@@ -1,6 +1,6 @@
 ---
 title: PCR
-description: PCR, or Project Controls Reporting, is a full-stack web application that I developed for in-house use at a construction company. The application aggregated data from multiple sources to streamline workflows.
+description: PCR is a full-stack web application that I developed for in-house use at a construction company. The application aggregated data from multiple sources to streamline workflows.
 tags: 
     - Web Development
     - VueJS
