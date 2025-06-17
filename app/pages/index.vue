@@ -135,7 +135,7 @@ const getIconFromType = (type: string) => {
                             <NuxtLink to="https://x.com/ThePatrity" aria-label="Tony's Twitter" class="hover:text-(--ui-primary) hover:scale-105 transition transform duration-100">
                                 <UIcon name="i-fa6-brands-x-twitter" class="size-8" />
                             </NuxtLink>
-                            <NuxtLink to="https://bsky.app/profile/patrity.bsky.social" aria-label="Tony's Bluesky" class="hover:text-(--ui-primary) hover:scale-105 transition transform duration-100">
+                            <NuxtLink to="https://bsky.app/profile/patrity.com" aria-label="Tony's Bluesky" class="hover:text-(--ui-primary) hover:scale-105 transition transform duration-100">
                                 <UIcon name="i-fa6-brands-bluesky" class="size-8" />
                             </NuxtLink>
                             <NuxtLink to="https://www.linkedin.com/in/tonycos/" aria-label="Tony's LinkedIn" class="hover:text-(--ui-primary) hover:scale-105 transition transform duration-100">

@@ -5,7 +5,8 @@ export default defineNuxtConfig({
     '@nuxt/ui-pro',
     '@nuxthub/core',
     '@nuxt/content',
-    '@nuxt/image'
+    '@nuxt/image',
+    '@nuxtjs/seo'
   ],
   future: {
     compatibilityVersion: 4,
@@ -35,5 +36,10 @@ export default defineNuxtConfig({
     '/blog/**': { prerender: true },
     '/projects/**': { prerender: true },
     '/about': { prerender: true },
+  },
+  content: {
+    preview: {
+      api: 'https://api.nuxt.studio'
+    }
   }
 })

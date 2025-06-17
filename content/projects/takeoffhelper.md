@@ -41,3 +41,13 @@ The application was designed to be responsive and mobile-friendly, allowing user
 - **Legal Compliance**: Ensuring that the project was compliant with legal regulations and guidelines was a top priority. This included ensuring that our data privacy and security practices were compliant with regulations and that we were following best practices for data privacy and security. This required constant monitoring and updates to our legal protocols.
 - **Feedback and Iteration**: Gathering feedback from users and iterating on the product was critical to its success. We had to ensure that we were listening to our users and making changes based on their feedback. This required strong communication skills and the ability to take constructive criticism.
 - **Customer Support**: Providing excellent customer support was critical to the success of the project. We had to ensure that our users felt supported and valued, and that we were addressing their needs and concerns in a timely manner. This required strong communication skills and the ability to empathize with users.
+
+## Demos
+::contentvid{videoUrl="/api/images/projects/takeoffhelper/concrete.mp4"}
+### Concrete Takeoff
+This is a demo of the concrete takeoff feature of the application, allowing users to input their data and see a 3D representation of the structure in real-time.
+::
+::contentvid{videoUrl="/api/images/projects/takeoffhelper/sitework.mp4"}
+### Sitework Takeoff
+This is a demo of the sitework takeoff feature of the application, showcasing the ability to manage and visualize sitework estimates in a 3D environment including ponds, excavations, and fills.
+::

@@ -15,7 +15,7 @@ const { data: projects } = await useAsyncData('projects', () => {
       .select('title', 'description', 'images', 'tags', 'navigation', 'path', 'stem', 'id')
       .all()
   }
-  return null
+  return []
 })
 const breadcrumbs = computed(() => {
   if (isHome.value) {
@@ -27,7 +27,7 @@ const breadcrumbs = computed(() => {
   return [
     { label: 'Home', to: '/', icon: 'i-heroicons-home' },
     { label: 'Projects', to: '/projects', icon: 'i-heroicons-code-bracket' },
-    { label: page.value.title, to: route.path },
+    { label: page.value?.title, to: route.path },
   ]
 })
 </script>
@@ -36,10 +36,23 @@ const breadcrumbs = computed(() => {
   <div class="w-full flex flex-row items-center justify-around mt-4">
     <UBreadcrumb :items="breadcrumbs" :ui="{link: 'text-lg'}" />
   </div>
-  <UPage v-if="navigation">
+  <UPage v-if="navigation && projects">
     <template #default>
       <div v-if="!isHome && page">
         <UPageHeader :title="page.title" :description="page.description" />
+        <UCarousel v-if="page.images && page.images.length > 1"
+          class="mb-8"
+          v-slot="{ item }"
+          :items="page.images"
+          dots
+          wheel-gestures
+          loop
+          autoplay
+          >
+            <img :src="item" :alt="page.title" class="object-cover rounded-lg" />
+      </UCarousel>
+      <img v-else-if="page.images && page.images.length === 0" :src="page.images[0]" :alt="page.title" class="object-cover rounded-lg" />
+
         <ContentRenderer :value="page" />
       </div>
       <div v-else-if="isHome">
