@@ -4,9 +4,9 @@ export default defineNuxtConfig({
   modules: [
     '@nuxt/ui-pro',
     '@nuxthub/core',
+    '@nuxtjs/seo', // Must be before @nuxt/content for sitemap integration
     '@nuxt/content',
-    '@nuxt/image',
-    '@nuxtjs/seo'
+    '@nuxt/image'
   ],
   future: {
     compatibilityVersion: 4,
@@ -37,9 +37,27 @@ export default defineNuxtConfig({
     '/projects/**': { prerender: true },
     '/about': { prerender: true },
   },
+  nitro: {
+    prerender: {
+      // enabled by default with nuxt generate, not required
+      crawlLinks: true,
+      // add any routes to prerender
+      routes: [
+        '/',
+        '/blog/**',
+        '/projects/**',
+        '/about',
+        '/sitemap.xml'
+      ]
+
+    }
+  },
   content: {
     preview: {
       api: 'https://api.nuxt.studio'
     }
+  },
+  sitemap: {
+    strictNuxtContentPaths: true
   }
 })

@@ -8,6 +8,8 @@ images:
   - /api/images/projects/quadzilla/home.png
 featured: true
 type: code
+sitemap: 
+  lastmod: 2025-06-17
 ---
 
 ## Project Overview

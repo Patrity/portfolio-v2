@@ -13,6 +13,8 @@ images:
   - /api/images/projects/fireship/banner.webp
 featured: true
 type: video
+sitemap: 
+  lastmod: 2025-06-17
 ---
 
 ## Project Overview

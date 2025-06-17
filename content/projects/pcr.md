@@ -12,6 +12,8 @@ images:
     - /api/images/projects/pcr/metrics.png
 featured: true
 type: code
+sitemap: 
+  lastmod: 2025-06-17
 ---
 ## Project Overview
 I was struck with COVID mid-2024 and had a week free to work on a project. I opted to use that time to develop a web application to streamline operations within the department I was working in at the time.

@@ -11,6 +11,8 @@ images:
   - /api/images/projects/takeoffhelper/concrete.webp
 featured: true
 type: code
+sitemap: 
+  lastmod: 2025-06-17
 ---
 
 ## Project Overview

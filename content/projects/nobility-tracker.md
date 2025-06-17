@@ -12,6 +12,8 @@ images:
   - /api/images/projects/nobility-tracker/dashboard.webp
 featured: false
 type: code
+sitemap: 
+  lastmod: 2025-06-17
 ---
 
 ## Project Overview

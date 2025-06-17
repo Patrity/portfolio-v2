@@ -15,6 +15,8 @@ images:
   - /api/images/projects/repcord/banner.webp
 featured: true
 type: code
+sitemap: 
+  lastmod: 2025-06-17
 ---
 
 ## Project Overview
