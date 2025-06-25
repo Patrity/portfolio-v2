@@ -1,13 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
-  modules: [
-    '@nuxt/ui-pro',
-    '@nuxthub/core',
-    '@nuxtjs/seo',
-    '@nuxt/content',
-    '@nuxt/image'
-  ],
+  modules: ['@nuxt/ui-pro', '@nuxthub/core', '@nuxtjs/seo', '@nuxt/content', '@nuxt/image', 'nuxt-umami'],
   future: {
     compatibilityVersion: 4,
   },
@@ -73,7 +67,7 @@ export default defineNuxtConfig({
   content: {
     database: {
       type: 'd1',
-      binding: 'DB'
+      bindingName: 'DB'
     },
     preview: {
       api: 'https://api.nuxt.studio'
@@ -86,12 +80,20 @@ export default defineNuxtConfig({
     defaultLocale: 'en',
   },
   
-  sitemap: {
-    strictNuxtContentPaths: true
-  },
-  
   seo: {
     redirectToCanonicalSiteUrl: true
+  },
+
+  umami: {
+    id: '29696a4b-5b15-4e41-a093-857c418c4bc8',
+    host: 'https://cloud.umami.is',
+    // Disable in development
+    ignoreLocalhost: true,
+    // Domains to track (production only)
+    domains: ['techhivelabs.net', 'www.techhivelabs.net'],
+    // Auto track page views
+    autoTrack: true,
+    proxy: 'cloak',
   },
   
   ogImage: {
