@@ -91,7 +91,7 @@ const getIconFromType = (type: string) => {
     <UPageHero
         orientation="horizontal"
         title="Digital Solutions"
-        description="Web Development, Video Production, Marketing, and Consulting"
+        description="Web Development, Video Production, Marketing, and Consulting. Specializing in bringing small businesses to the digital future."
         :links="heroLinks"
         :ui="{ title: 'font-teko'}"
     >
@@ -168,6 +168,12 @@ const getIconFromType = (type: string) => {
 						years,
 						and have been working professionally for over 10 years. I have experience with many different languages
 						and frameworks.
+					</p>
+					<p>
+						I specialize in hands-on web development with local small businesses, bringing them to the future and enhancing
+                        their online presence. In {{ new Date().getFullYear() }}, an online presence is essential for any business. I have helped
+                        several small businesses, working with them to assess their needs and build their custom solutions such as customer portals, e-commerce platforms,
+                        and any custom solutions they may need. I have worked with businesses in various industries, including retail, education, construction, and more.
 					</p>
 					<p>
 						In addition to programming, I also curate content, edit video, source sponsorships, and manage social media

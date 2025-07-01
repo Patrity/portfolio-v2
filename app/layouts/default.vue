@@ -21,7 +21,7 @@ const socials = [
     <template #left>
       <NuxtLink to="/" class="flex items-center flex-row gap-2 bg-white/5 rounded-xl px-2 py-1 hover:bg-white/10 transition-all duration-200 hover:scale-110 hover:rotate-3">
         <GlobalIcon class="size-10" />
-        <h1 class="font-teko text-4xl text-bold">
+        <h1 class="font-teko text-4xl text-bold hidden sm:block">
           TechHive Labs
         </h1>
       </NuxtLink>
@@ -32,7 +32,7 @@ const socials = [
     <template #right>
       <div class="flex flex-row items-center gap-2">
         <UColorModeButton size="xl" />
-        <UButton v-for="social in socials" :key="social.to" :to="social.to" :icon="social.icon" size="xl" variant="ghost" color="neutral" class="hover:text-(--ui-primary) transition transform duration-200" />
+        <UButton v-for="social in socials" :key="social.to" :to="social.to" :icon="social.icon" size="xl" variant="ghost" color="neutral" class="hidden lg:block hover:text-(--ui-primary) transition transform duration-200" />
       </div>
     </template>
 
