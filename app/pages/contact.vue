@@ -57,7 +57,6 @@ const turnstileToken = ref('')
 
 // Watch for token changes and update form state
 watch(turnstileToken, (newToken) => {
-  console.log('Turnstile token changed:', newToken)
   state['cf-turnstile-response'] = newToken || ''
 })
 

@@ -13,12 +13,14 @@ export default defineEventHandler(async (event) => {
     const body = await readValidatedBody(event, contactSchema.parse)
     
     // Verify Turnstile token using the built-in helper
-    const { success } = await verifyTurnstileToken(body['cf-turnstile-response'])
+    const turnstileResult = await verifyTurnstileToken(body['cf-turnstile-response'])
     
-    if (!success) {
+    if (!turnstileResult.success) {
+      console.error('Turnstile verification failed:', turnstileResult)
       throw createError({
         statusCode: 400,
-        statusMessage: 'Captcha verification failed'
+        statusMessage: 'Captcha verification failed',
+        data: { turnstileError: turnstileResult }
       })
     }
 
@@ -74,11 +76,22 @@ export default defineEventHandler(async (event) => {
     return { success: true, message: 'Message sent successfully!' }
     
   } catch (error: any) {
+    console.error('Contact form error:', error)
+    
     if (error.data) {
       throw createError({
         statusCode: 400,
         statusMessage: 'Validation failed',
         data: error.data
+      })
+    }
+    
+    
+    if (error.issues) {
+      throw createError({
+        statusCode: 400,
+        statusMessage: 'Form validation failed',
+        data: { validationErrors: error.issues }
       })
     }
     

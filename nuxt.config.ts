@@ -127,5 +127,11 @@ export default defineNuxtConfig({
 
   turnstile: {
     siteKey: process.env.NUXT_TURNSTILE_SITE_KEY,
+  },
+
+  runtimeConfig: {
+    turnstile: {
+      secretKey: process.env.NUXT_TURNSTILE_SECRET_KEY
+    }
   }
 })
