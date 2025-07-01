@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
-  modules: ['@nuxt/ui-pro', '@nuxthub/core', '@nuxtjs/seo', '@nuxt/content', '@nuxt/image', 'nuxt-umami'],
+  modules: ['@nuxt/ui-pro', '@nuxthub/core', '@nuxtjs/seo', '@nuxt/content', '@nuxt/image', 'nuxt-umami', '@nuxtjs/turnstile'],
   future: {
     compatibilityVersion: 4,
   },
@@ -123,5 +123,9 @@ export default defineNuxtConfig({
       }
     ],
     sitemap: '/sitemap.xml'
+  },
+
+  turnstile: {
+    siteKey: process.env.NUXT_TURNSTILE_SITE_KEY,
   }
 })
