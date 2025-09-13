@@ -85,8 +85,8 @@ export default defineNuxtConfig({
   },
 
   umami: {
-    id: '29696a4b-5b15-4e41-a093-857c418c4bc8',
-    host: 'https://cloud.umami.is',
+    id: '27f65d7d-3ef5-4e46-bfdf-182b3d6d2bf4',
+    host: 'https://analytics.patrity.com',
     // Disable in development
     ignoreLocalhost: true,
     // Domains to track (production only)
