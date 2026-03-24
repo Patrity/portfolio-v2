@@ -26,8 +26,9 @@ useSeoMeta({
       <p>
         It deploys to 
         <ULink raw to="https://www.cloudflare.com/products/pages/" target="_blank" inactive-class="text-primary font-semibold">Cloudflare Pages</ULink> 
-        utilizing 
-        <ULink raw to="https://nuxthub.com" target="_blank" inactive-class="text-primary font-semibold">NuxtHub</ULink>.
+        with
+        <ULink raw to="https://developers.cloudflare.com/r2/" target="_blank" inactive-class="text-primary font-semibold">R2</ULink> and
+        <ULink raw to="https://developers.cloudflare.com/d1/" target="_blank" inactive-class="text-primary font-semibold">D1</ULink> for storage.
       </p>
       <p>
         <ULink raw to="https://github.com/patrity/portfolio-v2" target="_blank" inactive-class="text-primary font-semibold">GitHub Repository</ULink>

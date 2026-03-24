@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
-  modules: ['@nuxt/ui-pro', '@nuxthub/core', '@nuxtjs/seo', '@nuxt/content', '@nuxt/image', 'nuxt-umami', '@nuxtjs/turnstile'],
+  modules: ['@nuxt/ui-pro', '@nuxtjs/seo', '@nuxt/content', '@nuxt/image', 'nuxt-umami', '@nuxtjs/turnstile'],
   future: {
     compatibilityVersion: 4,
   },
@@ -36,15 +36,6 @@ export default defineNuxtConfig({
       ],
     }
   },
-  $development: {
-    hub: {
-      remote: 'production',
-      database: true
-    }
-  },
-  hub: {
-    blob: true
-  },
   routeRules: {
     '/': { prerender: true },
     '/blog/**': { prerender: true },
@@ -52,6 +43,7 @@ export default defineNuxtConfig({
     '/about': { prerender: true },
   },
   nitro: {
+    preset: 'cloudflare-pages',
     prerender: {
       // enabled by default with nuxt generate, not required
       crawlLinks: true,
@@ -65,10 +57,6 @@ export default defineNuxtConfig({
     }
   },
   content: {
-    database: {
-      type: 'd1',
-      bindingName: 'DB'
-    },
     preview: {
       api: 'https://api.nuxt.studio'
     }

@@ -3,14 +3,14 @@ title: Building a Roguelike Game with Amazon Q
 description: A deep dive into using Amazon's AI coding assistant, Q, to build a browser-based roguelike game with Nuxt.js. From initial concept to implementation challenges, this post explores the potential and limitations of AI-assisted development.
 date: 2025-06-17
 sitemap: 
-  lastmod: 2025-06-17
+  lastmod: 2026-03-24
 tags:
   - AI
   - Game Development
   - Nuxt
 author: Tony Costanzo
 draft: false
-image: https://ovzjdhllnxrizgszqlsi.supabase.co/storage/v1/render/image/public/tech-hive/blog/amazon-q//SS2025-06-17-09.29.27.png
+image: /api/images/blog/q-roguelike/hero.png
 ---
 ## Links
 - [GitHub Repository](https://github.com/patrity/q-rogue)
@@ -25,15 +25,15 @@ My weapon of choice? A fresh Nuxt.js project, my go-to framework for web develop
 
 I started by spitballing a rough idea for a roguelike game:
 
-![](https://ovzjdhllnxrizgszqlsi.supabase.co/storage/v1/render/image/public/tech-hive/blog/amazon-q/SS2025-06-13-14.24.20.png)
+<!-- screenshot no longer available -->
 
 The initial response was... well, exactly what you'd expect from an eager AI assistant - way too affirmative. I don't need a yes-man; I need honest feedback and alternative suggestions!
 
-![](https://ovzjdhllnxrizgszqlsi.supabase.co/storage/v1/render/image/public/tech-hive/blog/amazon-q/SS2025-06-13-14.24.20.png)
+<!-- screenshot no longer available -->
 
 After some gentle encouragement (okay, I may have talked some shit to the LLM), I finally got the honest feedback I was looking for. Be careful what you wish for, though - the reality check was humbling!
 
-![](https://ovzjdhllnxrizgszqlsi.supabase.co/storage/v1/render/image/public/tech-hive/blog/amazon-q/SS2025-06-13-14.32.07.png)
+<!-- screenshot no longer available -->
 
 ## Finding the Perfect Assets
 
@@ -43,10 +43,10 @@ Before diving deeper, I needed some visual assets. I stumbled upon an absolutely
 Okay check out the asset pack in q-roguelike/TechDungeonAssets I really like this and think we could build a simple roguelike.. We can just do projectile combat, no building.. we can have upgrades like speed, multi projectile (adds +1 at a slight angle each time), health, fire speed, exploding bullets, etc.. We can keep it simple enough I suppose. What do you think about game engine with this design? is it doable in our timeframe? again dont just reaffirm, give honest feedback
 ```
 
-![](https://ovzjdhllnxrizgszqlsi.supabase.co/storage/v1/render/image/public/tech-hive/blog/amazon-q/SS2025-06-13-14.54.18.png)
+<!-- screenshot no longer available -->
 
 Q suggested we should just yeet a 2d canvas and start building on that. I was certainly hesitant about that considering all of the helpers libraries like Phaser or PixiJS gives us..
-![](https://ovzjdhllnxrizgszqlsi.supabase.co/storage/v1/render/image/public/tech-hive/blog/amazon-q/SS2025-06-13-14.53.12.png)
+<!-- screenshot no longer available -->
 
 ## The First Attempt: A Comedy of Errors
 
@@ -54,13 +54,13 @@ The "actual" first attempt was... let's call it educational. The code was non-fu
 
 Well... it was _something_:
 
-![](https://ovzjdhllnxrizgszqlsi.supabase.co/storage/v1/render/image/public/tech-hive/blog/amazon-q/SS2025-06-13-18.18.04.gif)
+<!-- gameplay gif no longer available -->
 
 I'm still not entirely sure what I was looking at, but asking an LLM to parse multiple spritesheets and properly set up sprites with animations is admittedly a tall order.
 
 Before diving into fixing the sprite issues, I noticed Q had done something quite thoughtful - it had taken all the assets I'd dumped in the root directory and organized them nicely in the public folder. Small wins!
 
-![](https://ovzjdhllnxrizgszqlsi.supabase.co/storage/v1/render/image/public/tech-hive/blog/amazon-q/SS2025-06-13-18.25.14.png)
+<!-- screenshot no longer available -->
 
 ## The TexturePacker Breakthrough
 
@@ -68,7 +68,7 @@ Then I thought of a way to give more image context.. the TexturePacker app outpu
 
 RIGHT!
 
-![](https://ovzjdhllnxrizgszqlsi.supabase.co/storage/v1/render/image/public/tech-hive/blog/amazon-q/SS2025-06-13-20.04.53.gif)
+<!-- gameplay gif no longer available -->
 
 Suddenly, we had a working run animation and projectiles firing in the direction of my mouse! Sure, my character wasn't facing the right direction and the projectiles were angled incorrectly, but this was genuine progress. This was the point where I thought I'd need to take over completely, but I was curious to see how far Q could go.
 
@@ -76,7 +76,7 @@ Suddenly, we had a working run animation and projectiles firing in the direction
 
 Instead of getting bogged down in perfectionism, I asked Q to outline the next steps:
 
-![](https://ovzjdhllnxrizgszqlsi.supabase.co/storage/v1/render/image/public/tech-hive/blog/amazon-q/SS2025-06-13-20.12.06.png)
+<!-- screenshot no longer available -->
 
 Q provided a solid roadmap:
 
@@ -110,13 +110,13 @@ Starting with collision and combat systems, I prompted: `Okay let's go in order!
 
 The first attempt introduced some bugs - I couldn't shoot and spawned with 0 HP. By the time I died, my health was between -5 and -10. Classic game development!
 
-![](https://ovzjdhllnxrizgszqlsi.supabase.co/storage/v1/render/image/public/tech-hive/blog/amazon-q/SS2025-06-13-20.20.42.gif)
+<!-- gameplay gif no longer available -->
 
 One clarifying prompt later: `I'm ready to move on but we do have some issues. I'm not able to shoot but I think it may be because I spawn with 0hp and by the time I die, my hp is -5 - -10.. I think we need some delay between death and restarting so that the death animation can play as well. Finally I see a lot of warnings in the console from the animation manager stating that our animation keys already exist.. Are we reinitializing these unnecessarily?`
 
 And just like that, we had a functioning combat system! Complete with health management, incremental damage, immunity periods, and even a score system:
 
-![](https://ovzjdhllnxrizgszqlsi.supabase.co/storage/v1/render/image/public/tech-hive/blog/amazon-q/SS2025-06-13-20.30.29.gif)
+<!-- gameplay gif no longer available -->
 
 ### Code Quality Check
 
@@ -126,7 +126,7 @@ At this point, I hadn't really examined the code beyond fixing that initial Vue 
 
 Next up: the wave system. One prompt. Just one prompt, and boom:
 
-![](https://ovzjdhllnxrizgszqlsi.supabase.co/storage/v1/render/image/public/tech-hive/blog/amazon-q/SS2025-06-13-20.46.48.gif)
+<!-- gameplay gif no longer available -->
 
 I was genuinely impressed at this point. We had a working wave system with progressive difficulty in a single iteration.
 
@@ -146,15 +146,15 @@ I performed a major refactor, splitting the monolithic component into separate T
 
 This created a new problem: the basic straight-line enemy AI couldn't navigate around walls. Time to see how Q handled pathfinding:
 
-![](https://ovzjdhllnxrizgszqlsi.supabase.co/storage/v1/render/image/public/tech-hive/blog/amazon-q/SS2025-06-14-18.07.34.gif)
+<!-- gameplay gif no longer available -->
 
 Well... the enemies were certainly moving, just not in any useful direction. When I clarified that I needed proper pathfinding, Q implemented A* pathfinding with heuristic functions for 8-directional movement. The first attempt was too precise, causing enemies to overshoot waypoints and backtrack:
 
-![](https://ovzjdhllnxrizgszqlsi.supabase.co/storage/v1/render/image/public/tech-hive/blog/amazon-q/SS2025-06-14-18.11.16.gif)
+<!-- gameplay gif no longer available -->
 
 But third time's the charm! In just three prompts, Q had implemented fairly sophisticated pathfinding:
 
-![](https://ovzjdhllnxrizgszqlsi.supabase.co/storage/v1/render/image/public/tech-hive/blog/amazon-q/SS2025-06-14-18.18.50.gif)
+<!-- gameplay gif no longer available -->
 
 ## Pushing Forward and Finding the Limits
 

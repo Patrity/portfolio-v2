@@ -3,7 +3,7 @@ title: Build First - Learn Later
 description: Building an AI app with zero knowledge of AI, hitting deployment walls, and evolving architecture to meet real-world needs.
 date: 2025-06-25
 sitemap: 
-  lastmod: 2025-06-25
+  lastmod: 2025-03-24
 tags:
   - AI
   - Web Development
@@ -11,7 +11,7 @@ tags:
   - Nuxt
 author: Tony Costanzo
 draft: false
-image: https://ovzjdhllnxrizgszqlsi.supabase.co/storage/v1/render/image/public/tech-hive//vectly.png
+image: /api/images/blog/vectly/hero.png
 ---
 # Building an AI App When You Don't Know AI: My Journey from Zero to Deployment Hell to Hybrid Architecture
 
