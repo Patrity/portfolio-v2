@@ -91,7 +91,7 @@ if (isHome.value) {
           </template>
         </UPageHeader>
 
-        <UPageColumns>
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <NuxtLink
             v-for="(project, index) in projects"
             :key="index"
@@ -111,7 +111,7 @@ if (isHome.value) {
               <p v-if="project.description" class="mt-1 text-sm text-(--ui-text-muted) line-clamp-2">{{ project.description }}</p>
             </div>
           </NuxtLink>
-        </UPageColumns>
+        </div>
       </div>
       <div v-else>
         <div>
