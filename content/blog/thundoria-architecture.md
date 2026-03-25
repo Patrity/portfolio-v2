@@ -13,7 +13,7 @@ image: /images/blog/thundoria/hero.webp
 ---
 ## Links
 - [Thundoria Site](https://thundoria.com)
-- [X / Twitter](https://x.com/ThePatrity)
+- [X / Twitter](https://x.com/Patrity)
 - [Blue Sky](https://bsky.app/profile/patrity.com)
 
 # Why I'm Building an MMORPG (By Learning How NOT to Build One First)
@@ -176,6 +176,6 @@ Now if you'll excuse me, I have some conveyor belts to optimize. These skeletons
 *Are you also building a game way above your skill level? Learning game development after years of "real" programming? Let's suffer together!*
 Follow the journey at [thundoria.com](https://thundoria.com) and let's fail upward as a community.
 
-I post about my progressions sometimes on [Bluesky](https://bsky.app/profile/patrity.com) and [X / Twitter](https://x.com/ThePatrity) as well.
+I post about my progressions sometimes on [Bluesky](https://bsky.app/profile/patrity.com) and [X / Twitter](https://x.com/Patrity) as well.
 
 ---

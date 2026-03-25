@@ -133,7 +133,7 @@ I'm implementing the hybrid architecture now. Frontend stays blazing fast on the
 
 If you're building with AI or thinking about it, I'd love to hear about your journey. What walls have you hit? What surprised you? 
 
-Follow the journey on Twitter [@ThePatrity](https://twitter.com/ThePatrity) or check out [Vectly](https://vectly.ai) to see what I'm building.
+Follow the journey on Twitter [@Patrity](https://twitter.com/Patrity) or check out [Vectly](https://vectly.ai) to see what I'm building.
 
 Remember: every expert was once a beginner who refused to give up. Keep building, keep learning, keep shipping.
 

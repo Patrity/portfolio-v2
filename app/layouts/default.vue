@@ -11,7 +11,7 @@ const items = [
 
 const socials = [
   { to: 'https://github.com/Patrity/portfolio-v2', icon: 'i-fa6-brands-github' },
-  { to: 'https://x.com/ThePatrity', icon: 'i-fa6-brands-x-twitter' },
+  { to: 'https://x.com/Patrity', icon: 'i-fa6-brands-x-twitter' },
   { to: 'https://bsky.app/profile/patrity.com', icon: 'i-fa6-brands-bluesky' },
 ]
 </script>
@@ -42,7 +42,7 @@ const socials = [
   </UHeader>
   <UMain>
     <UPage>
-      <UContainer v-if="useRoute().path !== '/'">
+      <UContainer v-if="useRoute().path !== '/' && useRoute().path !== '/about'">
         <slot />
       </UContainer>
       <slot v-else />

@@ -16,7 +16,7 @@ useSeoMeta({
 
 const socialLinks = [
   { to: 'https://github.com/Patrity', icon: 'i-fa6-brands-github', label: 'GitHub' },
-  { to: 'https://x.com/ThePatrity', icon: 'i-fa6-brands-x-twitter', label: 'X' },
+  { to: 'https://x.com/Patrity', icon: 'i-fa6-brands-x-twitter', label: 'X' },
   { to: 'https://bsky.app/profile/patrity.com', icon: 'i-fa6-brands-bluesky', label: 'Bluesky' },
   { to: 'https://www.linkedin.com/in/tonycos/', icon: 'i-fa6-brands-linkedin', label: 'LinkedIn' },
 ]
@@ -55,7 +55,7 @@ const timeline = [
 
 const stats = [
   { value: 20, suffix: '+', label: 'Years Programming', description: 'Started coding as a teenager, never stopped.' },
-  { value: 3, suffix: 'M+', label: 'Subscribers Managed', description: 'Growing and engaging the Fireship community.' },
+  { value: 4, suffix: 'M+', label: 'Subscribers Managed', description: 'Growing and engaging the Fireship community.' },
   { value: 10, suffix: '+', label: 'Years Professional', description: 'From construction to content to code.' },
   { value: 12, suffix: 'B+', prefix: '$', label: 'In Projects Managed', description: 'Golden Pass LNG, GTPP, and more.' },
 ]

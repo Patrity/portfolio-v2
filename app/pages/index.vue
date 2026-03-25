@@ -59,6 +59,27 @@ onMounted(() => {
   setTimeout(() => typeRole(), 800)
 })
 
+const testimonials = [
+  {
+    quote: 'Tony completely transformed our online presence. He understood our business needs from day one and delivered a solution that exceeded our expectations.',
+    name: 'Coming Soon',
+    role: 'Small Business Owner',
+    placeholder: true,
+  },
+  {
+    quote: 'Working with TechHive Labs was a game-changer. The custom portal Tony built streamlined our entire workflow and saved us countless hours every week.',
+    name: 'Coming Soon',
+    role: 'E-Commerce Client',
+    placeholder: true,
+  },
+  {
+    quote: 'Tony brings a rare combination of technical skill and creative vision. He doesn\'t just build what you ask for — he builds what you actually need.',
+    name: 'Coming Soon',
+    role: 'Digital Consulting Client',
+    placeholder: true,
+  },
+]
+
 const heroLinks = [
   { label: 'View My Work', to: '#projects', color: 'primary' as const, variant: 'solid' as const, icon: 'i-heroicons-arrow-down' },
   { label: 'Get In Touch', to: '/contact', color: 'neutral' as const, variant: 'outline' as const, icon: 'i-heroicons-envelope' },
@@ -66,14 +87,14 @@ const heroLinks = [
 
 const socialLinks = [
   { to: 'https://github.com/Patrity', icon: 'i-fa6-brands-github', label: 'GitHub' },
-  { to: 'https://x.com/ThePatrity', icon: 'i-fa6-brands-x-twitter', label: 'X' },
+  { to: 'https://x.com/Patrity', icon: 'i-fa6-brands-x-twitter', label: 'X' },
   { to: 'https://bsky.app/profile/patrity.com', icon: 'i-fa6-brands-bluesky', label: 'Bluesky' },
   { to: 'https://www.linkedin.com/in/tonycos/', icon: 'i-fa6-brands-linkedin', label: 'LinkedIn' },
 ]
 
 const stats = [
   { value: 20, suffix: '+', label: 'Years Programming' },
-  { value: 3, suffix: 'M+', label: 'Subscribers Managed' },
+  { value: 4, suffix: 'M+', label: 'Subscribers Managed' },
   { value: 10, suffix: '+', label: 'Years Professional' },
   { value: 12, suffix: 'B+', prefix: '$', label: 'In Projects Managed' },
 ]
@@ -226,6 +247,110 @@ const cards = computed(() => {
     </div>
   </section>
 
+  <!-- ═══════════════ RECENT ARTICLES ═══════════════ -->
+  <UPageSection :ui="{ title: 'font-teko' }">
+    <template #title>
+      <span class="gradient-text">Recent Articles</span>
+    </template>
+    <template #description>
+      <p class="text-center text-(--ui-text-muted)">
+        Writing about the technology I use, the projects I build, and the things I learn along the way.
+      </p>
+    </template>
+
+    <UBlogPosts>
+      <UBlogPost
+        v-for="(post, i) in blog"
+        :key="post.id"
+        variant="subtle"
+        :title="post.title"
+        :description="post.description"
+        :image="post.image"
+        :date="post.date"
+        :to="post.path"
+        class="reveal"
+        :style="{ transitionDelay: `${i * 0.15}s` }"
+      />
+    </UBlogPosts>
+
+    <div class="flex justify-center mt-4 reveal">
+      <UButton to="/blog" color="primary" variant="outline" size="lg" trailing-icon="i-heroicons-arrow-right">
+        Read All Articles
+      </UButton>
+    </div>
+  </UPageSection>
+
+  <!-- ═══════════════ ABOUT PREVIEW ═══════════════ -->
+  <section class="py-20 px-6 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-green-500/3 to-transparent" />
+    <div class="relative max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-16">
+      <!-- Photo -->
+      <div class="flex-shrink-0 reveal-left">
+        <div class="relative">
+          <img
+            src="/images/tony.webp"
+            alt="Tony Costanzo"
+            width="240"
+            height="240"
+            class="rounded-2xl size-48 sm:size-56 object-cover border-2 border-green-500/20 shadow-2xl"
+          />
+          <div class="absolute -inset-1 rounded-2xl bg-gradient-to-br from-green-500/20 to-transparent -z-10 blur-sm" />
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="text-center md:text-left reveal-right">
+        <h2 class="font-teko text-4xl sm:text-5xl font-bold">
+          The Person Behind the
+          <span class="gradient-text">Code</span>
+        </h2>
+        <p class="mt-4 text-(--ui-text-muted) text-lg leading-relaxed max-w-lg">
+          20+ years of programming, managing a 4M-subscriber YouTube channel, and wrangling
+          billion-dollar project data by day. I've worn a lot of hats — and I bring all of them
+          to every project.
+        </p>
+        <UButton to="/about" color="primary" variant="soft" size="lg" class="mt-6" trailing-icon="i-heroicons-arrow-right">
+          Learn My Story
+        </UButton>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════ TESTIMONIALS ═══════════════ -->
+  <section class="py-20 px-6 border-t border-(--ui-border) hidden">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="font-teko text-4xl sm:text-5xl font-bold text-center mb-12 reveal">
+        What People <span class="gradient-text">Say</span>
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-6">
+        <div
+          v-for="(t, i) in testimonials"
+          :key="i"
+          class="glass-card rounded-xl p-6 relative reveal"
+          :style="{ transitionDelay: `${i * 0.15}s` }"
+        >
+          <!-- Quote mark -->
+          <span class="text-5xl leading-none text-green-500/20 font-serif absolute top-4 left-5">&ldquo;</span>
+
+          <p class="text-(--ui-text-muted) text-sm leading-relaxed mt-6 italic">
+            {{ t.quote }}
+          </p>
+
+          <div class="mt-5 pt-4 border-t border-(--ui-border) flex items-center gap-3">
+            <div class="size-9 rounded-full bg-green-500/10 flex items-center justify-center">
+              <UIcon name="i-heroicons-user" class="size-4 text-green-400" />
+            </div>
+            <div>
+              <p class="text-sm font-medium" :class="t.placeholder ? 'text-(--ui-text-dimmed)' : ''">{{ t.name }}</p>
+              <p class="text-xs text-(--ui-text-dimmed)">{{ t.role }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ═══════════════ FEATURED PROJECTS ═══════════════ -->
   <UPageSection
     id="projects"
@@ -274,75 +399,12 @@ const cards = computed(() => {
       </NuxtLink>
     </UPageGrid>
 
-    <div class="flex justify-center mt-10 reveal">
+    <div class="flex justify-center mt-4 reveal">
       <UButton to="/projects" color="primary" variant="outline" size="lg" trailing-icon="i-heroicons-arrow-right">
         View All Projects
       </UButton>
     </div>
   </UPageSection>
-
-  <!-- ═══════════════ RECENT ARTICLES ═══════════════ -->
-  <UPageSection :ui="{ title: 'font-teko' }">
-    <template #title>
-      <span class="gradient-text">Recent Articles</span>
-    </template>
-    <template #description>
-      <p class="text-center text-(--ui-text-muted)">
-        Writing about the technology I use, the projects I build, and the things I learn along the way.
-      </p>
-    </template>
-
-    <UBlogPosts>
-      <UBlogPost
-        v-for="(post, i) in blog"
-        :key="post.id"
-        variant="subtle"
-        :title="post.title"
-        :description="post.description"
-        :image="post.image"
-        :date="post.date"
-        :to="post.path"
-        class="reveal"
-        :style="{ transitionDelay: `${i * 0.15}s` }"
-      />
-    </UBlogPosts>
-  </UPageSection>
-
-  <!-- ═══════════════ ABOUT PREVIEW ═══════════════ -->
-  <section class="py-20 px-6 relative overflow-hidden">
-    <div class="absolute inset-0 bg-gradient-to-b from-transparent via-green-500/3 to-transparent" />
-    <div class="relative max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-16">
-      <!-- Photo -->
-      <div class="flex-shrink-0 reveal-left">
-        <div class="relative">
-          <img
-            src="/images/tony.webp"
-            alt="Tony Costanzo"
-            width="240"
-            height="240"
-            class="rounded-2xl size-48 sm:size-56 object-cover border-2 border-green-500/20 shadow-2xl"
-          />
-          <div class="absolute -inset-1 rounded-2xl bg-gradient-to-br from-green-500/20 to-transparent -z-10 blur-sm" />
-        </div>
-      </div>
-
-      <!-- Text -->
-      <div class="text-center md:text-left reveal-right">
-        <h2 class="font-teko text-4xl sm:text-5xl font-bold">
-          The Person Behind the
-          <span class="gradient-text">Code</span>
-        </h2>
-        <p class="mt-4 text-(--ui-text-muted) text-lg leading-relaxed max-w-lg">
-          20+ years of programming, managing a 4M-subscriber YouTube channel, and wrangling
-          billion-dollar project data by day. I've worn a lot of hats — and I bring all of them
-          to every project.
-        </p>
-        <UButton to="/about" color="primary" variant="soft" size="lg" class="mt-6" trailing-icon="i-heroicons-arrow-right">
-          Learn My Story
-        </UButton>
-      </div>
-    </div>
-  </section>
 
   <!-- ═══════════════ CTA ═══════════════ -->
   <section class="relative py-24 px-6 overflow-hidden">

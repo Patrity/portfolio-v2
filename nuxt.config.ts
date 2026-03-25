@@ -24,8 +24,8 @@ export default defineNuxtConfig({
         { name: 'theme-color', content: '#000000' },
         // Twitter Card
         { name: 'twitter:card', content: 'summary_large_image' },
-        { name: 'twitter:site', content: '@ThePatrity' },
-        { name: 'twitter:creator', content: '@ThePatrity' },
+        { name: 'twitter:site', content: '@Patrity' },
+        { name: 'twitter:creator', content: '@Patrity' },
         // Default OG tags (will be overridden by pages)
         { property: 'og:type', content: 'website' },
         { property: 'og:locale', content: 'en_US' },
