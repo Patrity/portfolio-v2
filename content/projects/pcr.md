@@ -8,8 +8,8 @@ tags:
     - PostgreSQL
     - Supabase
 images: 
-    - /api/images/projects/pcr/dashboard.png
-    - /api/images/projects/pcr/metrics.png
+    - /images/projects/pcr/dashboard.png
+    - /images/projects/pcr/metrics.png
 featured: true
 type: code
 sitemap: 
@@ -32,17 +32,17 @@ There was also a dedicated backend to process data from various data sources inc
 - **Real-time Data**: As several datasets could refresh throughout the day, clever usage of websockets and Supabase's real-time features were used to ensure that users always had the most up-to-date information.
 
 ## Demos
-::contentvid{videoUrl="/api/images/projects/pcr/dashboard.mp4"}
+::contentvid{videoUrl="/images/projects/pcr/dashboard.mp4"}
 ### Dashboard
 This is the home page of the application providing KPI's at a glance.
 ::
 
-::contentvid{videoUrl="/api/images/projects/pcr/metrics.mp4"}
+::contentvid{videoUrl="/images/projects/pcr/metrics.mp4"}
 ### Metrics
 This is the metrics page of the application providing a detailed view of the health of the application and how it was performing.
 ::
 
-::contentvid{videoUrl="/api/images/projects/pcr/packages.mp4"}
+::contentvid{videoUrl="/images/projects/pcr/packages.mp4"}
 ### Packages
 This page is the detailed view that aggregates several data sources such as a schedule, budget, quality sign-offs, drawings, and more.
 ::

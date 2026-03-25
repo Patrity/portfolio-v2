@@ -7,7 +7,7 @@ tags:
   - Kotlin
   - Rest API
 images:
-  - /api/images/projects/kronos/kronos.webp
+  - /images/projects/kronos/kronos.webp
 featured: false
 type: code
 sitemap: 

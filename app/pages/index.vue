@@ -22,9 +22,9 @@ const heroLinks = [
     { label: 'Contact Me', to: '/contact', color: 'secondary', variant: 'outline', icon: 'i-fa6-solid-envelope' },
 ]
 const heroImages = [
-    { src: '/api/images/programming.webp', alt: 'Programming' },
-    { src: '/api/images/editing.webp', alt: 'Video Editing' },
-    { src: '/api/images/webdev.webp', alt: 'Web Development' },
+    { src: '/images/programming.webp', alt: 'Programming' },
+    { src: '/images/editing.webp', alt: 'Video Editing' },
+    { src: '/images/webdev.webp', alt: 'Web Development' },
 ]
 
 const { data: blog } = await useAsyncData('blog-index', () => {
@@ -136,7 +136,7 @@ const getIconFromType = (type: string) => {
     >
 			<div class="flex flex-col-reverse md:flex-row gap-8 items-center max-w-4xl mx-auto">
 				<UCard class="max-w-xs">
-					<img :src="'/api/images/tony.webp'" sizes="sm:400px md:460px" loading="lazy" :preload="true" format="webp" width="460" height="460" alt="Tony"
+					<img :src="'/images/tony.webp'" sizes="sm:400px md:460px" loading="lazy" :preload="true" format="webp" width="460" height="460" alt="Tony"
 					     class="rounded-full border-neutral-400 border-2 mx-auto mt-6 shadow-neutral-950 shadow-lg"/>
 					<div class="text-center">
 						<p class="pt-4 font-medium text-3xl font-teko">

@@ -9,7 +9,7 @@ tags:
   - Nuxt
 author: Tony Costanzo
 draft: false
-image: /api/images/blog/thundoria/hero.webp
+image: /images/blog/thundoria/hero.webp
 ---
 ## Links
 - [Thundoria Site](https://thundoria.com)

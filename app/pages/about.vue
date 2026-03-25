@@ -2,12 +2,12 @@
 // SEO Metadata
 definePageMeta({
   title: 'About - TechHive Labs',
-  description: 'Learn about the technology stack and infrastructure behind TechHive Labs. Built with Nuxt 4, deployed on Cloudflare Pages.',
+  description: 'Learn about the technology stack and infrastructure behind TechHive Labs. Built with Nuxt 4, deployed on Vercel.',
 })
 
 useSeoMeta({
   title: 'About - TechHive Labs',
-  description: 'Learn about the technology stack and infrastructure behind TechHive Labs. Built with Nuxt 4, deployed on Cloudflare Pages.',
+  description: 'Learn about the technology stack and infrastructure behind TechHive Labs. Built with Nuxt 4, deployed on Vercel.',
   ogTitle: 'About - TechHive Labs',
   ogDescription: 'Learn about the technology stack and infrastructure behind TechHive Labs.',
   ogUrl: 'https://techhivelabs.net/about',
@@ -24,11 +24,9 @@ useSeoMeta({
         <ULink raw to="https://content.nuxt.com" target="_blank" inactive-class="text-primary font-semibold">Nuxt Content v3</ULink>. 
       </p>
       <p>
-        It deploys to 
-        <ULink raw to="https://www.cloudflare.com/products/pages/" target="_blank" inactive-class="text-primary font-semibold">Cloudflare Pages</ULink> 
-        with
-        <ULink raw to="https://developers.cloudflare.com/r2/" target="_blank" inactive-class="text-primary font-semibold">R2</ULink> and
-        <ULink raw to="https://developers.cloudflare.com/d1/" target="_blank" inactive-class="text-primary font-semibold">D1</ULink> for storage.
+        It deploys to
+        <ULink raw to="https://vercel.com" target="_blank" inactive-class="text-primary font-semibold">Vercel</ULink>
+        with static site generation.
       </p>
       <p>
         <ULink raw to="https://github.com/patrity/portfolio-v2" target="_blank" inactive-class="text-primary font-semibold">GitHub Repository</ULink>

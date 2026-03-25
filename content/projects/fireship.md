@@ -7,7 +7,7 @@ tags:
   - Video Editing
   - Content Creation
 images:
-  - /api/images/projects/fireship/banner.webp
+  - /images/projects/fireship/banner.webp
 featured: true
 type: video
 sitemap: 

@@ -1,10 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
-  modules: ['@nuxt/ui-pro', '@nuxtjs/seo', '@nuxt/content', '@nuxt/image', 'nuxt-umami', '@nuxtjs/turnstile'],
-  future: {
-    compatibilityVersion: 4,
-  },
+  modules: ['@nuxt/ui', '@nuxtjs/seo', '@nuxt/content', '@nuxt/image', 'nuxt-umami', '@nuxtjs/turnstile'],
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
   app: {
@@ -38,12 +35,13 @@ export default defineNuxtConfig({
   },
   routeRules: {
     '/': { prerender: true },
+    '/blog': { prerender: true },
     '/blog/**': { prerender: true },
+    '/projects': { prerender: true },
     '/projects/**': { prerender: true },
     '/about': { prerender: true },
   },
   nitro: {
-    preset: 'cloudflare-pages',
     prerender: {
       // enabled by default with nuxt generate, not required
       crawlLinks: true,
@@ -51,6 +49,8 @@ export default defineNuxtConfig({
       routes: [
         '/',
         '/about',
+        '/blog',
+        '/projects',
         '/sitemap.xml'
       ]
 
@@ -62,7 +62,7 @@ export default defineNuxtConfig({
     }
   },
   site: {
-    url: 'https://techhivelabs.net', // Update this to your actual domain
+    url: 'https://techhivelabs.net',
     name: 'TechHive Labs',
     description: 'Full-stack developer specializing in web development, video production, and digital solutions.',
     defaultLocale: 'en',

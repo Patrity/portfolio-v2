@@ -8,7 +8,7 @@ tags:
   - Nuxt
   - ThreeJS
 images:
-  - /api/images/projects/takeoffhelper/concrete.webp
+  - /images/projects/takeoffhelper/concrete.webp
 featured: true
 type: code
 sitemap: 
@@ -45,11 +45,11 @@ The application was designed to be responsive and mobile-friendly, allowing user
 - **Customer Support**: Providing excellent customer support was critical to the success of the project. We had to ensure that our users felt supported and valued, and that we were addressing their needs and concerns in a timely manner. This required strong communication skills and the ability to empathize with users.
 
 ## Demos
-::contentvid{videoUrl="/api/images/projects/takeoffhelper/concrete.mp4"}
+::contentvid{videoUrl="/images/projects/takeoffhelper/concrete.mp4"}
 ### Concrete Takeoff
 This is a demo of the concrete takeoff feature of the application, allowing users to input their data and see a 3D representation of the structure in real-time.
 ::
-::contentvid{videoUrl="/api/images/projects/takeoffhelper/sitework.mp4"}
+::contentvid{videoUrl="/images/projects/takeoffhelper/sitework.mp4"}
 ### Sitework Takeoff
 This is a demo of the sitework takeoff feature of the application, showcasing the ability to manage and visualize sitework estimates in a 3D environment including ponds, excavations, and fills.
 ::

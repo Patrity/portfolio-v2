@@ -5,7 +5,7 @@ tags:
   - VueJS
   - Web Development
 images:
-  - /api/images/projects/quadzilla/home.png
+  - /images/projects/quadzilla/home.png
 featured: true
 type: code
 sitemap: 

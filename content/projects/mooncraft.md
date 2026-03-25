@@ -10,7 +10,7 @@ tags:
   - VueJS
   - Nuxt
 images:
-  - /api/images/projects/mooncraft/banner.webp
+  - /images/projects/mooncraft/banner.webp
 featured: false
 type: code
 sitemap: 

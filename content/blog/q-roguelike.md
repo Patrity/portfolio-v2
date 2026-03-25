@@ -10,7 +10,7 @@ tags:
   - Nuxt
 author: Tony Costanzo
 draft: false
-image: /api/images/blog/q-roguelike/hero.webp
+image: /images/blog/q-roguelike/hero.webp
 ---
 ## Links
 - [GitHub Repository](https://github.com/patrity/q-rogue)

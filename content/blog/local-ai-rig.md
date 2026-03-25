@@ -1,6 +1,6 @@
 ---
-title: "I Spent $5K on GPUs Just to Learn That One GPU Was Enough"
-description: "Four RTX 3090s, an EPYC server, and a 122B parameter model -- the journey from underwhelming to overkill and back to surprisingly elegant."
+title: I Spent $5K on GPUs Just to Learn That One GPU Was Enough
+description: Four RTX 3090s, an EPYC server, and a 122B parameter model -- the journey from underwhelming to overkill and back to surprisingly elegant.
 date: 2026-03-25
 sitemap:
   lastmod: 2026-03-25
@@ -9,7 +9,7 @@ tags:
   - Self Hosting
 author: Tony Costanzo
 draft: false
-image: /api/images/blog/ai-server/hero.webp
+image: /images/blog/ai-server/hero.webp
 ---
 
 ## Links

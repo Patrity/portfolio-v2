@@ -7,7 +7,7 @@ tags:
   - Web3
   - Web Development
 images:
-  - /api/images/projects/nobility-tracker/dashboard.webp
+  - /images/projects/nobility-tracker/dashboard.webp
 featured: false
 type: code
 sitemap: 

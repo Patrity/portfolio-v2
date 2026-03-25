@@ -9,7 +9,7 @@ tags:
   - VueJS
   - React
 images:
-  - /api/images/projects/repcord/banner.webp
+  - /images/projects/repcord/banner.webp
 featured: true
 type: code
 sitemap: 

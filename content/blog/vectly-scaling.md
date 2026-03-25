@@ -11,7 +11,7 @@ tags:
   - Nuxt
 author: Tony Costanzo
 draft: false
-image: /api/images/blog/vectly/hero.webp
+image: /images/blog/vectly/hero.webp
 ---
 # Building an AI App When You Don't Know AI: My Journey from Zero to Deployment Hell to Hybrid Architecture
 
