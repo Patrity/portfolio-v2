@@ -23,3 +23,6 @@ logs
 .env.*
 !.env.example
 .wrangler
+
+.claude/skills/*/cache/
+.claude/skills/*/manifest.json
