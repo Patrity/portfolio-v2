@@ -85,21 +85,32 @@ if (isHome.value) {
         <ContentRenderer :value="page" />
       </div>
       <div v-else-if="isHome">
-        <UPageHeader title="Projects" description="Below is a list of the projects I have worked on." :ui="{ title: 'font-teko'}" class="mb-8" />
+        <UPageHeader description="A collection of work across web development, video production, and digital solutions." :ui="{ title: 'font-teko'}" class="mb-8">
+          <template #title>
+            <span class="gradient-text">Projects</span>
+          </template>
+        </UPageHeader>
 
         <UPageColumns>
-          <UPageCard
+          <NuxtLink
             v-for="(project, index) in projects"
             :key="index"
-            v-bind="project"
             :to="project.path"
+            class="group block overflow-hidden rounded-xl border border-(--ui-border) transition-all duration-300 hover:border-green-500/30 hover:shadow-[0_0_30px_rgba(70,194,17,0.1)]"
           >
-            <img
-              v-if="project.images && project.images.length > 0"
-              :src="project.images[0]"
-              :alt="project.title"
-              class="w-full h-48 object-cover rounded-lg"
-          </UPageCard>
+            <div v-if="project.images && project.images.length > 0" class="relative overflow-hidden">
+              <img
+                :src="project.images[0]"
+                :alt="project.title"
+                class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+            </div>
+            <div class="p-5">
+              <h3 class="font-teko text-2xl font-semibold group-hover:text-green-400 transition-colors">{{ project.title }}</h3>
+              <p v-if="project.description" class="mt-1 text-sm text-(--ui-text-muted) line-clamp-2">{{ project.description }}</p>
+            </div>
+          </NuxtLink>
         </UPageColumns>
       </div>
       <div v-else>

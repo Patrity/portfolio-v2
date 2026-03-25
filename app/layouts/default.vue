@@ -48,7 +48,7 @@ const socials = [
       <slot v-else />
     </UPage>
   </UMain>
-    <UFooter class="bg-white/5">
+    <UFooter class="bg-white/5 mt-6">
       <template #left>
         <p class="text-(--ui-text-muted) text-sm">
           Copyright © {{ new Date().getFullYear() }}

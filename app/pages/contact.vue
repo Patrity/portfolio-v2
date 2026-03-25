@@ -47,6 +47,7 @@ const subjectOptions = [
   { label: 'Web Development', value: 'Web Development' },
   { label: 'Video Production', value: 'Video Production' },
   { label: 'Digital Consulting', value: 'Digital Consulting' },
+  { label: 'AI Implementation', value: 'AI Implementation' },
   { label: 'Partnership Opportunity', value: 'Partnership Opportunity' },
   { label: 'Other', value: 'Other' }
 ]
@@ -92,9 +93,9 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
 
 <template>
   <UPage>
-    <UPageHeader>
+    <UPageHeader :ui="{ title: 'font-teko' }">
       <template #title>
-        Get in Touch
+        Get in <span class="gradient-text">Touch</span>
       </template>
       <template #description>
         Ready to bring your digital vision to life? Let's discuss your
@@ -108,11 +109,11 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
           <!-- Contact Information -->
           <div class="space-y-8">
             <div>
-              <h2 class="text-2xl font-bold mb-4">
-                Let's Work Together
+              <h2 class="text-2xl font-teko font-bold mb-4">
+                Let's Work <span class="gradient-text">Together</span>
               </h2>
-              <p class="text-gray-600 dark:text-gray-400 mb-6">
-                Whether you need a stunning website, compelling video content, or strategic digital consulting, 
+              <p class="text-(--ui-text-muted) mb-6">
+                Whether you need a stunning website, an AI implementation, or strategic digital consulting,
                 I'm here to help transform your ideas into reality.
               </p>
             </div>
@@ -138,14 +139,14 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
                 <UIcon name="i-heroicons-globe-alt" class="w-6 h-6 text-primary-500 mt-1" />
                 <div>
                   <h3 class="font-semibold">Services</h3>
-                  <p class="">Web Development, Video Production, Digital Consulting</p>
+                  <p class="">Web Development, AI Implementation, Digital Consulting</p>
                 </div>
               </div>
             </div>
           </div>
 
           <!-- Contact Form -->
-          <div class="bg-muted rounded-lg shadow-lg p-8">
+          <div class="glass-card rounded-xl shadow-lg p-8">
             <div v-if="isSubmitted" class="text-center space-y-4">
               <UIcon name="i-heroicons-check-circle" class="w-16 h-16 text-green-500 mx-auto" />
               <h3 class="text-2xl font-bold">Message Sent!</h3>

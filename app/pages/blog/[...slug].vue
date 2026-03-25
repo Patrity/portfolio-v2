@@ -85,7 +85,11 @@ if (isHome.value) {
         <ContentRenderer :value="page" />
       </div>
       <div v-else-if="isHome">
-        <UPageHeader title="Blog" description="Latest posts" :ui="{ title: 'font-teko'}" />
+        <UPageHeader description="Latest posts" :ui="{ title: 'font-teko'}">
+          <template #title>
+            <span class="gradient-text">Blog</span>
+          </template>
+        </UPageHeader>
 
         <UBlogPosts>
           <UBlogPost
