@@ -36,34 +36,72 @@ const breadcrumbs = computed(() => {
 
 // SEO Metadata for individual blog posts
 if (!isHome.value && page.value) {
+  const description = page.value.description || `Read "${page.value.title}" on the TechHive Labs blog`
+  const canonicalUrl = `https://www.techhivelabs.net${route.path}`
+  const heroImage = page.value.image
+    ? `https://www.techhivelabs.net${page.value.image}`
+    : 'https://www.techhivelabs.net/og-image.png'
+
   useSeoMeta({
-    title: `${page.value.title} - Blog | TechHive Labs`,
-    description: page.value.description || `Read "${page.value.title}" on the TechHive Labs blog`,
-    ogTitle: `${page.value.title} - TechHive Labs Blog`,
-    ogDescription: page.value.description || `Read "${page.value.title}" on the TechHive Labs blog`,
-    ogUrl: `https://techhivelabs.net${route.path}`,
-    ogImage: page.value.image || '/og-image.png',
-    twitterTitle: `${page.value.title} - TechHive Labs Blog`,
-    twitterDescription: page.value.description || `Read "${page.value.title}" on the TechHive Labs blog`,
+    title: page.value.title,
+    description,
+    ogTitle: page.value.title,
+    ogDescription: description,
+    ogUrl: canonicalUrl,
+    ogImage: heroImage,
+    ogImageAlt: description,
+    twitterTitle: page.value.title,
+    twitterDescription: description,
+    twitterImageAlt: description,
     twitterCard: 'summary_large_image',
     articleAuthor: page.value.author || 'Tony Costanzo',
     articlePublishedTime: page.value.date,
     articleModifiedTime: page.value.updated || page.value.date,
     articleTag: page.value.tags?.join(', '),
   })
+
+  useHead({
+    link: [{ rel: 'canonical', href: canonicalUrl }],
+  })
+
+  useSchemaOrg([
+    defineArticle({
+      headline: page.value.title,
+      description,
+      image: heroImage,
+      datePublished: new Date(page.value.date).toISOString(),
+      dateModified: new Date(page.value.updated || page.value.date).toISOString(),
+      author: {
+        name: page.value.author || 'Tony Costanzo',
+        url: 'https://www.techhivelabs.net/about',
+      },
+    }),
+    defineBreadcrumb({
+      itemListElement: [
+        { name: 'Home', item: 'https://www.techhivelabs.net/' },
+        { name: 'Blog', item: 'https://www.techhivelabs.net/blog' },
+        { name: page.value.title },
+      ],
+    }),
+  ])
 }
 
 // SEO Metadata for blog index page
 if (isHome.value) {
+  const canonicalUrl = 'https://www.techhivelabs.net/blog'
   useSeoMeta({
-    title: 'Blog - TechHive Labs',
-    description: 'Read the latest articles about web development, programming, and technology on the TechHive Labs blog.',
-    ogTitle: 'Blog - TechHive Labs',
-    ogDescription: 'Read the latest articles about web development, programming, and technology.',
-    ogUrl: 'https://techhivelabs.net/blog',
-    twitterTitle: 'Blog - TechHive Labs',
-    twitterDescription: 'Read the latest articles about web development, programming, and technology.',
+    title: 'Blog',
+    description: 'Field reports on full-stack development, local AI, RAG pipelines, and the homelab experiments behind them.',
+    ogTitle: 'Blog',
+    ogDescription: 'Field reports on full-stack development, local AI, RAG pipelines, and the homelab experiments behind them.',
+    ogUrl: canonicalUrl,
+    twitterTitle: 'Blog',
+    twitterDescription: 'Field reports on full-stack development, local AI, RAG pipelines, and the homelab experiments behind them.',
     twitterCard: 'summary_large_image',
+  })
+
+  useHead({
+    link: [{ rel: 'canonical', href: canonicalUrl }],
   })
 }
 </script>

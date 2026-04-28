@@ -33,30 +33,57 @@ const breadcrumbs = computed(() => {
 
 // SEO Metadata for individual project pages
 if (!isHome.value && page.value) {
+  const description = page.value.description || `View the ${page.value.title} project by TechHive Labs`
+  const canonicalUrl = `https://www.techhivelabs.net${route.path}`
+  const heroImage = page.value.images?.[0]
+    ? `https://www.techhivelabs.net${page.value.images[0]}`
+    : 'https://www.techhivelabs.net/og-image.png'
+
   useSeoMeta({
-    title: `${page.value.title} - Projects | TechHive Labs`,
-    description: page.value.description || `View the ${page.value.title} project by TechHive Labs`,
-    ogTitle: `${page.value.title} - TechHive Labs`,
-    ogDescription: page.value.description || `View the ${page.value.title} project`,
-    ogUrl: `https://techhivelabs.net${route.path}`,
-    ogImage: page.value.images?.[0] || '/og-image.png',
-    twitterTitle: `${page.value.title} - TechHive Labs`,
-    twitterDescription: page.value.description || `View the ${page.value.title} project`,
+    title: page.value.title,
+    description,
+    ogTitle: page.value.title,
+    ogDescription: description,
+    ogUrl: canonicalUrl,
+    ogImage: heroImage,
+    ogImageAlt: description,
+    twitterTitle: page.value.title,
+    twitterDescription: description,
+    twitterImageAlt: description,
     twitterCard: 'summary_large_image',
   })
+
+  useHead({
+    link: [{ rel: 'canonical', href: canonicalUrl }],
+  })
+
+  useSchemaOrg([
+    defineBreadcrumb({
+      itemListElement: [
+        { name: 'Home', item: 'https://www.techhivelabs.net/' },
+        { name: 'Projects', item: 'https://www.techhivelabs.net/projects' },
+        { name: page.value.title },
+      ],
+    }),
+  ])
 }
 
 // SEO Metadata for projects index page
 if (isHome.value) {
+  const canonicalUrl = 'https://www.techhivelabs.net/projects'
   useSeoMeta({
-    title: 'Projects - TechHive Labs',
+    title: 'Projects',
     description: 'Explore my portfolio of web development, video production, and digital solution projects.',
-    ogTitle: 'Projects - TechHive Labs',
+    ogTitle: 'Projects',
     ogDescription: 'Explore my portfolio of web development and digital solution projects.',
-    ogUrl: 'https://techhivelabs.net/projects',
-    twitterTitle: 'Projects - TechHive Labs',
+    ogUrl: canonicalUrl,
+    twitterTitle: 'Projects',
     twitterDescription: 'Explore my portfolio of web development and digital solution projects.',
     twitterCard: 'summary_large_image',
+  })
+
+  useHead({
+    link: [{ rel: 'canonical', href: canonicalUrl }],
   })
 }
 </script>

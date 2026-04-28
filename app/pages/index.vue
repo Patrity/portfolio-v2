@@ -11,11 +11,15 @@ useSeoMeta({
   description: 'Full-stack developer specializing in web development, video production, and digital solutions. Founder of TechHive Labs. 20+ years of programming experience.',
   ogTitle: 'TechHive Labs - Full-Stack Development & Digital Solutions',
   ogDescription: 'Full-stack developer specializing in web development, video production, and digital solutions. Founder of TechHive Labs.',
-  ogUrl: 'https://techhivelabs.net/',
-  ogImage: '/og-image.png',
+  ogUrl: 'https://www.techhivelabs.net/',
+  ogImage: 'https://www.techhivelabs.net/og-image.png',
   twitterTitle: 'TechHive Labs - Full-Stack Development & Digital Solutions',
   twitterDescription: 'Full-stack developer specializing in web development, video production, and digital solutions.',
   twitterCard: 'summary_large_image',
+})
+
+useHead({
+  link: [{ rel: 'canonical', href: 'https://www.techhivelabs.net/' }],
 })
 
 // Rotating roles for typewriter effect

@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
-  modules: ['@nuxt/ui', '@nuxtjs/seo', '@nuxt/content', '@nuxt/image', 'nuxt-umami', '@nuxtjs/turnstile'],
+  modules: ['@nuxt/ui', '@nuxt/fonts', '@nuxtjs/seo', '@nuxt/content', '@nuxt/image', 'nuxt-umami', '@nuxtjs/turnstile'],
   devtools: { enabled: true },
   css: ['~/assets/css/main.css'],
   app: {
@@ -10,10 +10,6 @@ export default defineNuxtConfig({
         lang: 'en',
       },
       link: [
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css2?family=Teko&display=swap'
-        },
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
       ],
       meta: [
@@ -62,7 +58,7 @@ export default defineNuxtConfig({
     }
   },
   site: {
-    url: 'https://techhivelabs.net',
+    url: 'https://www.techhivelabs.net',
     name: 'TechHive Labs',
     description: 'Full-stack developer specializing in web development, video production, and digital solutions.',
     defaultLocale: 'en',
@@ -70,6 +66,12 @@ export default defineNuxtConfig({
   
   seo: {
     redirectToCanonicalSiteUrl: true
+  },
+
+  fonts: {
+    families: [
+      { name: 'Teko', provider: 'google', weights: [400, 500, 600, 700] },
+    ],
   },
 
   umami: {

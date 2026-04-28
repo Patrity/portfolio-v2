@@ -7,12 +7,32 @@ definePageMeta({
 })
 
 useSeoMeta({
-  title: 'About - Tony Costanzo | TechHive Labs',
+  title: 'About - Tony Costanzo',
   description: 'Full-stack developer, content creator, and digital consultant with 20+ years of experience. Learn about my journey and what drives me.',
-  ogTitle: 'About - Tony Costanzo | TechHive Labs',
+  ogTitle: 'About - Tony Costanzo',
   ogDescription: 'Full-stack developer, content creator, and digital consultant with 20+ years of experience.',
-  ogUrl: 'https://techhivelabs.net/about',
+  ogUrl: 'https://www.techhivelabs.net/about',
 })
+
+useHead({
+  link: [{ rel: 'canonical', href: 'https://www.techhivelabs.net/about' }],
+})
+
+useSchemaOrg([
+  definePerson({
+    name: 'Tony Costanzo',
+    alternateName: 'Patrity',
+    jobTitle: 'Full-Stack Developer & Founder',
+    image: 'https://www.techhivelabs.net/images/tony.webp',
+    url: 'https://www.techhivelabs.net/about',
+    sameAs: [
+      'https://github.com/Patrity',
+      'https://x.com/Patrity',
+      'https://www.linkedin.com/in/tonycos/',
+      'https://bsky.app/profile/patrity.com',
+    ],
+  }),
+])
 
 const socialLinks = [
   { to: 'https://github.com/Patrity', icon: 'i-fa6-brands-github', label: 'GitHub' },

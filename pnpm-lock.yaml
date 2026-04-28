@@ -39,6 +39,9 @@ importers:
         specifier: ^3.25.67
         version: 3.25.67
     devDependencies:
+      '@nuxt/fonts':
+        specifier: ^0.14.0
+        version: 0.14.0(db0@0.3.4(better-sqlite3@11.9.1))(ioredis@5.10.1)(magicast@0.5.2)(vite@7.3.1(@types/node@24.0.3)(jiti@2.6.1)(lightningcss@1.32.0)(terser@5.43.0)(yaml@2.8.3))
       tailwindcss:
         specifier: ^4.1.10
         version: 4.1.10
