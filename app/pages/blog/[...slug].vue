@@ -50,17 +50,18 @@ if (!isHome.value && page.value) {
     ogTitle: seoTitle,
     ogDescription: description,
     ogUrl: canonicalUrl,
-    ogImage: heroImage,
-    ogImageAlt: description,
     twitterTitle: seoTitle,
     twitterDescription: description,
-    twitterImageAlt: description,
     twitterCard: 'summary_large_image',
     articleAuthor: page.value.author || 'Tony Costanzo',
     articlePublishedTime: page.value.date,
     articleModifiedTime: page.value.updated || page.value.date,
     articleTag: page.value.tags?.join(', '),
   })
+
+  // Use the post's hero image as the social card instead of the generated NuxtSeo
+  // text card (avoids title/description truncation). Overrides app.vue's global component.
+  defineOgImage({ url: heroImage, alt: description })
 
   useHead({
     link: [{ rel: 'canonical', href: canonicalUrl }],
