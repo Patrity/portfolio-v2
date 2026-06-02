@@ -1,5 +1,6 @@
 ---
 title: "I Spent a Saturday Trying to Replace My Local AI to Save on Tokens. The Server Voted No."
+seoTitle: "Why My Local LLM Upgrade Failed (vLLM + Qwen3.6)"
 description: "Six hours, five models, one IPMI reboot, zero upgrades -- a field report on why the bleeding edge of local LLM hosting is mostly bleeding."
 date: 2026-04-28
 sitemap:

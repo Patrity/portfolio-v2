@@ -1,5 +1,6 @@
 ---
 title: I Spent 22 Years Programming Just to Fail at Making a Skeleton Swing a Sword
+seoTitle: "The Architecture Behind My Browser MMORPG"
 description: "REST APIs to roguelikes: How I'm using a smaller game to learn the fundamentals before building my dream MMORPG. A honest indie gamedev journey."
 date: 2025-08-27
 sitemap: 

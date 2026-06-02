@@ -37,20 +37,22 @@ const breadcrumbs = computed(() => {
 // SEO Metadata for individual blog posts
 if (!isHome.value && page.value) {
   const description = page.value.description || `Read "${page.value.title}" on the TechHive Labs blog`
+  // On-page <h1> keeps the full narrative headline; search/social use a concise seoTitle when set
+  const seoTitle = page.value.seoTitle || page.value.title
   const canonicalUrl = `https://www.techhivelabs.net${route.path}`
   const heroImage = page.value.image
     ? `https://www.techhivelabs.net${page.value.image}`
     : 'https://www.techhivelabs.net/og-image.png'
 
   useSeoMeta({
-    title: page.value.title,
+    title: seoTitle,
     description,
-    ogTitle: page.value.title,
+    ogTitle: seoTitle,
     ogDescription: description,
     ogUrl: canonicalUrl,
     ogImage: heroImage,
     ogImageAlt: description,
-    twitterTitle: page.value.title,
+    twitterTitle: seoTitle,
     twitterDescription: description,
     twitterImageAlt: description,
     twitterCard: 'summary_large_image',
@@ -66,7 +68,7 @@ if (!isHome.value && page.value) {
 
   useSchemaOrg([
     defineArticle({
-      headline: page.value.title,
+      headline: seoTitle,
       description,
       image: heroImage,
       datePublished: new Date(page.value.date).toISOString(),
