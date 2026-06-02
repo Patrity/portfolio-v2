@@ -56,6 +56,7 @@ const { data: viewCounts } = useFetch('/api/views-batch', {
   server: false,
   lazy: true,
   immediate: isHome.value,
+  query: { paths: (posts.value || []).map(p => p.path).join(',') },
   default: () => ({ counts: {} as Record<string, number> }),
 })
 

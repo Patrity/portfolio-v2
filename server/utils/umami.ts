@@ -40,3 +40,32 @@ export async function getUmamiAuth(): Promise<UmamiAuth> {
 }
 
 export const ALL_TIME_START = new Date('2020-01-01').getTime()
+
+const VIEW_TTL = 10 * 60 * 1000 // 10 min
+const viewCache = new Map<string, { views: number, exp: number }>()
+
+/**
+ * All-time pageviews for a single path via Umami's stats endpoint, cached.
+ * Returns null when unconfigured/unauthorized/failed. Single source of truth
+ * for both /api/views (one post) and /api/views-batch (the listing), so the
+ * counts always match across the site.
+ */
+export async function getPageViews(path: string): Promise<number | null> {
+  if (!path?.startsWith('/')) return null
+  const cached = viewCache.get(path)
+  if (cached && cached.exp > Date.now()) return cached.views
+
+  const auth = await getUmamiAuth()
+  if ('error' in auth) return null
+  try {
+    const stats = await $fetch<Record<string, any>>(
+      `${auth.base}/api/websites/${umamiConfig.WEBSITE_ID}/stats`,
+      { headers: auth.headers, query: { startAt: ALL_TIME_START, endAt: Date.now(), url: path } },
+    )
+    const views = stats?.pageviews?.value ?? null
+    if (views !== null) viewCache.set(path, { views, exp: Date.now() + VIEW_TTL })
+    return views
+  } catch {
+    return null
+  }
+}
