@@ -119,10 +119,19 @@ if (isHome.value) {
         <UPageHeader :title="page.title" :description="page.description">
           <template #links>
             <span class="text-muted italic">
-              {{ new Date(page.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }) }}
+              {{ formatDate(page.date) }}
             </span>
           </template>
         </UPageHeader>
+        <img
+          v-if="page.image"
+          :src="page.image"
+          :alt="page.title"
+          width="1920"
+          height="1080"
+          fetchpriority="high"
+          class="w-full aspect-video object-cover rounded-xl border border-(--ui-border) mt-6 mb-8"
+        >
         <ContentRenderer :value="page" />
       </div>
       <div v-else-if="isHome">
@@ -138,7 +147,9 @@ if (isHome.value) {
             :key="index"
             v-bind="post"
             :to="post.path"
-          />
+          >
+            <template #date>{{ formatDate(post.date) }}</template>
+          </UBlogPost>
         </UBlogPosts>
       </div>
       <div v-else>

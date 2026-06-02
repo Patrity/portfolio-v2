@@ -2,12 +2,12 @@
 useReveal()
 
 definePageMeta({
-  title: 'TechHive Labs - Full-Stack Development & Digital Solutions',
+  title: 'Full-Stack Development & Digital Solutions',
   description: 'Full-stack developer specializing in web development, video production, and digital solutions. Founder of TechHive Labs. 20+ years of programming experience.',
 })
 
 useSeoMeta({
-  title: 'TechHive Labs - Full-Stack Development & Digital Solutions',
+  title: 'Full-Stack Development & Digital Solutions',
   description: 'Full-stack developer specializing in web development, video production, and digital solutions. Founder of TechHive Labs. 20+ years of programming experience.',
   ogTitle: 'TechHive Labs - Full-Stack Development & Digital Solutions',
   ogDescription: 'Full-stack developer specializing in web development, video production, and digital solutions. Founder of TechHive Labs.',
@@ -65,23 +65,19 @@ onMounted(() => {
 
 const testimonials = [
   {
-    quote: 'Tony completely transformed our online presence. He understood our business needs from day one and delivered a solution that exceeded our expectations.',
-    name: 'Coming Soon',
-    role: 'Small Business Owner',
-    placeholder: true,
+    quote: 'I began working with Tony several years ago on a basic website with some functionality.  He delivered exactly what I asked for and has never left our side.  Every request, every question…he comes through!  I couldn’t ask for a better person to hold our hand through all of the small things we don’t understand.',
+    name: 'Carrie Pledger',
+    role: 'Owner - Adventure Zone Kids',
+    url: 'https://adventurezonekids.com',
+    placeholder: false,
   },
   {
-    quote: 'Working with TechHive Labs was a game-changer. The custom portal Tony built streamlined our entire workflow and saved us countless hours every week.',
-    name: 'Coming Soon',
-    role: 'E-Commerce Client',
-    placeholder: true,
-  },
-  {
-    quote: 'Tony brings a rare combination of technical skill and creative vision. He doesn\'t just build what you ask for — he builds what you actually need.',
-    name: 'Coming Soon',
-    role: 'Digital Consulting Client',
-    placeholder: true,
-  },
+    quote: 'We\'ve worked with Tony on numerous projects and have always found his meticulous attention to detail and upbeat, can-do attitude to be hugely empowering. He writes clean code that we can easily build upon and he is able to quickly shift pace to accommodate changing requirements - an enormously useful trait to have!',
+    name: 'Harry',
+    role: 'Founder - HML Tech',
+    url: 'https://hmltech.dev',
+    placeholder: false,
+  }
 ]
 
 const heroLinks = [
@@ -274,7 +270,9 @@ const cards = computed(() => {
         :to="post.path"
         class="reveal"
         :style="{ transitionDelay: `${i * 0.15}s` }"
-      />
+      >
+        <template #date>{{ formatDate(post.date) }}</template>
+      </UBlogPost>
     </UBlogPosts>
 
     <div class="flex justify-center mt-4 reveal">
@@ -296,8 +294,9 @@ const cards = computed(() => {
             alt="Tony Costanzo"
             width="240"
             height="240"
+            loading="lazy"
             class="rounded-2xl size-48 sm:size-56 object-cover border-2 border-green-500/20 shadow-2xl"
-          />
+          >
           <div class="absolute -inset-1 rounded-2xl bg-gradient-to-br from-green-500/20 to-transparent -z-10 blur-sm" />
         </div>
       </div>
@@ -321,7 +320,7 @@ const cards = computed(() => {
   </section>
 
   <!-- ═══════════════ TESTIMONIALS ═══════════════ -->
-  <section class="py-20 px-6 border-t border-(--ui-border) hidden">
+  <section class="py-20 px-6 border-t border-(--ui-border)">
     <div class="max-w-5xl mx-auto">
       <h2 class="font-teko text-4xl sm:text-5xl font-bold text-center mb-12 reveal">
         What People <span class="gradient-text">Say</span>
@@ -345,10 +344,10 @@ const cards = computed(() => {
             <div class="size-9 rounded-full bg-green-500/10 flex items-center justify-center">
               <UIcon name="i-heroicons-user" class="size-4 text-green-400" />
             </div>
-            <div>
+            <ULink :to="t.url">
               <p class="text-sm font-medium" :class="t.placeholder ? 'text-(--ui-text-dimmed)' : ''">{{ t.name }}</p>
               <p class="text-xs text-(--ui-text-dimmed)">{{ t.role }}</p>
-            </div>
+            </ULink>
           </div>
         </div>
       </div>
@@ -384,8 +383,11 @@ const cards = computed(() => {
             v-if="card.image"
             :src="card.image"
             :alt="card.title"
+            width="640"
+            height="360"
+            loading="lazy"
             class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          />
+          >
           <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
           <!-- Type badge -->

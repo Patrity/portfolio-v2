@@ -1,6 +1,6 @@
 ---
 title: Building a Roguelike Game with Amazon Q
-description: A deep dive into using Amazon's AI coding assistant, Q, to build a browser-based roguelike game with Nuxt.js. From initial concept to implementation challenges, this post explores the potential and limitations of AI-assisted development.
+description: "Using Amazon's AI coding assistant, Q, to build a browser-based roguelike with Nuxt.js — the potential and the limits of AI-assisted development."
 date: 2025-06-17
 sitemap: 
   lastmod: 2026-03-24

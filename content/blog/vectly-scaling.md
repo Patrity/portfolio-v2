@@ -13,7 +13,7 @@ author: Tony Costanzo
 draft: false
 image: /images/blog/vectly/hero.webp
 ---
-# Building an AI App When You Don't Know AI: My Journey from Zero to Deployment Hell to Hybrid Architecture
+## Building an AI App When You Don't Know AI: My Journey from Zero to Deployment Hell to Hybrid Architecture
 
 Been quiet about my AI app project lately, but for good reason - I learned the hard way about what it really takes to build with AI. Let me share the journey of building [Vectly](https://vectly.ai) with zero AI knowledge, hitting walls, and learning a ton along the way.
 

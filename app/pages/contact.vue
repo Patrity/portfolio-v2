@@ -4,12 +4,12 @@ import type { FormSubmitEvent } from '#ui/types'
 
 // SEO Metadata
 definePageMeta({
-  title: 'Contact - TechHive Labs',
+  title: 'Contact',
   description: 'Get in touch with Tony Costanzo at TechHive Labs for web development, video production, and digital consulting services.',
 })
 
 useSeoMeta({
-  title: 'Contact - TechHive Labs',
+  title: 'Contact',
   description: 'Get in touch with Tony Costanzo at TechHive Labs for web development, video production, and digital consulting services.',
   ogTitle: 'Contact - TechHive Labs',
   ogDescription: 'Get in touch for web development, video production, and digital consulting services.',

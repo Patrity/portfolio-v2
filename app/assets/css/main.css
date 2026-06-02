@@ -155,3 +155,17 @@
   transform: scale(1);
   filter: blur(0);
 }
+
+/* Fallback: never hide content from users who can't run the scroll observer
+   (reduced-motion preference or JavaScript disabled). */
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-left,
+  .reveal-right,
+  .reveal-scale {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
+  }
+}

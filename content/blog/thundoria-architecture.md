@@ -17,7 +17,7 @@ image: /images/blog/thundoria/hero.webp
 - [X / Twitter](https://x.com/Patrity)
 - [Blue Sky](https://bsky.app/profile/patrity.com)
 
-# Why I'm Building an MMORPG (By Learning How NOT to Build One First)
+## Why I'm Building an MMORPG (By Learning How NOT to Build One First)
 
 ## Every Game Developer Tells Us The Same Thing...
 

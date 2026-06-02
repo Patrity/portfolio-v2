@@ -16,7 +16,7 @@ image: /images/blog/ai-server/hero.webp
 - [Qwen3.5-122B-A10B on HuggingFace](https://huggingface.co/Qwen/Qwen3.5-122B-A10B-GGUF)
 - [llama.cpp](https://github.com/ggml-org/llama.cpp)
 
-# The $5,000 Question
+## The $5,000 Question
 
 Four RTX 3090s. An AMD EPYC 7532 with 32 cores. 128GB of DDR4. A server rack in my closet that sounds like a jet engine and heats my office better than my actual central heating.
 

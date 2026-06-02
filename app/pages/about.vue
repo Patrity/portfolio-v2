@@ -46,7 +46,7 @@ const timeline = [
     date: '2022 — Present',
     title: 'Content & Community Manager',
     company: 'Fireship',
-    description: 'Curate content, edit video, source sponsorships, manage social media, and create original content for one of the leading programming channels on YouTube with over 4 subscribers.',
+    description: 'Curate content, edit video, source sponsorships, manage social media, and create original content for one of the leading programming channels on YouTube with over 4 million subscribers.',
     icon: 'i-heroicons-fire',
     color: '#f97316',
   },

@@ -1,7 +1,7 @@
 ---
 title: "On an EPC Job, 'Sure, No Problem' Is the Most Expensive Sentence Onsite. An Agent Would Have Checked the Contract First."
 seoTitle: "AI Agents for EPC: The Hidden Cost of 'Sure'"
-description: "A client asks your superintendent for a small favor. He says yes. Eight months later it's a claim nobody can reconstruct. Here's the construction agent I keep thinking about building."
+description: "A client asks your superintendent for a small favor. He says yes. Months later it's a claim nobody can reconstruct. The case for AI agents on EPC jobs."
 date: 2026-06-02
 sitemap:
   lastmod: 2026-06-02

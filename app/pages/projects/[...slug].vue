@@ -105,9 +105,9 @@ if (isHome.value) {
           loop
           autoplay
           >
-            <img :src="item" :alt="page.title" class="object-cover rounded-lg" />
+            <img :src="item" :alt="page.title" width="1280" height="720" class="w-full aspect-video object-cover rounded-lg" >
       </UCarousel>
-      <img v-else-if="page.images && page.images.length === 0" :src="page.images[0]" :alt="page.title" class="object-cover rounded-lg" />
+      <img v-else-if="page.images && page.images.length === 1" :src="page.images[0]" :alt="page.title" width="1280" height="720" class="w-full aspect-video object-cover rounded-lg mb-8" >
 
         <ContentRenderer :value="page" />
       </div>
@@ -129,8 +129,11 @@ if (isHome.value) {
               <img
                 :src="project.images[0]"
                 :alt="project.title"
+                width="640"
+                height="360"
+                loading="lazy"
                 class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
-              />
+              >
               <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
             </div>
             <div class="p-5">
