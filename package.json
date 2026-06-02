@@ -7,7 +7,8 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "audit:seo": "node scripts/seo-audit.mjs"
   },
   "dependencies": {
     "@nuxt/content": "^3.6.0",
@@ -24,6 +25,7 @@
   "packageManager": "pnpm@9.15.2+sha512.93e57b0126f0df74ce6bff29680394c0ba54ec47246b9cf321f0121d8d9bb03f750a705f24edc3c1180853afd7c2c3b94196d0a3d53d3e069d9e2793ef11f321",
   "devDependencies": {
     "@nuxt/fonts": "^0.14.0",
+    "playwright": "^1.60.0",
     "tailwindcss": "^4.1.10",
     "typescript": "^5.8.3"
   }

@@ -30,7 +30,7 @@ const breadcrumbs = computed(() => {
   return [
     { label: 'Home', to: '/', icon: 'i-heroicons-home' },
     { label: 'Blog', to: '/blog', icon: 'i-heroicons-chat-bubble-bottom-center-text' },
-    { label: page.value.title, to: route.path },
+    { label: page.value.seoTitle || page.value.title, to: route.path },
   ]
 })
 
@@ -83,7 +83,7 @@ if (!isHome.value && page.value) {
       itemListElement: [
         { name: 'Home', item: 'https://www.techhivelabs.net/' },
         { name: 'Blog', item: 'https://www.techhivelabs.net/blog' },
-        { name: page.value.title },
+        { name: page.value.seoTitle || page.value.title },
       ],
     }),
   ])
@@ -118,7 +118,7 @@ if (isHome.value) {
       <div v-if="!isHome && page">
         <UPageHeader :title="page.title" :description="page.description">
           <template #links>
-            <span class="text-muted italic">
+            <span class="text-muted italic whitespace-nowrap">
               {{ formatDate(page.date) }}
             </span>
           </template>
