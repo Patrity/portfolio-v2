@@ -21,10 +21,14 @@ export default defineEventHandler(async (event) => {
       `${auth.base}/api/websites/${umamiConfig.WEBSITE_ID}/metrics`,
       { headers: auth.headers, query: { startAt: ALL_TIME_START, endAt: Date.now(), type: 'url', limit: 500 } },
     )
+    // Umami stores URL variants separately (trailing slash, #fragment, ?query).
+    // Normalize to the canonical path and sum so totals match the per-post stats.
     const counts: Record<string, number> = {}
     for (const r of rows || []) {
-      const p = r?.x?.split('?')[0]
-      if (p?.startsWith('/blog/')) counts[p] = (counts[p] || 0) + (r.y || 0)
+      if (!r?.x) continue
+      let p = r.x.split('?')[0].split('#')[0]
+      if (p.length > 1) p = p.replace(/\/$/, '')
+      if (p.startsWith('/blog/')) counts[p] = (counts[p] || 0) + (r.y || 0)
     }
     batchCache = { data: counts, exp: Date.now() + BATCH_TTL }
     return out(counts, { stage: 'ok', rows: rows?.length, blogPaths: Object.keys(counts).length })
