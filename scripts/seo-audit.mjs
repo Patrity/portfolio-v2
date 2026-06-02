@@ -29,7 +29,11 @@ async function discoverPaths() {
     const res = await fetch(`${BASE}/sitemap.xml`)
     if (!res.ok) throw new Error(`sitemap ${res.status}`)
     const xml = await res.text()
-    const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(m => m[1].replace(BASE, '') || '/')
+    // sitemap lists absolute (canonical) URLs — take the pathname so the audit
+    // works against any origin (e.g. a localhost preview build).
+    const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => {
+      try { return new URL(m[1]).pathname } catch { return m[1].replace(BASE, '') || '/' }
+    })
     if (locs.length) return [...new Set(locs)].sort()
   } catch (e) {
     console.warn(`! sitemap unavailable (${e.message}), using fallback path list`)

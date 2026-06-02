@@ -9,6 +9,18 @@ const { data: page } = await useAsyncData(route.path, () => queryCollection('blo
 
 const isHome = computed(() => route.path === '/blog')
 
+const readMins = computed(() => (page.value?.body ? readingTime(page.value.body) : 0))
+
+// View count: fetched on the client since pages are prerendered and Umami is
+// dynamic. Renders only when the API returns a number (graceful when unset).
+const { data: viewData } = useFetch('/api/views', {
+  query: { path: route.path },
+  server: false,
+  lazy: true,
+  default: () => ({ views: null as number | null }),
+})
+const views = computed(() => viewData.value?.views ?? null)
+
 const { data: posts } = await useAsyncData('posts', () => {
   if (isHome.value) {
     return queryCollection('blog')
@@ -18,6 +30,24 @@ const { data: posts } = await useAsyncData('posts', () => {
       .all()
   }
   return null
+})
+
+// Blog index: client-side search + tag filtering over the prerendered list.
+const search = ref('')
+const activeTag = computed(() => (route.query.tag as string) || '')
+const allTags = computed(() => [...new Set((posts.value || []).flatMap(p => p.tags || []))].sort())
+const filteredPosts = computed(() => {
+  let list = posts.value || []
+  if (activeTag.value) list = list.filter(p => p.tags?.includes(activeTag.value))
+  const q = search.value.trim().toLowerCase()
+  if (q) {
+    list = list.filter(p =>
+      p.title?.toLowerCase().includes(q)
+      || p.description?.toLowerCase().includes(q)
+      || p.tags?.some(t => t.toLowerCase().includes(q)),
+    )
+  }
+  return list
 })
 
 const breadcrumbs = computed(() => {
@@ -116,13 +146,27 @@ if (isHome.value) {
   <UPage v-if="navigation">
     <template #default>
       <div v-if="!isHome && page">
-        <UPageHeader :title="page.title" :description="page.description">
-          <template #links>
-            <span class="text-muted italic whitespace-nowrap">
-              {{ formatDate(page.date) }}
-            </span>
+        <UPageHeader :title="page.title" :description="page.description" />
+        <div class="flex flex-wrap items-center gap-x-3 gap-y-2 mt-4 text-sm text-(--ui-text-muted)">
+          <span class="italic whitespace-nowrap">{{ formatDate(page.date) }}</span>
+          <span class="text-(--ui-text-dimmed)">·</span>
+          <span class="whitespace-nowrap">{{ readMins }} min read</span>
+          <template v-if="views !== null">
+            <span class="text-(--ui-text-dimmed)">·</span>
+            <span class="whitespace-nowrap">{{ views.toLocaleString() }} views</span>
           </template>
-        </UPageHeader>
+          <div v-if="page.tags?.length" class="flex flex-wrap gap-2 sm:ms-1">
+            <UButton
+              v-for="tag in page.tags"
+              :key="tag"
+              :to="`/blog?tag=${encodeURIComponent(tag)}`"
+              size="xs"
+              color="primary"
+              variant="soft"
+              :label="tag"
+            />
+          </div>
+        </div>
         <img
           v-if="page.image"
           :src="page.image"
@@ -141,16 +185,61 @@ if (isHome.value) {
           </template>
         </UPageHeader>
 
-        <UBlogPosts>
+        <!-- Search + tag filter -->
+        <div class="flex flex-col gap-4 mt-6 mb-8">
+          <UInput
+            v-model="search"
+            icon="i-heroicons-magnifying-glass"
+            placeholder="Search posts.."
+            size="lg"
+            :ui="{ root: 'w-full' }"
+          />
+          <div v-if="allTags.length" class="flex flex-wrap items-center gap-2">
+            <UButton
+              to="/blog"
+              size="xs"
+              :color="activeTag ? 'neutral' : 'primary'"
+              :variant="activeTag ? 'outline' : 'solid'"
+              label="All"
+            />
+            <UButton
+              v-for="tag in allTags"
+              :key="tag"
+              :to="`/blog?tag=${encodeURIComponent(tag)}`"
+              size="xs"
+              :color="activeTag === tag ? 'primary' : 'neutral'"
+              :variant="activeTag === tag ? 'solid' : 'outline'"
+              :label="tag"
+            />
+          </div>
+        </div>
+
+        <UBlogPosts v-if="filteredPosts.length">
           <UBlogPost
-            v-for="(post, index) in posts"
+            v-for="(post, index) in filteredPosts"
             :key="index"
             v-bind="post"
             :to="post.path"
           >
             <template #date>{{ formatDate(post.date) }}</template>
+            <template #description>
+              <span>{{ post.description }}</span>
+              <span v-if="post.tags?.length" class="mt-3 flex flex-wrap gap-1.5">
+                <UBadge
+                  v-for="t in post.tags"
+                  :key="t"
+                  :label="t"
+                  size="sm"
+                  color="primary"
+                  variant="soft"
+                />
+              </span>
+            </template>
           </UBlogPost>
         </UBlogPosts>
+        <p v-else class="text-center text-(--ui-text-muted) py-16">
+          No posts match{{ activeTag ? ` the “${activeTag}” tag` : '' }}{{ search ? ` “${search}”` : '' }}.
+        </p>
       </div>
       <div v-else>
         <div>

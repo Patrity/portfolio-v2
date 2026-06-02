@@ -272,6 +272,19 @@ const cards = computed(() => {
         :style="{ transitionDelay: `${i * 0.15}s` }"
       >
         <template #date>{{ formatDate(post.date) }}</template>
+        <template #description>
+          <span>{{ post.description }}</span>
+          <span v-if="post.tags?.length" class="mt-3 flex flex-wrap gap-1.5">
+            <UBadge
+              v-for="t in post.tags"
+              :key="t"
+              :label="t"
+              size="sm"
+              color="primary"
+              variant="soft"
+            />
+          </span>
+        </template>
       </UBlogPost>
     </UBlogPosts>
 
