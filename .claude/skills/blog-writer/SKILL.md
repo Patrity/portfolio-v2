@@ -26,7 +26,7 @@ Write blog posts that match Tony's voice exactly. His style reads like a senior 
    - Opening drops into the story immediately -- no throat-clearing
    - Closing ends on humor or personality, not a summary
    - Double dots (..) used instead of proper ellipsis (...) for trailing thoughts
-   - Dashes (--) used for asides, not em dashes
+   - NEVER use dashes/em dashes except for concatenated words
    - No walls of text -- paragraphs are 2-4 sentences max
    - Technical details delivered through bullet lists with bold labels, not prose lectures
 
@@ -114,7 +114,6 @@ Write blog posts that match Tony's voice exactly. His style reads like a senior 
 These are fingerprints of Tony's voice. Get them right.
 
 - **Double dots (..)** instead of proper ellipsis -- this is a signature: "The thing is.. I'm still going to build my MMORPG"
-- **Dashes (--)** for asides and parenthetical commentary. Not em dashes. Used frequently.
 - **Parenthetical asides** are the core humor delivery vehicle
 - **Exclamation marks** used sparingly -- genuine excitement or sarcastic emphasis only
 - **Rhetorical Q&A as transitions:** "Am I starting over? Nope. Just evolving the architecture."
@@ -144,7 +143,6 @@ Use these naturally (not all in one post):
 - LinkedIn-energy positivity
 - Corporate speak or buzzword soup
 - Proper ellipsis (...) -- always double dots (..)
-- Em dashes -- always double hyphens (--)
 
 ## Frontmatter Template
 

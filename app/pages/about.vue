@@ -43,7 +43,14 @@ const socialLinks = [
 
 const timeline = [
   {
-    date: '2022 — Present',
+    date: '2025 - Present',
+    title: 'AI Implementation',
+    company: 'McDermott & Consultancy',
+    description: 'Explore, develop, and integrate AI for practical business applications to reduce labor cost and improve efficiency and accuracy of data pipelines through methods including custom RAG pipelines, OCR implementations, Open AI/Anthropic API integrations, and Agentic workflows.',
+    icon: 'i-heroicons-cpu-chip'
+  },
+  {
+    date: '2022 — 2026',
     title: 'Content & Community Manager',
     company: 'Fireship',
     description: 'Curate content, edit video, source sponsorships, manage social media, and create original content for one of the leading programming channels on YouTube with over 4 million subscribers.',
@@ -94,22 +101,22 @@ const skillCategories = [
   {
     title: 'Data & Infrastructure',
     icon: 'i-heroicons-circle-stack',
-    skills: ['PostgreSQL', 'Supabase', 'pgvector', 'SQLite', 'Vercel', 'Cloudflare'],
+    skills: ['PostgreSQL', 'Supabase', 'pgvector', 'SQLite', 'Vercel', 'Cloudflare', 'SQL Server', 'Redis & PubSub', 'Azure', 'AWS'],
   },
   {
     title: 'AI & Automation',
     icon: 'i-heroicons-cpu-chip',
-    skills: ['RAG Pipelines', 'Agentic Workflows', 'LLM Integration', 'Vector Search', 'Prompt Engineering', 'Claude & OpenAI APIs'],
+    skills: ['RAG Pipelines', 'Agentic Workflows', 'LLM Integration', 'Vector Search', 'Prompt Engineering', 'OCR Implementation', 'Anthropic & OpenAI APIs'],
   },
   {
     title: 'Construction',
     icon: 'i-heroicons-building-office-2',
-    skills: ['Project Controls', 'Earned Value', 'Reporting', 'Scheduling', '3D Data', 'Project Forecasts', 'Change Management'],
+    skills: ['Project Controls', 'Earned Value', 'Reporting', 'Scheduling', '3D Data', 'Project Forecasts', 'Change Management', 'AWP'],
   },
   {
     title: 'Creative & Content',
     icon: 'i-heroicons-paint-brush',
-    skills: ['Premiere Pro', 'After Effects', 'Content Strategy', 'Script Writing', 'SEO', 'Social Media'],
+    skills: ['Premiere Pro', 'After Effects', 'Content Strategy', 'Script Writing', 'SEO', 'Social Media', 'Sponsorship Integrations'],
   },
 ]
 </script>
@@ -216,14 +223,14 @@ const skillCategories = [
       <div class="absolute left-6 md:left-1/2 top-32 bottom-16 w-px bg-gradient-to-b from-green-500/40 via-green-500/20 to-transparent" />
 
       <div class="space-y-2">
-        <div
+        <div-
           v-for="(item, i) in timeline"
           :key="i"
           class="reveal"
           :style="{ transitionDelay: `${i * 0.15}s` }"
         >
           <TimelineItem v-bind="item" />
-        </div>
+        </div->
       </div>
     </div>
   </section>

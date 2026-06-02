@@ -25,4 +25,5 @@ logs
 .wrangler
 
 .claude/skills/*/cache/
-.claude/skills/*/manifest.jsonaudit-output
+.claude/skills/*/manifest.json
+audit-output
