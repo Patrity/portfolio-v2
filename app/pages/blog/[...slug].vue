@@ -50,6 +50,15 @@ const filteredPosts = computed(() => {
   return list
 })
 
+// One batched request for every post's view count (client-side, server-cached).
+// immediate:isHome so it only fires on the listing page, not on articles.
+const { data: viewCounts } = useFetch('/api/views-batch', {
+  server: false,
+  lazy: true,
+  immediate: isHome.value,
+  default: () => ({ counts: {} as Record<string, number> }),
+})
+
 const breadcrumbs = computed(() => {
   if (isHome.value) {
     return [
@@ -221,7 +230,9 @@ if (isHome.value) {
             v-bind="post"
             :to="post.path"
           >
-            <template #date>{{ formatDate(post.date) }}</template>
+            <template #date>
+              {{ formatDate(post.date) }}<template v-if="viewCounts?.counts?.[post.path]"> · {{ viewCounts.counts[post.path].toLocaleString() }} views</template>
+            </template>
             <template #description>
               <span>{{ post.description }}</span>
               <span v-if="post.tags?.length" class="mt-3 flex flex-wrap gap-1.5">
