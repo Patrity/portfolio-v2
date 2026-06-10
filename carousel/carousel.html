@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Local AI Carousel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,500&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#070b07;
+    --panel:#0d130c;
+    --panel-2:#111a0f;
+    --green:#46c211;
+    --green-core:#39a10e;
+    --green-dim:#1d520a;
+    --green-glow:rgba(70,194,17,.45);
+    --text:#eaf2e7;
+    --muted:#788a72;
+    --line:rgba(120,160,110,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  @page{ size:1080px 1350px; margin:0; }
+  html,body{ background:var(--ink); }
+  body{ font-family:"Archivo",sans-serif; -webkit-font-smoothing:antialiased; }
+
+  .slide{
+    width:1080px; height:1350px; position:relative; overflow:hidden;
+    background:
+      radial-gradient(120% 80% at 78% -10%, rgba(70,194,17,.16), transparent 55%),
+      radial-gradient(90% 70% at -10% 110%, rgba(37,106,9,.18), transparent 55%),
+      linear-gradient(180deg,#0a0f09 0%, #070b07 60%, #060906 100%);
+    color:var(--text);
+    page-break-after:always;
+    display:flex; flex-direction:column;
+    padding:96px 92px 72px;
+  }
+  .slide:last-child{ page-break-after:auto; }
+
+  /* circuit + grain overlays */
+  .slide::before{
+    content:""; position:absolute; inset:0; opacity:.5;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:90px 90px;
+    -webkit-mask-image:radial-gradient(120% 90% at 80% 0%, #000 0%, transparent 70%);
+            mask-image:radial-gradient(120% 90% at 80% 0%, #000 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .trace{ position:absolute; top:0; right:0; width:520px; height:520px; opacity:.6; pointer-events:none;}
+  .grain{ position:absolute; inset:0; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  /* shared header / footer */
+  .eyebrow{
+    position:relative; z-index:2; display:inline-flex; align-items:center; gap:14px;
+    font-family:"JetBrains Mono",monospace; font-weight:700; font-size:19px; letter-spacing:.32em;
+    text-transform:uppercase; color:var(--green); margin-bottom:auto;
+  }
+  .eyebrow .dot{ width:11px; height:11px; background:var(--green); border-radius:50%;
+    box-shadow:0 0 16px 2px var(--green-glow); }
+
+  .foot{
+    position:relative; z-index:2; margin-top:auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding-top:36px; border-top:1px solid var(--line);
+    font-family:"JetBrains Mono",monospace; font-size:18px; letter-spacing:.18em; color:var(--muted);
+  }
+  .foot b{ color:var(--text); font-weight:700; }
+  .foot .num b{ color:var(--green); }
+
+  .body-wrap{ position:relative; z-index:2; display:flex; flex-direction:column; justify-content:center; flex:1; }
+
+  h1{ font-family:"Teko",sans-serif; font-weight:600; line-height:.92; letter-spacing:.005em;
+      text-transform:uppercase; }
+  h2{ font-family:"Teko",sans-serif; font-weight:600; line-height:.95; text-transform:uppercase; }
+  .lead{ font-size:33px; line-height:1.42; color:#d7e3d2; font-weight:400; }
+  .muted{ color:var(--muted); }
+  .green{ color:var(--green); }
+  em{ color:var(--green); font-style:italic; }
+  strong{ color:#fff; font-weight:700; }
+
+  /* COVER */
+  .cover h1{ font-size:172px; }
+  .cover .kicker{ font-size:38px; line-height:1.4; color:#cfe0c9; max-width:780px; margin-top:30px; }
+  .cover .rule{ width:120px; height:7px; background:var(--green); margin:46px 0 0; box-shadow:0 0 24px var(--green-glow); }
+
+  /* stat slides */
+  .stat-num{ font-family:"JetBrains Mono",monospace; font-weight:800; font-size:300px; line-height:.82;
+    color:#fff; letter-spacing:-.04em; }
+  .stat-num .x{ color:var(--green); }
+  .stat-label{ font-family:"Teko",sans-serif; font-weight:500; text-transform:uppercase; font-size:74px;
+    line-height:1; margin-top:24px; color:var(--text); }
+  .stat-sub{ font-size:30px; line-height:1.45; color:var(--muted); margin-top:30px; max-width:760px; }
+  .vs-row{ display:flex; gap:26px; margin-top:46px; }
+  .chip{ flex:1; background:linear-gradient(180deg,var(--panel-2),var(--panel)); border:1px solid var(--line);
+    border-radius:18px; padding:34px 32px; }
+  .chip .t{ font-family:"JetBrains Mono",monospace; font-size:18px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:18px;}
+  .chip .v{ font-family:"JetBrains Mono",monospace; font-weight:800; font-size:64px; color:#fff; }
+  .chip.win{ border-color:rgba(70,194,17,.5); box-shadow:0 0 0 1px rgba(70,194,17,.25), 0 30px 80px -40px var(--green-glow);}
+  .chip.win .v{ color:var(--green); }
+  .chip .note{ font-size:21px; color:var(--muted); margin-top:14px; }
+
+  .big-quote{ font-family:"Teko",sans-serif; font-weight:500; text-transform:uppercase; font-size:104px; line-height:.96; }
+  .big-quote .b{ color:var(--green); }
+
+  ul.ticks{ list-style:none; margin-top:20px; }
+  ul.ticks li{ position:relative; padding-left:52px; font-size:31px; line-height:1.5; margin:24px 0; color:#d7e3d2;}
+  ul.ticks li::before{ content:""; position:absolute; left:0; top:14px; width:26px; height:26px;
+    background:var(--green); clip-path:polygon(41% 78%, 12% 49%, 22% 39%, 41% 58%, 79% 20%, 89% 30%);
+    box-shadow:0 0 14px var(--green-glow); }
+
+  .tag{ display:inline-block; font-family:"JetBrains Mono",monospace; font-size:20px; letter-spacing:.14em;
+    color:var(--green); border:1px solid rgba(70,194,17,.4); border-radius:999px; padding:10px 22px; }
+
+  .cta-link{ font-family:"JetBrains Mono",monospace; font-size:30px; color:#fff; background:var(--green-core);
+    display:inline-flex; align-items:center; gap:18px; padding:26px 40px; border-radius:16px; font-weight:700;
+    box-shadow:0 24px 70px -30px var(--green-glow); margin-top:8px; }
+  .cta-link .arr{ color:#0a1408; }
+</style>
+</head>
+<body>
+
+<!-- corner circuit svg reused -->
+<template id="trace">
+  <svg class="trace" viewBox="0 0 520 520" fill="none" stroke="#46c211" stroke-width="2">
+    <path d="M520 70 H300 a24 24 0 0 0-24 24 V230" opacity=".55"/>
+    <path d="M520 150 H380 a24 24 0 0 0-24 24 V330" opacity=".4"/>
+    <path d="M520 240 H460" opacity=".5"/>
+    <circle cx="276" cy="230" r="8" fill="#46c211" stroke="none" opacity=".8"/>
+    <circle cx="356" cy="330" r="6" fill="#46c211" stroke="none" opacity=".6"/>
+    <circle cx="460" cy="240" r="5" fill="#46c211" stroke="none" opacity=".7"/>
+    <path d="M120 0 V120 a24 24 0 0 0 24 24 H300" opacity=".3"/>
+  </svg>
+</template>
+
+<!-- 01 COVER -->
+<section class="slide cover">
+  <div class="grain"></div>
+  <div class="eyebrow"><span class="dot"></span> Field Notes / Local AI</div>
+  <div class="body-wrap">
+    <h1>The model<br>with the <span class="green">worse</span><br>score won.</h1>
+    <div class="kicker">I put local, self-hosted AI up against the big subscriptions. The benchmark loser became the one I'd actually deploy.</div>
+    <div class="rule"></div>
+  </div>
+  <div class="foot"><span><b>TONY COSTANZO</b> &nbsp;/&nbsp; TechHive Labs</span><span class="num"><b>01</b> / 09</span></div>
+</section>
+
+<!-- 02 THE QUESTION -->
+<section class="slide">
+  <div class="grain"></div>
+  <div class="eyebrow"><span class="dot"></span> The Real Question</div>
+  <div class="body-wrap">
+    <h2 style="font-size:88px; margin-bottom:34px;">Most teams <span class="green">rent</span> their AI<br>and never ask what it<br>would take to own it.</h2>
+    <p class="lead">Every time I sit with a construction or engineering team, the same question surfaces.. usually quietly:</p>
+    <p class="lead" style="margin-top:26px; color:#fff; font-weight:600; border-left:5px solid var(--green); padding-left:28px;">&ldquo;To use this, do I have to ship my contracts and project data to someone else&rsquo;s servers?&rdquo;</p>
+    <p class="lead muted" style="margin-top:26px;">For a lot of real work, that isn&rsquo;t a small question. It&rsquo;s the whole question.</p>
+  </div>
+  <div class="foot"><span><b>TONY COSTANZO</b> &nbsp;/&nbsp; TechHive Labs</span><span class="num"><b>02</b> / 09</span></div>
+</section>
+
+<!-- 03 THE TEST -->
+<section class="slide">
+  <div class="grain"></div>
+  <div class="eyebrow"><span class="dot"></span> The Test</div>
+  <div class="body-wrap">
+    <h2 style="font-size:84px; margin-bottom:18px;">Two models.<br>Two desk-side GPUs.<br>No subscription.</h2>
+    <p class="lead muted" style="margin-bottom:10px;">Same family, same hardware, head to head.</p>
+    <div class="vs-row">
+      <div class="chip">
+        <div class="t">Model A — Dense</div>
+        <div class="v" style="font-size:46px; color:#fff;">Flagship</div>
+        <div class="note">Higher benchmarks. The &ldquo;better&rdquo; model on paper.</div>
+      </div>
+      <div class="chip win">
+        <div class="t">Model B — Sparse MoE</div>
+        <div class="v" style="font-size:46px;">Mixture-of-Experts</div>
+        <div class="note">Bigger overall, but only a sliver runs per token. Far cheaper to run.</div>
+      </div>
+    </div>
+    <p class="lead" style="margin-top:40px;">I went in expecting the flagship to win.</p>
+  </div>
+  <div class="foot"><span><b>TONY COSTANZO</b> &nbsp;/&nbsp; TechHive Labs</span><span class="num"><b>03</b> / 09</span></div>
+</section>
+
+<!-- 04 BENCHMARK -->
+<section class="slide">
+  <div class="grain"></div>
+  <div class="eyebrow"><span class="dot"></span> Round 1 — The Leaderboard</div>
+  <div class="body-wrap">
+    <h2 style="font-size:80px; margin-bottom:36px;">The flagship won<br>the benchmark.<br><span class="green">By four points.</span></h2>
+    <div class="vs-row">
+      <div class="chip win">
+        <div class="t">Dense flagship</div>
+        <div class="v">77.2</div>
+        <div class="note">SWE-bench Verified</div>
+      </div>
+      <div class="chip">
+        <div class="t">Sparse MoE</div>
+        <div class="v" style="color:#fff;">73.4</div>
+        <div class="note">SWE-bench Verified</div>
+      </div>
+    </div>
+    <p class="stat-sub" style="font-size:31px; color:#cfe0c9; margin-top:42px;">Four points. The number everyone shops for. Hold that against what came next.</p>
+  </div>
+  <div class="foot"><span><b>TONY COSTANZO</b> &nbsp;/&nbsp; TechHive Labs</span><span class="num"><b>04</b> / 09</span></div>
+</section>
+
+<!-- 05 SPEED -->
+<section class="slide">
+  <div class="grain"></div>
+  <div class="eyebrow"><span class="dot"></span> Round 2 — Speed</div>
+  <div class="body-wrap">
+    <div class="stat-num"><span class="x">5.5</span>&times;</div>
+    <div class="stat-label">faster on long prompts</div>
+    <p class="stat-sub">The sparse model chewed through a long document in <strong>279&nbsp;ms</strong> versus <strong>1,531&nbsp;ms</strong>. That gap is the difference between an assistant that feels alive and one you tab away from.</p>
+  </div>
+  <div class="foot"><span><b>TONY COSTANZO</b> &nbsp;/&nbsp; TechHive Labs</span><span class="num"><b>05</b> / 09</span></div>
+</section>
+
+<!-- 06 CONTEXT -->
+<section class="slide">
+  <div class="grain"></div>
+  <div class="eyebrow"><span class="dot"></span> Round 3 — Working Memory</div>
+  <div class="body-wrap">
+    <div class="stat-num"><span class="x">2.5</span>&times;</div>
+    <div class="stat-label">more context, same hardware</div>
+    <p class="stat-sub">On the identical pair of GPUs, the sparse model held <strong>~421K tokens</strong> of context against <strong>~170K</strong>. More of your document, codebase, or contract in view at once &mdash; for free.</p>
+  </div>
+  <div class="foot"><span><b>TONY COSTANZO</b> &nbsp;/&nbsp; TechHive Labs</span><span class="num"><b>06</b> / 09</span></div>
+</section>
+
+<!-- 07 CORRECTNESS -->
+<section class="slide">
+  <div class="grain"></div>
+  <div class="eyebrow"><span class="dot"></span> Round 4 — Was It Actually Smart?</div>
+  <div class="body-wrap">
+    <h2 style="font-size:96px; margin-bottom:18px;">A <span class="green">flat-out tie</span><br>on every hard task.</h2>
+    <ul class="ticks">
+      <li>Multi-constraint cache implementation &mdash; both nailed it</li>
+      <li>Found the same subtle aliasing bug weaker models miss</li>
+      <li>Multi-step reasoning &mdash; identical correct answer</li>
+    </ul>
+    <p class="lead muted" style="margin-top:30px;">The only difference: the flagship explained itself. The MoE just fixed it and moved on &mdash; in a fraction of the time.</p>
+  </div>
+  <div class="foot"><span><b>TONY COSTANZO</b> &nbsp;/&nbsp; TechHive Labs</span><span class="num"><b>07</b> / 09</span></div>
+</section>
+
+<!-- 08 TAKEAWAY -->
+<section class="slide">
+  <div class="grain"></div>
+  <div class="eyebrow"><span class="dot"></span> The Takeaway</div>
+  <div class="body-wrap">
+    <p class="big-quote">Benchmarks measure a model<br>at its <span class="b">limit.</span></p>
+    <p class="big-quote" style="margin-top:34px;">You work in the<br><span class="b">boring middle.</span></p>
+    <p class="stat-sub" style="font-size:32px; color:#cfe0c9; margin-top:48px;">The routine prompt. The long document. The fourth turn of a conversation. There, the &ldquo;worse&rdquo; model was flatly the better tool.</p>
+  </div>
+  <div class="foot"><span><b>TONY COSTANZO</b> &nbsp;/&nbsp; TechHive Labs</span><span class="num"><b>08</b> / 09</span></div>
+</section>
+
+<!-- 09 CTA -->
+<section class="slide">
+  <div class="grain"></div>
+  <div class="eyebrow"><span class="dot"></span> The Bigger Point</div>
+  <div class="body-wrap">
+    <h2 style="font-size:92px; margin-bottom:30px;">Local AI is now a<br><span class="green">real alternative</span> &mdash;<br>private by default.</h2>
+    <p class="lead">It won&rsquo;t replace the frontier subscriptions for everything. But for a huge slice of real work, a model running in <em>your</em> building is fast enough, capable enough, and never leaves the room.</p>
+    <p class="lead" style="margin-top:26px; color:#fff; font-weight:600;">The catch was never the model. It&rsquo;s that we defaulted to renting before checking what we already had the hardware to own.</p>
+    <div style="margin-top:46px;">
+      <span class="cta-link">Full writeup + reproducible setup <span class="arr">&rarr; in the comments</span></span>
+    </div>
+  </div>
+  <div class="foot"><span><b>TONY COSTANZO</b> &nbsp;/&nbsp; techhivelabs.net</span><span class="num"><b>09</b> / 09</span></div>
+</section>
+
+<script>
+  // inject corner circuit trace into every slide
+  const tpl = document.getElementById('trace').innerHTML;
+  document.querySelectorAll('.slide').forEach(s=>{ s.insertAdjacentHTML('afterbegin', tpl); });
+</script>
+</body>
+</html>

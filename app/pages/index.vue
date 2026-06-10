@@ -77,6 +77,12 @@ const testimonials = [
     role: 'Founder - HML Tech',
     url: 'https://hmltech.dev',
     placeholder: false,
+  },
+  {
+    quote: 'I had a great experience working with Tony. He is a skilled web developer, responsive, efficient, and focused on getting things done. With a well-defined scope, the work proceeded smoothly and matched what we planned. I would confidently recommend him to anyone looking for reliable development support.',
+    name: 'Will',
+    role: 'Founder',
+    placeholder: false,
   }
 ]
 

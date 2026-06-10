@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--
+  TechHive Labs LinkedIn carousel template (4:5, 1080x1350).
+  HOW TO USE:
+    1. Duplicate / keep the <section class="slide"> blocks you need, in order.
+    2. One idea per slide. Aim for 8-10 slides total.
+    3. Update every footer's slide counter (NN / TT) and the total.
+    4. Render with scripts/render.sh, then READ the contact.png to verify.
+  LAYOUTS available below (each shown once): cover, stat, vs, ticks, quote, cta.
+  Keep the .slide wrapper, .grain, the injected circuit trace, and .foot on every slide.
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Carousel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,500&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#070b07; --panel:#0d130c; --panel-2:#111a0f;
+    --green:#46c211; --green-core:#39a10e; --green-dim:#1d520a;
+    --green-glow:rgba(70,194,17,.45);
+    --text:#eaf2e7; --muted:#788a72; --line:rgba(120,160,110,.14);
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  @page{ size:1080px 1350px; margin:0; }
+  html,body{ background:var(--ink); }
+  body{ font-family:"Archivo",sans-serif; -webkit-font-smoothing:antialiased; }
+
+  .slide{
+    width:1080px; height:1350px; position:relative; overflow:hidden;
+    background:
+      radial-gradient(120% 80% at 78% -10%, rgba(70,194,17,.16), transparent 55%),
+      radial-gradient(90% 70% at -10% 110%, rgba(37,106,9,.18), transparent 55%),
+      linear-gradient(180deg,#0a0f09 0%, #070b07 60%, #060906 100%);
+    color:var(--text); page-break-after:always;
+    display:flex; flex-direction:column; padding:96px 92px 72px;
+  }
+  .slide:last-child{ page-break-after:auto; }
+  .slide::before{
+    content:""; position:absolute; inset:0; opacity:.5;
+    background-image:linear-gradient(var(--line) 1px, transparent 1px),linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:90px 90px;
+    -webkit-mask-image:radial-gradient(120% 90% at 80% 0%, #000 0%, transparent 70%);
+            mask-image:radial-gradient(120% 90% at 80% 0%, #000 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .trace{ position:absolute; top:0; right:0; width:520px; height:520px; opacity:.6; pointer-events:none;}
+  .grain{ position:absolute; inset:0; pointer-events:none; opacity:.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");}
+
+  .eyebrow{ position:relative; z-index:2; display:inline-flex; align-items:center; gap:14px;
+    font-family:"JetBrains Mono",monospace; font-weight:700; font-size:19px; letter-spacing:.32em;
+    text-transform:uppercase; color:var(--green); margin-bottom:auto; }
+  .eyebrow .dot{ width:11px; height:11px; background:var(--green); border-radius:50%; box-shadow:0 0 16px 2px var(--green-glow); }
+
+  .foot{ position:relative; z-index:2; margin-top:auto; display:flex; align-items:center; justify-content:space-between;
+    padding-top:36px; border-top:1px solid var(--line);
+    font-family:"JetBrains Mono",monospace; font-size:18px; letter-spacing:.18em; color:var(--muted); }
+  .foot b{ color:var(--text); font-weight:700; }
+  .foot .num b{ color:var(--green); }
+
+  .body-wrap{ position:relative; z-index:2; display:flex; flex-direction:column; justify-content:center; flex:1; }
+
+  h1{ font-family:"Teko",sans-serif; font-weight:600; line-height:.92; text-transform:uppercase; }
+  h2{ font-family:"Teko",sans-serif; font-weight:600; line-height:.95; text-transform:uppercase; }
+  .lead{ font-size:33px; line-height:1.42; color:#d7e3d2; font-weight:400; }
+  .muted{ color:var(--muted); } .green{ color:var(--green); }
+  em{ color:var(--green); font-style:italic; } strong{ color:#fff; font-weight:700; }
+
+  .cover h1{ font-size:172px; }
+  .cover .kicker{ font-size:38px; line-height:1.4; color:#cfe0c9; max-width:780px; margin-top:30px; }
+  .cover .rule{ width:120px; height:7px; background:var(--green); margin:46px 0 0; box-shadow:0 0 24px var(--green-glow); }
+
+  .stat-num{ font-family:"JetBrains Mono",monospace; font-weight:800; font-size:300px; line-height:.82; color:#fff; letter-spacing:-.04em; }
+  .stat-num .x{ color:var(--green); }
+  .stat-label{ font-family:"Teko",sans-serif; font-weight:500; text-transform:uppercase; font-size:74px; line-height:1; margin-top:24px; color:var(--text); }
+  .stat-sub{ font-size:30px; line-height:1.45; color:var(--muted); margin-top:30px; max-width:760px; }
+
+  .vs-row{ display:flex; gap:26px; margin-top:46px; }
+  .chip{ flex:1; background:linear-gradient(180deg,var(--panel-2),var(--panel)); border:1px solid var(--line); border-radius:18px; padding:34px 32px; }
+  .chip .t{ font-family:"JetBrains Mono",monospace; font-size:18px; letter-spacing:.2em; text-transform:uppercase; color:var(--muted); margin-bottom:18px;}
+  .chip .v{ font-family:"JetBrains Mono",monospace; font-weight:800; font-size:64px; color:#fff; }
+  .chip.win{ border-color:rgba(70,194,17,.5); box-shadow:0 0 0 1px rgba(70,194,17,.25), 0 30px 80px -40px var(--green-glow);}
+  .chip.win .v{ color:var(--green); }
+  .chip .note{ font-size:21px; color:var(--muted); margin-top:14px; }
+
+  .big-quote{ font-family:"Teko",sans-serif; font-weight:500; text-transform:uppercase; font-size:104px; line-height:.96; }
+  .big-quote .b{ color:var(--green); }
+
+  ul.ticks{ list-style:none; margin-top:20px; }
+  ul.ticks li{ position:relative; padding-left:52px; font-size:31px; line-height:1.5; margin:24px 0; color:#d7e3d2;}
+  ul.ticks li::before{ content:""; position:absolute; left:0; top:14px; width:26px; height:26px;
+    background:var(--green); clip-path:polygon(41% 78%, 12% 49%, 22% 39%, 41% 58%, 79% 20%, 89% 30%); box-shadow:0 0 14px var(--green-glow); }
+
+  .cta-link{ font-family:"JetBrains Mono",monospace; font-size:30px; color:#fff; background:var(--green-core);
+    display:inline-flex; align-items:center; gap:18px; padding:26px 40px; border-radius:16px; font-weight:700;
+    box-shadow:0 24px 70px -30px var(--green-glow); margin-top:8px; }
+  .cta-link .arr{ color:#0a1408; }
+</style>
+</head>
+<body>
+
+<!-- corner circuit svg, auto-injected into every .slide by the script at the bottom -->
+<template id="trace">
+  <svg class="trace" viewBox="0 0 520 520" fill="none" stroke="#46c211" stroke-width="2">
+    <path d="M520 70 H300 a24 24 0 0 0-24 24 V230" opacity=".55"/>
+    <path d="M520 150 H380 a24 24 0 0 0-24 24 V330" opacity=".4"/>
+    <path d="M520 240 H460" opacity=".5"/>
+    <circle cx="276" cy="230" r="8" fill="#46c211" stroke="none" opacity=".8"/>
+    <circle cx="356" cy="330" r="6" fill="#46c211" stroke="none" opacity=".6"/>
+    <circle cx="460" cy="240" r="5" fill="#46c211" stroke="none" opacity=".7"/>
+    <path d="M120 0 V120 a24 24 0 0 0 24 24 H300" opacity=".3"/>
+  </svg>
+</template>
+
+<!-- ===================== COVER (slide 1) ===================== -->
+<section class="slide cover">
+  <div class="grain"></div>
+  <div class="eyebrow"><span class="dot"></span> Eyebrow / Category</div>
+  <div class="body-wrap">
+    <h1>Your hook<br>in <span class="green">three</span><br>punchy lines.</h1>
+    <div class="kicker">One-sentence subtitle that sets up the payoff. Match the opening line of the LinkedIn post.</div>
+    <div class="rule"></div>
+  </div>
+  <div class="foot"><span><b>TONY COSTANZO</b> &nbsp;/&nbsp; TechHive Labs</span><span class="num"><b>01</b> / 09</span></div>
+</section>
+
+<!-- ===================== TEXT / CONTEXT slide ===================== -->
+<section class="slide">
+  <div class="grain"></div>
+  <div class="eyebrow"><span class="dot"></span> The Context</div>
+  <div class="body-wrap">
+    <h2 style="font-size:88px; margin-bottom:34px;">A headline that<br>frames the <span class="green">stakes</span>.</h2>
+    <p class="lead">Body sentence setting up the problem.. keep it conversational.</p>
+    <p class="lead" style="margin-top:26px; color:#fff; font-weight:600; border-left:5px solid var(--green); padding-left:28px;">A pull-quote or the key question, emphasized.</p>
+    <p class="lead muted" style="margin-top:26px;">A closing line that lands the point.</p>
+  </div>
+  <div class="foot"><span><b>TONY COSTANZO</b> &nbsp;/&nbsp; TechHive Labs</span><span class="num"><b>02</b> / 09</span></div>
+</section>
+
+<!-- ===================== VS comparison chips ===================== -->
+<section class="slide">
+  <div class="grain"></div>
+  <div class="eyebrow"><span class="dot"></span> Head To Head</div>
+  <div class="body-wrap">
+    <h2 style="font-size:80px; margin-bottom:36px;">Frame the<br><span class="green">comparison</span>.</h2>
+    <div class="vs-row">
+      <div class="chip"><div class="t">Option A</div><div class="v">77.2</div><div class="note">caption / metric name</div></div>
+      <div class="chip win"><div class="t">Option B</div><div class="v">73.4</div><div class="note">add class "win" to highlight one</div></div>
+    </div>
+    <p class="stat-sub" style="font-size:31px; color:#cfe0c9; margin-top:42px;">A line that interprets the comparison.</p>
+  </div>
+  <div class="foot"><span><b>TONY COSTANZO</b> &nbsp;/&nbsp; TechHive Labs</span><span class="num"><b>03</b> / 09</span></div>
+</section>
+
+<!-- ===================== STAT slide (the payload — one per key number) ===================== -->
+<section class="slide">
+  <div class="grain"></div>
+  <div class="eyebrow"><span class="dot"></span> The Result</div>
+  <div class="body-wrap">
+    <div class="stat-num"><span class="x">5.5</span>&times;</div>
+    <div class="stat-label">what the number means</div>
+    <p class="stat-sub">One or two sentences of context. Use <strong>bold</strong> for the supporting figures that back the headline number.</p>
+  </div>
+  <div class="foot"><span><b>TONY COSTANZO</b> &nbsp;/&nbsp; TechHive Labs</span><span class="num"><b>04</b> / 09</span></div>
+</section>
+
+<!-- ===================== TICKS list ===================== -->
+<section class="slide">
+  <div class="grain"></div>
+  <div class="eyebrow"><span class="dot"></span> What Held Up</div>
+  <div class="body-wrap">
+    <h2 style="font-size:96px; margin-bottom:18px;">A <span class="green">short claim</span><br>backed by points.</h2>
+    <ul class="ticks">
+      <li>First supporting point, kept to one line</li>
+      <li>Second point that earns the claim</li>
+      <li>Third — three is plenty</li>
+    </ul>
+    <p class="lead muted" style="margin-top:30px;">Optional closing nuance.</p>
+  </div>
+  <div class="foot"><span><b>TONY COSTANZO</b> &nbsp;/&nbsp; TechHive Labs</span><span class="num"><b>05</b> / 09</span></div>
+</section>
+
+<!-- ===================== QUOTE / takeaway ===================== -->
+<section class="slide">
+  <div class="grain"></div>
+  <div class="eyebrow"><span class="dot"></span> The Takeaway</div>
+  <div class="body-wrap">
+    <p class="big-quote">The first half<br>of the <span class="b">thesis.</span></p>
+    <p class="big-quote" style="margin-top:34px;">The turn that<br><span class="b">lands it.</span></p>
+    <p class="stat-sub" style="font-size:32px; color:#cfe0c9; margin-top:48px;">A sentence of grounding so the aphorism doesn't float.</p>
+  </div>
+  <div class="foot"><span><b>TONY COSTANZO</b> &nbsp;/&nbsp; TechHive Labs</span><span class="num"><b>06</b> / 09</span></div>
+</section>
+
+<!-- ===================== CTA (last slide) ===================== -->
+<section class="slide">
+  <div class="grain"></div>
+  <div class="eyebrow"><span class="dot"></span> Read More</div>
+  <div class="body-wrap">
+    <h2 style="font-size:92px; margin-bottom:30px;">A closing line that<br><span class="green">invites the click</span>.</h2>
+    <p class="lead">One or two sentences restating the value of reading the full piece.</p>
+    <div style="margin-top:46px;">
+      <span class="cta-link">Full writeup <span class="arr">&rarr; in the comments</span></span>
+    </div>
+  </div>
+  <div class="foot"><span><b>TONY COSTANZO</b> &nbsp;/&nbsp; techhivelabs.net</span><span class="num"><b>09</b> / 09</span></div>
+</section>
+
+<script>
+  // inject the corner circuit trace into every slide
+  const tpl = document.getElementById('trace').innerHTML;
+  document.querySelectorAll('.slide').forEach(s=>{ s.insertAdjacentHTML('afterbegin', tpl); });
+</script>
+</body>
+</html>
