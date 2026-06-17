@@ -9,7 +9,7 @@ tags:
   - Productivity
   - Journaling
 author: Tony Costanzo
-draft: true
+draft: false
 image: /images/blog/de-digitizing/hero.webp
 ---
 
