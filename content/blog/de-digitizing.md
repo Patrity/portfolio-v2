@@ -114,4 +114,3 @@ The difference is that now it's controlled chaos. Same mess, but I'm holding the
 Funny how that worked out. I spent years and a small fortune building systems to manage my brain, and the thing that finally did it was a thirty-dollar Lamy and a notebook.. no firmware, no notifications, a battery life measured in ink.
 
 My handwriting has only gotten marginally better, for the record. But I fill that notebook every single morning now, which is more than any app on my phone can say. So maybe one of these days, once I've actually earned it, I'll walk back into that Mont Blanc store and buy the thing my dad always carried.
-g
