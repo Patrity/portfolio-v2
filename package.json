@@ -8,7 +8,9 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "audit:seo": "node scripts/seo-audit.mjs"
+    "audit:seo": "node scripts/seo-audit.mjs",
+    "narrate": "tsx scripts/narrate.ts",
+    "test:narrate": "vitest run scripts/narrate"
   },
   "dependencies": {
     "@nuxt/content": "^3.6.0",
@@ -25,8 +27,15 @@
   "packageManager": "pnpm@9.15.2+sha512.93e57b0126f0df74ce6bff29680394c0ba54ec47246b9cf321f0121d8d9bb03f750a705f24edc3c1180853afd7c2c3b94196d0a3d53d3e069d9e2793ef11f321",
   "devDependencies": {
     "@nuxt/fonts": "^0.14.0",
+    "@types/mdast": "^4.0.4",
+    "@types/node": "^26.0.0",
+    "gray-matter": "^4.0.3",
     "playwright": "^1.60.0",
+    "remark-parse": "^11.0.0",
     "tailwindcss": "^4.1.10",
-    "typescript": "^5.8.3"
+    "tsx": "^4.22.4",
+    "typescript": "^5.8.3",
+    "unified": "^11.0.5",
+    "vitest": "^4.1.9"
   }
 }
