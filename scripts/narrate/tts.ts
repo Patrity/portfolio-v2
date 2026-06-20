@@ -31,7 +31,7 @@ export async function synthesize(text: string, o: TtsOptions): Promise<Buffer> {
   })
   if (!res.ok) {
     const detail = await res.text().catch(() => '')
-    throw new Error(`Chatterbox /tts failed: HTTP ${res.status} ${detail.slice(0, 200)}`)
+    throw new Error(`Chatterbox /tts failed: HTTP ${res.status}${detail ? ` ${detail.slice(0, 200)}` : ''}`)
   }
   return Buffer.from(await res.arrayBuffer())
 }

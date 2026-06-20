@@ -1,5 +1,6 @@
 import { readFile, writeFile, mkdir, rename, access } from 'node:fs/promises'
 import { basename, dirname, join } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { postToNarrationText } from './narrate/clean'
 import { synthesize, type TtsOptions } from './narrate/tts'
 
@@ -18,7 +19,16 @@ const USAGE = `Usage: pnpm narrate <content/blog/post.md> [options]
   --out <path>          default public/audio/blog/<slug>.mp3`
 
 export function parseArgs(argv: string[]): Args {
-  const post = argv.find(a => !a.startsWith('--'))
+  const VALUE_FLAGS = new Set(['--voice', '--exaggeration', '--cfg-weight', '--temperature', '--seed', '--chunk-size', '--server', '--out'])
+  let post: string | undefined
+  for (let i = 0; i < argv.length; i++) {
+    if (argv[i].startsWith('--')) {
+      if (VALUE_FLAGS.has(argv[i])) i++ // skip the flag's value token
+    } else {
+      post = argv[i]
+      break
+    }
+  }
   if (!post) { console.error(USAGE); process.exit(1) }
   const flag = (n: string) => { const i = argv.indexOf(n); return i >= 0 ? argv[i + 1] : undefined }
   const has = (n: string) => argv.includes(n)
@@ -69,7 +79,6 @@ async function main(): Promise<void> {
   console.log(`wrote ${out} (${buf.length} bytes)`)
 }
 
-main().catch((e: unknown) => {
-  console.error(e instanceof Error ? e.message : String(e))
-  process.exit(1)
-})
+if (process.argv[1] && import.meta.url === pathToFileURL(process.argv[1]).href) {
+  main().catch((e: unknown) => { console.error(e instanceof Error ? e.message : String(e)); process.exit(1) })
+}

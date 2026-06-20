@@ -4,6 +4,7 @@ import { execFileSync } from 'node:child_process'
 import { writeFileSync, readFileSync, rmSync, mkdtempSync, existsSync, statSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
+import { parseArgs } from '../narrate'
 
 const dir = mkdtempSync(join(tmpdir(), 'narrate-'))
 const post = join(dir, 'sample.md')
@@ -50,5 +51,19 @@ describe('buildText reuse (via CLI)', () => {
     expect(content).toBe('HAND EDITED CONTENT.')
     // File must not have been rewritten (mtime unchanged)
     expect(statSync(reuseTxt).mtimeMs).toBe(mtimeBefore)
+  })
+})
+
+describe('parseArgs — positional detection', () => {
+  it('finds post path when a value-flag precedes it', () => {
+    const a = parseArgs(['--voice', 'fast1-us', 'post.md'])
+    expect(a.post).toBe('post.md')
+    expect(a.opts.voice).toBe('fast1-us.wav')
+  })
+
+  it('finds post path when a boolean flag follows it', () => {
+    const a = parseArgs(['post.md', '--text-only'])
+    expect(a.post).toBe('post.md')
+    expect(a.textOnly).toBe(true)
   })
 })

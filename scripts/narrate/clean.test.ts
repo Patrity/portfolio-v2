@@ -53,3 +53,22 @@ describe('postToNarrationText', () => {
     expect(out).not.toMatch(/\be\.g\./)
   })
 })
+
+describe('GFM support', () => {
+  it('drops GFM tables entirely (no pipe chars, no cell text)', () => {
+    const md = '---\ntitle: T\n---\n\n| ColFoo | ColBar |\n|--------|--------|\n| val42  | val99  |\n\nAfter table.\n'
+    const out = postToNarrationText(md)
+    expect(out).not.toContain('|')
+    expect(out).not.toContain('ColFoo')
+    expect(out).not.toContain('val42')
+    expect(out).toContain('After table')
+  })
+
+  it('strips strikethrough tildes but keeps the text', () => {
+    const md = '---\ntitle: T\n---\n\n~~removed~~ kept\n'
+    const out = postToNarrationText(md)
+    expect(out).toContain('removed')
+    expect(out).toContain('kept')
+    expect(out).not.toContain('~~')
+  })
+})

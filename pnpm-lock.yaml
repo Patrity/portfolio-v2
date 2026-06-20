@@ -29,6 +29,9 @@ importers:
       nuxt-umami:
         specifier: 3.2.0
         version: 3.2.0(magicast@0.5.2)
+      remark-gfm:
+        specifier: ^4.0.1
+        version: 4.0.1
       vue:
         specifier: latest
         version: 3.5.30(typescript@5.8.3)
