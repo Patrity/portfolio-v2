@@ -19,7 +19,9 @@
 
 1. Invoke the `blog-image-generator` skill → 3 prompt variants on the TechHive
    base style (isometric low-poly, dark, green #39a10e). Recommend one and say
-   why. Tony generates externally (Gemini) and returns an image.
+   why. Save all variants to `distribution/<slug>/image-prompts.md` and mark
+   which was chosen — needed again for regeneration and for style continuity
+   across posts. Tony generates externally (Gemini) and returns an image.
 2. **Ask for the full-size original** (Gemini outputs ~2752×1536). The chat
    preview is a downscaled copy and patches/crops on it waste the resolution.
 3. **Remove the sparkle watermark by cropping, not patching.** Find the sparkle
