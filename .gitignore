@@ -27,3 +27,6 @@ logs
 .claude/skills/*/cache/
 .claude/skills/*/manifest.json
 audit-output
+
+# Blog distribution working files (briefs + social variants) — repo is public, keep these local
+distribution/
