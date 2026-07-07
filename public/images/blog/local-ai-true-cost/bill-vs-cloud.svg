@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 296" role="img" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+<title>All-time cost of 6.7 billion tokens: $35.85 of local electricity vs an estimated $961 at OpenRouter rates</title>
+<rect x="0.5" y="0.5" width="799" height="295" rx="14" fill="#1a1a19" stroke="rgba(255,255,255,0.10)"/>
+<text x="28" y="40" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="17" font-weight="600" fill="#ffffff" text-anchor="start">The same 6.7 billion tokens, billed two ways</text>
+<text x="28" y="63" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">All-time local coder workload since April 2026 · electricity at $0.1395/kWh vs OpenRouter list rates</text>
+<text x="28" y="108" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">My rig (electricity)</text>
+<path d="M 28 116 H 50.672399999999996 Q 54.672399999999996 116 54.672399999999996 120 V 134 Q 54.672399999999996 138 50.672399999999996 138 H 28 Z" fill="#3987e5"/>
+<text x="64.6724" y="131" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="start">$35.85</text>
+<text x="772" y="131" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" text-anchor="end"><tspan fill="#ffffff" font-weight="600">≈27× cheaper</tspan><tspan dx="6" fill="#898781" font-size="12">on marginal cost</tspan></text>
+<text x="28" y="188" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">OpenRouter (same tokens, Qwen3.6-35B-A3B rates)</text>
+<path d="M 28 196 H 738.984 Q 742.984 196 742.984 200 V 214 Q 742.984 218 738.984 218 H 28 Z" fill="#898781"/>
+<text x="732.984" y="211" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#1a1a19" text-anchor="end">$961 est.</text>
+<line x1="28.5" y1="110" x2="28.5" y2="224" stroke="#383835" stroke-width="1"/>
+<text x="28" y="266" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="start">Marginal electricity only: excludes idle draw, cooling, and hardware. OpenRouter rate: $0.14/M input, $1.00/M output.</text>
+</svg>

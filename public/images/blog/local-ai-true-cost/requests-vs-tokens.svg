@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 446" role="img" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+<title>Share of requests vs share of input tokens by workload: assistant 82% of requests and 71.4% of tokens, coding 12% of requests but 28.2% of tokens, vision 5% and 0.23%, second brain 1.5% and 0.20%</title>
+<rect x="0.5" y="0.5" width="799" height="445" rx="14" fill="#1a1a19" stroke="rgba(255,255,255,0.10)"/>
+<text x="28" y="40" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="17" font-weight="600" fill="#ffffff" text-anchor="start">Coding is the heavyweight per request, not per volume</text>
+<text x="28" y="63" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Each workload's share of all requests vs its share of all input tokens</text>
+<rect x="28" y="81" width="12" height="12" rx="3" fill="#199e70"/>
+<text x="46" y="91" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">Share of requests</text>
+<rect x="176" y="81" width="12" height="12" rx="3" fill="#3987e5"/>
+<text x="194" y="91" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">Share of input tokens</text>
+<line x1="214.5" y1="112" x2="214.5" y2="382" stroke="#2c2c2a" stroke-width="1"/>
+<text x="214" y="400" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="middle" style="font-variant-numeric: tabular-nums">25%</text>
+<line x1="400.5" y1="112" x2="400.5" y2="382" stroke="#2c2c2a" stroke-width="1"/>
+<text x="400" y="400" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="middle" style="font-variant-numeric: tabular-nums">50%</text>
+<line x1="586.5" y1="112" x2="586.5" y2="382" stroke="#2c2c2a" stroke-width="1"/>
+<text x="586" y="400" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="middle" style="font-variant-numeric: tabular-nums">75%</text>
+<line x1="772.5" y1="112" x2="772.5" y2="382" stroke="#2c2c2a" stroke-width="1"/>
+<text x="772" y="400" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="middle" style="font-variant-numeric: tabular-nums">100%</text>
+<text x="28" y="400" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="middle" style="font-variant-numeric: tabular-nums">0%</text>
+<text x="28" y="132" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Always-on assistant (Hermes)</text>
+<path d="M 28 140 H 634.08 Q 638.08 140 638.08 144 V 152 Q 638.08 156 634.08 156 H 28 Z" fill="#199e70"/>
+<text x="646.08" y="152" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">82%</text>
+<path d="M 28 158 H 555.2160000000001 Q 559.2160000000001 158 559.2160000000001 162 V 170 Q 559.2160000000001 174 555.2160000000001 174 H 28 Z" fill="#3987e5"/>
+<text x="567.2160000000001" y="170" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">71.4%</text>
+<text x="28" y="198" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Agentic coding (opencode)</text>
+<path d="M 28 206 H 113.28 Q 117.28 206 117.28 210 V 218 Q 117.28 222 113.28 222 H 28 Z" fill="#199e70"/>
+<text x="125.28" y="218" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">12%</text>
+<path d="M 28 224 H 233.808 Q 237.808 224 237.808 228 V 236 Q 237.808 240 233.808 240 H 28 Z" fill="#3987e5"/>
+<text x="245.808" y="236" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">28.2%</text>
+<text x="297.808" y="236" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="start">avg ~97K tokens per request</text>
+<text x="28" y="264" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Vision / security (Frigate)</text>
+<path d="M 28 272 H 61.2 Q 65.2 272 65.2 276 V 284 Q 65.2 288 61.2 288 H 28 Z" fill="#199e70"/>
+<text x="73.2" y="284" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">5%</text>
+<rect x="28" y="290" width="3" height="16" fill="#3987e5"/>
+<text x="39" y="302" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">0.23%</text>
+<text x="28" y="330" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Second brain (MyMind + agents)</text>
+<path d="M 28 338 H 35.16 Q 39.16 338 39.16 342 V 350 Q 39.16 354 35.16 354 H 28 Z" fill="#199e70"/>
+<text x="47.16" y="350" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">1.5%</text>
+<rect x="28" y="356" width="3" height="16" fill="#3987e5"/>
+<text x="39" y="368" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">0.20%</text>
+<line x1="28.5" y1="112" x2="28.5" y2="382" stroke="#383835" stroke-width="1"/>
+<text x="28" y="428" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="start">161,905 requests · 6.66B input tokens all-time. System health checks excluded.</text>
+</svg>

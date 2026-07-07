@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 404" role="img" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+<title>All-time input tokens by workload: assistant 4.75 billion (71.4%), coding 1.88 billion (28.2%), vision 15.6 million (0.23%), second brain 13.6 million (0.20%)</title>
+<rect x="0.5" y="0.5" width="799" height="403" rx="14" fill="#1a1a19" stroke="rgba(255,255,255,0.10)"/>
+<text x="28" y="40" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="17" font-weight="600" fill="#ffffff" text-anchor="start">Where 6.66 billion input tokens actually went</text>
+<text x="28" y="63" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">All-time input tokens by workload, from LiteLLM spend logs (April to July 2026)</text>
+<text x="772" y="96" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="end">electricity</text>
+<text x="28" y="116" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Always-on assistant (Hermes)</text>
+<text x="772" y="116" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#898781" text-anchor="end" style="font-variant-numeric: tabular-nums">$25.77</text>
+<path d="M 28 124 H 731.2464 Q 735.2464 124 735.2464 128 V 142 Q 735.2464 146 731.2464 146 H 28 Z" fill="#3987e5"/>
+<text x="725.2464" y="139" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="600" fill="#ffffff" text-anchor="end">4.75B tokens · 71.4%</text>
+<text x="28" y="180" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Agentic coding (opencode)</text>
+<text x="772" y="180" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#898781" text-anchor="end" style="font-variant-numeric: tabular-nums">$9.66</text>
+<path d="M 28 188 H 303.1488 Q 307.1488 188 307.1488 192 V 206 Q 307.1488 210 303.1488 210 H 28 Z" fill="#3987e5"/>
+<text x="317.1488" y="203" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">1.88B · 28.2%</text>
+<text x="28" y="244" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Vision / security cameras (Frigate)</text>
+<text x="772" y="244" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#898781" text-anchor="end" style="font-variant-numeric: tabular-nums">$0.12</text>
+<rect x="28" y="252" width="3" height="22" fill="#3987e5"/>
+<text x="41" y="267" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">15.6M · 0.23%</text>
+<text x="28" y="308" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Second brain (MyMind + agents)</text>
+<text x="772" y="308" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#898781" text-anchor="end" style="font-variant-numeric: tabular-nums">$0.22</text>
+<rect x="28" y="316" width="3" height="22" fill="#3987e5"/>
+<text x="41" y="331" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">13.6M · 0.20%</text>
+<line x1="28.5" y1="118" x2="28.5" y2="340" stroke="#383835" stroke-width="1"/>
+<text x="28" y="382" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="start">Bar length = input tokens, linear scale. Excludes 71.6M system health-check tokens with no API key.</text>
+</svg>
