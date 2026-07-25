@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 268" role="img" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+<title>The same server allows roughly 200 to 300 rooms by RAM but only 8 to 12 busy rooms by CPU, about 25 times over-provisioned on RAM</title>
+<rect x="0.5" y="0.5" width="799" height="267" rx="14" fill="#1a1a19" stroke="rgba(255,255,255,0.10)"/>
+<text x="28" y="40" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="17" font-weight="600" fill="#ffffff" text-anchor="start">I bought 62GB of RAM to solve a CPU problem</text>
+<text x="28" y="63" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">How many game rooms the same box allows, by resource · Xeon D-1540, 8c/16t, 62GB</text>
+<text x="28" y="108" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">What 62 GB of RAM allows</text>
+<path d="M 28 116 H 644 Q 648 116 648 120 V 134 Q 648 138 644 138 H 28 Z" fill="#898781"/>
+<text x="638" y="131" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#1a1a19" text-anchor="end">~200 to 300 rooms</text>
+<text x="28" y="180" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">What 8 to 10 usable cores allow</text>
+<path d="M 28 188 H 48.8 Q 52.8 188 52.8 192 V 206 Q 52.8 210 48.8 210 H 28 Z" fill="#3987e5"/>
+<text x="64.8" y="203" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="start">~8 to 12 busy rooms</text>
+<text x="218" y="203" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11.5" font-weight="400" fill="#898781" text-anchor="start">the actual ceiling</text>
+<text x="772" y="203" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="14" text-anchor="end"><tspan fill="#ffffff" font-weight="600">~25x</tspan><tspan dx="6" fill="#898781" font-size="12">over-provisioned on the wrong resource</tspan></text>
+<line x1="28.5" y1="110" x2="28.5" y2="214" stroke="#383835" stroke-width="1"/>
+<text x="28" y="246" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="start">Measured: ~160MB per idle process, plus ~150MB for a maxed combat room. That same room eats a full core. Box idles at 3-4% CPU, ~3GB RAM.</text>
+</svg>

@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 404" role="img" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+<title>Estimated concurrent combat players by server config: Ryzen 7 9700X at $77 a month offers the best value at 700 to 1000, versus the 9800X3D at $179 for 900 to 1200, the EPYC 4245P at $134 for 500 to 700, and an unreliable shared-vCPU DigitalOcean box at $48 for 150 to 250</title>
+<rect x="0.5" y="0.5" width="799" height="403" rx="14" fill="#1a1a19" stroke="rgba(255,255,255,0.10)"/>
+<text x="28" y="40" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="17" font-weight="600" fill="#ffffff" text-anchor="start">The $77 box beats the $179 box</text>
+<text x="28" y="63" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Estimated concurrent combat players per box · scaled from one measured point by single-thread throughput</text>
+<text x="772" y="96" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="end">monthly cost</text>
+<text x="28" y="116" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="600" fill="#ffffff" text-anchor="start">Ryzen 7 9700X · 8c/16t Zen 5</text>
+<text x="772" y="116" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#ffffff" text-anchor="end" style="font-variant-numeric: tabular-nums">$77/mo</text>
+<path d="M 28 124 H 529.92 Q 533.92 124 533.92 128 V 142 Q 533.92 146 529.92 146 H 28 Z" fill="#3987e5"/>
+<text x="543.92" y="139" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">~700 to 1000</text>
+<text x="629.92" y="139" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11.5" font-weight="600" fill="#3987e5" text-anchor="start">best value</text>
+<text x="28" y="180" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Ryzen 7 9800X3D · 8c/16t + 3D V-Cache</text>
+<text x="772" y="180" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#898781" text-anchor="end" style="font-variant-numeric: tabular-nums">$179/mo</text>
+<path d="M 28 188 H 648.9599999999999 Q 652.9599999999999 188 652.9599999999999 192 V 206 Q 652.9599999999999 210 648.9599999999999 210 H 28 Z" fill="#898781"/>
+<text x="662.9599999999999" y="203" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">~900 to 1200</text>
+<text x="28" y="244" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">EPYC 4245P · 6c/12t Zen 5, ECC</text>
+<text x="772" y="244" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#898781" text-anchor="end" style="font-variant-numeric: tabular-nums">$134/mo</text>
+<path d="M 28 252 H 381.11999999999995 Q 385.11999999999995 252 385.11999999999995 256 V 270 Q 385.11999999999995 274 381.11999999999995 274 H 28 Z" fill="#898781"/>
+<text x="395.11999999999995" y="267" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">~500 to 700</text>
+<text x="28" y="308" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">DigitalOcean 4c / 8GB</text>
+<text x="772" y="308" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#898781" text-anchor="end" style="font-variant-numeric: tabular-nums">$48/mo</text>
+<path d="M 28 316 H 143.04 Q 147.04 316 147.04 320 V 334 Q 147.04 338 143.04 338 H 28 Z" fill="#898781"/>
+<text x="157.04" y="331" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">~150 to 250</text>
+<text x="243.04" y="331" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="start">shared vCPU · steal time makes this unreliable</text>
+<line x1="28.5" y1="118" x2="28.5" y2="340" stroke="#383835" stroke-width="1"/>
+<text x="28" y="382" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="start">Estimates, not benchmarks. Only the Xeon D-1540 (~50 players/core) was measured. Light/social players run several times higher.</text>
+</svg>

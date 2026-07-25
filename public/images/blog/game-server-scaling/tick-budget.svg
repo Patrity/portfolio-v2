@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 312" role="img" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+<title>Tick time against the 50ms budget: 50 players moving costs 0.4ms while 45 players fighting costs 50 to 65ms and blows past the budget</title>
+<rect x="0.5" y="0.5" width="799" height="311" rx="14" fill="#1a1a19" stroke="rgba(255,255,255,0.10)"/>
+<text x="28" y="40" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="17" font-weight="600" fill="#ffffff" text-anchor="start">The same room. The only difference is whether they are fighting.</text>
+<text x="28" y="63" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Tick time (p99) against the 50ms budget of a 20Hz simulation · one room, one Xeon D-1540 core</text>
+<line x1="134.78571428571428" y1="96" x2="134.78571428571428" y2="236" stroke="#2c2c2a" stroke-width="1"/>
+<text x="134.28571428571428" y="256" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="middle" style="font-variant-numeric: tabular-nums">10</text>
+<line x1="241.07142857142856" y1="96" x2="241.07142857142856" y2="236" stroke="#2c2c2a" stroke-width="1"/>
+<text x="240.57142857142856" y="256" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="middle" style="font-variant-numeric: tabular-nums">20</text>
+<line x1="347.35714285714283" y1="96" x2="347.35714285714283" y2="236" stroke="#2c2c2a" stroke-width="1"/>
+<text x="346.85714285714283" y="256" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="middle" style="font-variant-numeric: tabular-nums">30</text>
+<line x1="453.6428571428571" y1="96" x2="453.6428571428571" y2="236" stroke="#2c2c2a" stroke-width="1"/>
+<text x="453.1428571428571" y="256" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="middle" style="font-variant-numeric: tabular-nums">40</text>
+<line x1="559.9285714285714" y1="96" x2="559.9285714285714" y2="236" stroke="#2c2c2a" stroke-width="1"/>
+<text x="559.4285714285714" y="256" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="middle" style="font-variant-numeric: tabular-nums">50</text>
+<line x1="666.2142857142857" y1="96" x2="666.2142857142857" y2="236" stroke="#2c2c2a" stroke-width="1"/>
+<text x="665.7142857142857" y="256" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="middle" style="font-variant-numeric: tabular-nums">60</text>
+<line x1="772.5" y1="96" x2="772.5" y2="236" stroke="#2c2c2a" stroke-width="1"/>
+<text x="772" y="256" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="middle" style="font-variant-numeric: tabular-nums">70</text>
+<text x="28" y="256" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="middle" style="font-variant-numeric: tabular-nums">0</text>
+<text x="772" y="274" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="end">tick p99 (milliseconds)</text>
+<text x="28" y="122" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">50 players walking around</text>
+<rect x="28" y="130" width="4.251428571428572" height="22" fill="#3987e5"/>
+<text x="42" y="145" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="start">0.4 ms</text>
+<text x="108" y="145" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11.5" font-weight="400" fill="#898781" text-anchor="start">under 1% of the budget</text>
+<text x="28" y="190" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">45 players swinging swords (+66 mobs)</text>
+<path d="M 28 198 H 714.8571428571428 Q 718.8571428571428 198 718.8571428571428 202 V 216 Q 718.8571428571428 220 714.8571428571428 220 H 28 Z" fill="#d03b3b"/>
+<text x="42" y="213" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="start">50 to 65 ms</text>
+<line x1="559.4285714285714" y1="96" x2="559.4285714285714" y2="236" stroke="#ffffff" stroke-width="2" stroke-dasharray="5 4"/>
+<text x="551.4285714285714" y="88" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#ffffff" text-anchor="end">50 ms tick budget</text>
+<text x="567.4285714285714" y="88" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#d03b3b" text-anchor="start">OVER BUDGET</text>
+<line x1="28.5" y1="96" x2="28.5" y2="236" stroke="#383835" stroke-width="1"/>
+<text x="28" y="292" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="start">Combat costs roughly 150x more per tick than movement. Worst case: bots clustered at one spawn point. Measured 2026-06-03.</text>
+</svg>
