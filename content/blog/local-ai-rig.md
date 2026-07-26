@@ -10,6 +10,8 @@ tags:
 author: Tony Costanzo
 draft: false
 image: /images/blog/ai-server/hero.webp
+imageWidth: 1920
+imageHeight: 1052
 ---
 
 ## Links

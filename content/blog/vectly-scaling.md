@@ -12,6 +12,8 @@ tags:
 author: Tony Costanzo
 draft: false
 image: /images/blog/vectly/hero.webp
+imageWidth: 1920
+imageHeight: 1052
 ---
 ## Building an AI App When You Don't Know AI: My Journey from Zero to Deployment Hell to Hybrid Architecture
 

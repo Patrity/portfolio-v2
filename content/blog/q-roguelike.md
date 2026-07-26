@@ -11,6 +11,8 @@ tags:
 author: Tony Costanzo
 draft: false
 image: /images/blog/q-roguelike/hero.webp
+imageWidth: 1920
+imageHeight: 1026
 ---
 ## Links
 - [GitHub Repository](https://github.com/patrity/q-rogue)

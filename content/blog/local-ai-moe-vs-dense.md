@@ -11,6 +11,8 @@ tags:
 author: Tony Costanzo
 draft: false
 image: /images/blog/local-ai-moe-vs-dense/hero.webp
+imageWidth: 1920
+imageHeight: 1080
 ---
 
 ## Links

@@ -14,6 +14,8 @@ tags:
 author: Tony Costanzo
 draft: false
 image: /images/blog/construction-agents/hero.webp
+imageWidth: 1920
+imageHeight: 1079
 ---
 
 ## The Tuesday Morning Favor

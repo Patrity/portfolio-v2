@@ -101,7 +101,15 @@ if (!isHome.value && page.value) {
 
   // Use the post's hero image as the social card instead of the generated NuxtSeo
   // text card (avoids title/description truncation). Overrides app.vue's global component.
-  defineOgImage({ url: heroImage, alt: description })
+  // Pass the hero's REAL dimensions from frontmatter. Without them the og-image
+  // module falls back to its own 1200x600, which describes no hero we actually
+  // ship (all are 1920 wide, 1026-1080 tall) and makes scrapers mis-lay-out the
+  // card. There is no "omit" path — the module always emits something — so any
+  // post with a hero MUST declare imageWidth/imageHeight.
+  const heroDims = page.value.imageWidth && page.value.imageHeight
+    ? { width: page.value.imageWidth, height: page.value.imageHeight }
+    : {}
+  defineOgImage({ url: heroImage, alt: description, ...heroDims })
 
   useHead({
     link: [{ rel: 'canonical', href: canonicalUrl }],

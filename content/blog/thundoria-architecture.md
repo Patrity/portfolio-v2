@@ -11,6 +11,8 @@ tags:
 author: Tony Costanzo
 draft: false
 image: /images/blog/thundoria/hero.webp
+imageWidth: 1920
+imageHeight: 1052
 ---
 ## Links
 - [Thundoria Site](https://thundoria.com)

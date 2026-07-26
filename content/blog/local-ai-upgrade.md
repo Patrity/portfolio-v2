@@ -11,6 +11,8 @@ tags:
 author: Tony Costanzo
 draft: false
 image: /images/blog/local-ai-upgrade/hero.webp
+imageWidth: 1920
+imageHeight: 1052
 ---
 
 ## Links
