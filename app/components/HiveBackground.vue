@@ -23,8 +23,8 @@ const ORIGIN_Y = 60
 const NEIGHBOUR_RADIUS = 128 // cells closer than this are neighbours (= the 6 hex neighbours)
 
 // ─── Dynamics ──────────────────────────────────────────────────────────────
-const TICK_SECONDS = 0.075 // propagation tick
-const PROPAGATION = 0.58 // neighbour energy = 0.58 × max neighbour, only rises
+const PROPAGATION = 0.58 // neighbour target = 0.58 × hottest neighbour, only rises
+const RISE_PER_SECOND = 14 // how fast a cell approaches that target (~70ms time constant)
 const DECAY_PER_SECOND = 1.7
 const MAX_DT = 0.05 // clamp frame delta (tab switches, hitches)
 const HOVER_RADIUS = 70 // px from the pointer that gets excited
@@ -40,8 +40,6 @@ const MAX_DPR = 2
 
 // ─── Colours (green-500 / green-600 / green-800 of the site palette) ────────
 const HOT_RGB = '70,194,17'
-const BREATHE_RGB = '57,161,14'
-const REST_RGB = '29,82,10'
 
 interface Cell {
   x: number
@@ -123,8 +121,13 @@ function buildGrid(width: number, height: number, seed: number, previous: Grid |
   return { width, height, cols, rows, cells, scratch: new Float32Array(cells.length) }
 }
 
-/** One propagation tick: each cell rises to 0.58 × its hottest neighbour. */
-function propagate(grid: Grid): void {
+/**
+ * Propagation, run every frame: each cell eases toward 0.58 × its hottest neighbour
+ * (only upward). Easing per frame instead of snapping on a fixed tick is what keeps the
+ * outer edge of the glow from flickering: a tick-based rise fighting continuous decay
+ * produced a sawtooth right at the visibility threshold, and cells there popped in and out.
+ */
+function propagate(grid: Grid, dt: number): void {
   const { cells, scratch } = grid
   for (let i = 0; i < cells.length; i++) {
     const cell = cells[i]!
@@ -135,10 +138,24 @@ function propagate(grid: Grid): void {
     }
     scratch[i] = best * PROPAGATION
   }
+  const k = 1 - Math.exp(-dt * RISE_PER_SECOND)
   for (let i = 0; i < cells.length; i++) {
     const cell = cells[i]!
-    if (scratch[i]! > cell.e) cell.e = scratch[i]!
+    const target = scratch[i]!
+    if (target > cell.e) cell.e += (target - cell.e) * k
   }
+}
+
+/** Smoothstep 0..1 over [lo, hi]. */
+function smooth(x: number, lo: number, hi: number): number {
+  const t = Math.min(1, Math.max(0, (x - lo) / (hi - lo)))
+  return t * t * (3 - 2 * t)
+}
+const HOT = [70, 194, 17] as const
+const BREATHE_C = [57, 161, 14] as const
+const REST = [29, 82, 10] as const
+function mix(a: readonly [number, number, number], b: readonly [number, number, number], t: number): string {
+  return `${Math.round(a[0] + (b[0] - a[0]) * t)},${Math.round(a[1] + (b[1] - a[1]) * t)},${Math.round(a[2] + (b[2] - a[2]) * t)}`
 }
 
 function hexPath(ctx: CanvasRenderingContext2D, x: number, y: number, radius: number): void {
@@ -169,15 +186,18 @@ function drawGrid(ctx: CanvasRenderingContext2D, grid: Grid, dpr: number, now: n
     const width = (cell.idle ? 1 + breathe : 0.5) + e * 1.6
 
     hexPath(ctx, cell.x, cell.y, HEX_RADIUS)
-    if (e > 0.06) {
-      ctx.strokeStyle = `rgba(${HOT_RGB},${alpha.toFixed(3)})`
-      ctx.shadowColor = `rgba(${HOT_RGB},0.9)`
+    // Everything below is a continuous function of e: colour blends rest→hot, the glow and the
+    // fill scale with e from zero. No threshold anywhere, so nothing can pop at the frontier.
+    const heat = smooth(e, 0, 0.45)
+    const rgb = mix(cell.idle ? BREATHE_C : REST, HOT, heat)
+    ctx.strokeStyle = `rgba(${rgb},${alpha.toFixed(3)})`
+    if (e > 0.015) {
+      ctx.shadowColor = `rgba(${HOT_RGB},${(0.9 * heat).toFixed(3)})`
       ctx.shadowBlur = 18 * e
       ctx.fillStyle = `rgba(${HOT_RGB},${(e * 0.1).toFixed(3)})`
       ctx.fill()
     } else {
       ctx.shadowBlur = 0
-      ctx.strokeStyle = `rgba(${cell.idle ? BREATHE_RGB : REST_RGB},${alpha.toFixed(3)})`
     }
     ctx.lineWidth = width
     ctx.stroke()
@@ -290,7 +310,6 @@ function startHive(canvas: HTMLCanvasElement): (() => void) | null {
   // ─── Animation loop ──────────────────────────────────────────────────────
   let raf = 0
   let last = performance.now()
-  let acc = 0
   let nextSpark = FIRST_SPARK_MS
   let firstFrame = true
 
@@ -332,12 +351,8 @@ function startHive(canvas: HTMLCanvasElement): (() => void) | null {
       nextSpark = SPARK_MIN_MS + Math.random() * SPARK_RANGE_MS
     }
 
-    // signal propagation on a fixed tick
-    acc += dt
-    while (acc >= TICK_SECONDS) {
-      propagate(grid)
-      acc -= TICK_SECONDS
-    }
+    // signal propagation, eased every frame (see propagate)
+    propagate(grid, dt)
 
     drawGrid(ctx!, grid, dpr, now)
 

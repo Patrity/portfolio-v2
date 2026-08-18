@@ -181,12 +181,12 @@ if (isHome.value) {
   const canonicalUrl = 'https://www.techhivelabs.net/blog'
   useSeoMeta({
     title: 'Blog',
-    description: 'Field reports on full-stack development, local AI, RAG pipelines, and the homelab experiments behind them.',
+    description: 'Lab notes on full-stack development, local AI, RAG pipelines, and the homelab experiments behind them.',
     ogTitle: 'Blog',
-    ogDescription: 'Field reports on full-stack development, local AI, RAG pipelines, and the homelab experiments behind them.',
+    ogDescription: 'Lab notes on full-stack development, local AI, RAG pipelines, and the homelab experiments behind them.',
     ogUrl: canonicalUrl,
     twitterTitle: 'Blog',
-    twitterDescription: 'Field reports on full-stack development, local AI, RAG pipelines, and the homelab experiments behind them.',
+    twitterDescription: 'Lab notes on full-stack development, local AI, RAG pipelines, and the homelab experiments behind them.',
     twitterCard: 'summary_large_image',
   })
 
@@ -195,7 +195,7 @@ if (isHome.value) {
   })
 
   defineOgImageComponent('TechHive', {
-    title: 'Field Reports',
+    title: 'Lab Notes',
     description: 'What broke, what I learned, and what it cost. Local AI, RAG pipelines, construction data, and the homelab behind them.',
     photo: false,
   })
@@ -253,7 +253,7 @@ if (isHome.value) {
               to="/blog"
               class="inline-flex items-center gap-1 text-sm text-(--ui-text-muted) hover:text-(--ui-text-highlighted) transition-colors"
             >
-              All field reports
+              All lab notes
               <UIcon name="i-heroicons-arrow-right" class="size-4" />
             </ULink>
           </div>

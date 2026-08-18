@@ -1,7 +1,7 @@
 <script setup lang="ts">
 useReveal()
 
-const SITE_DESCRIPTION = 'Tony Costanzo builds software on billion-dollar construction projects, runs a homelab full of GPUs, and writes field reports on AI agents, local inference, and whatever broke this weekend.'
+const SITE_DESCRIPTION = 'Tony Costanzo builds software on billion-dollar construction projects, runs a homelab full of GPUs, and writes lab notes on AI agents, local inference, and whatever broke this weekend.'
 
 definePageMeta({
   title: 'Full-Stack Developer, Project Controls & Local AI',
@@ -57,7 +57,7 @@ const stats = [
   { value: 12, suffix: 'B+', prefix: '$', label: 'In Projects Managed' },
 ]
 
-// Newest posts drive both the hero ("latest" + "most read") and the Field Reports grid.
+// Newest posts drive both the hero ("latest" + "most read") and the Lab Notes grid.
 const { data: blog } = await useAsyncData('blog-index', () => {
   return queryCollection('blog')
     .select('title', 'author', 'date', 'draft', 'description', 'image', 'tags', 'navigation', 'path', 'stem', 'id')
@@ -173,8 +173,8 @@ const cards = computed(() => {
           class="mt-7 flex flex-wrap items-center gap-4"
           style="animation: fade-up 0.8s ease-out 0.9s both;"
         >
-          <UButton to="#field-reports" color="primary" variant="solid" size="lg" trailing-icon="i-heroicons-arrow-right">
-            Read the field reports
+          <UButton to="#lab-notes" color="primary" variant="solid" size="lg" trailing-icon="i-heroicons-arrow-right">
+            Read the lab notes
           </UButton>
           <UButton to="/contact" color="neutral" variant="outline" size="lg" icon="i-heroicons-envelope">
             Work with me
@@ -206,7 +206,7 @@ const cards = computed(() => {
         class="lg:col-span-5 flex flex-col gap-4"
         style="animation: fade-up 0.8s ease-out 0.5s both;"
       >
-        <span class="text-xs uppercase tracking-widest text-(--ui-text-dimmed)">Latest field report</span>
+        <span class="text-xs uppercase tracking-widest text-(--ui-text-dimmed)">Latest from the lab</span>
         <NuxtLink
           :to="latest.path"
           class="group relative block rounded-xl overflow-hidden ring-1 ring-(--ui-border) hover:ring-green-500/40 transition-all duration-300 hover:shadow-[0_0_30px_rgba(70,194,17,0.12)]"
@@ -292,14 +292,14 @@ const cards = computed(() => {
   <!-- Live telemetry from the homelab. Renders nothing until the rig endpoint is configured. -->
   <RigStatus />
 
-  <!-- ═══════════════ FIELD REPORTS ═══════════════ -->
-  <UPageSection id="field-reports" :ui="{ title: 'font-teko' }">
+  <!-- ═══════════════ LAB NOTES (the blog) ═══════════════ -->
+  <UPageSection id="lab-notes" :ui="{ title: 'font-teko' }">
     <template #title>
-      <span class="gradient-text">Field Reports</span>
+      <span class="gradient-text">Lab Notes</span>
     </template>
     <template #description>
       <p class="text-center text-(--ui-text-muted)">
-        What broke, what I learned, and what it cost. Roughly monthly, always longer than planned.
+        The blog. What broke, what I learned, and what it cost. Roughly monthly, always longer than planned.
       </p>
     </template>
 
@@ -335,7 +335,7 @@ const cards = computed(() => {
 
     <div class="flex justify-center mt-4 reveal">
       <UButton to="/blog" color="primary" variant="outline" size="lg" trailing-icon="i-heroicons-arrow-right">
-        Read all field reports
+        Read all the lab notes
       </UButton>
     </div>
   </UPageSection>

@@ -62,7 +62,7 @@ export default defineNuxtConfig({
   site: {
     url: 'https://www.techhivelabs.net',
     name: 'TechHive Labs',
-    description: 'Tony Costanzo builds software on billion-dollar construction projects, runs a homelab full of GPUs, and writes field reports on AI agents, local inference, and whatever broke this weekend.',
+    description: 'Tony Costanzo builds software on billion-dollar construction projects, runs a homelab full of GPUs, and writes lab notes on AI agents, local inference, and whatever broke this weekend.',
     defaultLocale: 'en',
   },
   

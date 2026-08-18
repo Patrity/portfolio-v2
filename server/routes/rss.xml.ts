@@ -10,7 +10,7 @@ import { queryCollection } from '@nuxt/content/nitro'
 const SITE_URL = 'https://www.techhivelabs.net'
 const FEED_URL = `${SITE_URL}/rss.xml`
 const CHANNEL_TITLE = 'TechHive Labs'
-const CHANNEL_DESCRIPTION = 'Field reports on full-stack development, local AI, RAG pipelines, and the homelab experiments behind them.'
+const CHANNEL_DESCRIPTION = 'Lab notes on full-stack development, local AI, RAG pipelines, and the homelab experiments behind them.'
 
 const MIME_BY_EXT: Record<string, string> = {
   webp: 'image/webp',

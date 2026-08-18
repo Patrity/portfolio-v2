@@ -23,6 +23,8 @@ interface PublicRig {
   engines: { model: string, running: number, waiting: number }[]
   services: { id: string, label: string, up: boolean | null }[]
   tokens24h: number | null
+  /** Models LiteLLM routed requests to in the last 24h, most-used first (added 2026-08-18). */
+  models24h?: { model: string, requests: number }[]
 }
 
 const url = useRuntimeConfig().public.rigStatusUrl as string
@@ -52,9 +54,32 @@ const show = computed(() => !!url && (data.value != null || upstreamDown.value))
 const online = computed(() => !failed.value && (data.value?.gpus?.length ?? 0) > 0)
 
 const gpus = computed(() => data.value?.gpus ?? [])
-const models = computed(() => (data.value?.engines ?? []).map(e => e.model).slice(0, 3))
+// The roster is what LiteLLM actually routed to in 24h (llama.cpp, TEI, TTS, image gen and the
+// vLLM engines all go through it). Fall back to the vLLM engines when the roster is absent.
+const roster = computed(() => {
+  const r = data.value?.models24h
+  if (r?.length) return r
+  return (data.value?.engines ?? []).map(e => ({ model: e.model, requests: 0 }))
+})
+const rosterHead = computed(() => roster.value.slice(0, 3).map(m => m.model))
+const rosterMore = computed(() => Math.max(0, roster.value.length - 3))
+const rosterTooltip = computed(() => roster.value.map(m => m.requests ? `${m.model} · ${compact(m.requests)} req` : m.model).join('\n'))
 const servicesUp = computed(() => (data.value?.services ?? []).filter(s => s.up === true).length)
 const servicesKnown = computed(() => (data.value?.services ?? []).filter(s => s.up !== null).length)
+const servicesTooltip = computed(() => (data.value?.services ?? []).filter(s => s.up !== null).map(s => `${s.label}: ${s.up ? 'up' : 'down'}`).join('\n'))
+
+// VRAM is the honest "how loaded is this card" signal on an inference rig: models sit resident
+// while GPU load idles between requests. Chips fill and tint by VRAM, tooltip carries the rest.
+function vramPct(g: PublicRigGpu) {
+  if (g.vramUsedBytes == null || !g.vramTotalBytes) return 0
+  return Math.max(0, Math.min(100, (g.vramUsedBytes / g.vramTotalBytes) * 100))
+}
+function vramClass(g: PublicRigGpu) {
+  const p = vramPct(g)
+  if (p >= 75) return 'bg-green-400 shadow-[0_0_8px_rgba(70,194,17,0.55)]'
+  if (p >= 40) return 'bg-green-500'
+  return 'bg-green-800'
+}
 
 function compact(n?: number | null) {
   if (n == null) return null
@@ -74,8 +99,8 @@ function ago(iso?: string | null) {
 }
 function gpuTitle(g: PublicRigGpu) {
   const parts = [g.label]
-  if (g.utilPct != null) parts.push(`${Math.round(g.utilPct)}%`)
-  if (g.vramUsedBytes != null && g.vramTotalBytes) parts.push(`${(g.vramUsedBytes / 2 ** 30).toFixed(1)} / ${(g.vramTotalBytes / 2 ** 30).toFixed(0)} GB`)
+  if (g.vramUsedBytes != null && g.vramTotalBytes) parts.push(`VRAM ${(g.vramUsedBytes / 2 ** 30).toFixed(1)} / ${(g.vramTotalBytes / 2 ** 30).toFixed(0)} GB (${Math.round(vramPct(g))}%)`)
+  if (g.utilPct != null) parts.push(`load ${Math.round(g.utilPct)}%`)
   if (g.tempC != null) parts.push(`${Math.round(g.tempC)}C`)
   return parts.join(' · ')
 }
@@ -106,26 +131,28 @@ function gpuTitle(g: PublicRigGpu) {
           <span class="font-mono text-[13px] leading-5 text-(--ui-text) whitespace-nowrap">{{ gpus.length }}</span>
         </div>
 
-        <template v-if="models.length">
+        <template v-if="roster.length">
           <div class="hidden sm:block w-px h-7 bg-(--ui-border-accented)" />
           <div class="hidden md:flex flex-col gap-0.5 min-w-0">
-            <span class="text-[10px] uppercase tracking-[1.5px] text-(--ui-text-dimmed) whitespace-nowrap">Serving</span>
-            <span class="block font-mono text-[13px] leading-5 text-(--ui-text) whitespace-nowrap truncate max-w-[200px] xl:max-w-[240px]" :title="models.join(', ')">{{ models.join(' · ') }}</span>
+            <span class="text-[10px] uppercase tracking-[1.5px] text-(--ui-text-dimmed) whitespace-nowrap">Models, 24h</span>
+            <UTooltip :text="rosterTooltip" :content="{ side: 'bottom' }" :ui="{ content: 'h-auto py-1.5 items-start', text: 'whitespace-pre-line leading-5' }">
+              <span class="flex items-center gap-1.5 font-mono text-[13px] leading-5 text-(--ui-text) whitespace-nowrap cursor-default">
+                <span class="truncate max-w-[220px] xl:max-w-[280px]">{{ rosterHead.join(' · ') }}</span>
+                <span v-if="rosterMore" class="shrink-0 px-1.5 rounded bg-green-500/10 text-green-400 text-[11px] leading-5">+{{ rosterMore }}</span>
+              </span>
+            </UTooltip>
           </div>
         </template>
 
         <div class="hidden sm:block w-px h-7 bg-(--ui-border-accented)" />
         <div class="flex flex-col gap-0.5">
-          <span class="text-[10px] uppercase tracking-[1.5px] text-(--ui-text-dimmed) whitespace-nowrap">Utilization</span>
+          <span class="text-[10px] uppercase tracking-[1.5px] text-(--ui-text-dimmed) whitespace-nowrap">VRAM</span>
           <span class="flex items-center gap-1.5 h-5">
-            <span
-              v-for="g in gpus"
-              :key="g.label"
-              class="relative inline-block w-8 h-2 rounded-sm bg-(--ui-bg-accented) overflow-hidden"
-              :title="gpuTitle(g)"
-            >
-              <span class="absolute inset-y-0 left-0 bg-green-400 transition-[width] duration-700" :style="{ width: `${Math.max(0, Math.min(100, g.utilPct ?? 0))}%` }" />
-            </span>
+            <UTooltip v-for="g in gpus" :key="g.label" :text="gpuTitle(g)" :content="{ side: 'bottom' }">
+              <span class="relative inline-block w-8 h-2 rounded-sm bg-(--ui-bg-accented) overflow-hidden cursor-default">
+                <span class="absolute inset-y-0 left-0 transition-[width] duration-700" :class="vramClass(g)" :style="{ width: `${vramPct(g)}%` }" />
+              </span>
+            </UTooltip>
           </span>
         </div>
 
@@ -141,7 +168,9 @@ function gpuTitle(g: PublicRigGpu) {
           <div class="hidden sm:block w-px h-7 bg-(--ui-border-accented)" />
           <div class="hidden sm:flex flex-col gap-0.5">
             <span class="text-[10px] uppercase tracking-[1.5px] text-(--ui-text-dimmed) whitespace-nowrap">Services</span>
-            <span class="font-mono text-[13px] leading-5 whitespace-nowrap" :class="servicesUp === servicesKnown ? 'text-(--ui-text)' : 'text-amber-400'">{{ servicesUp }} / {{ servicesKnown }} up</span>
+            <UTooltip :text="servicesTooltip" :content="{ side: 'bottom' }" :ui="{ content: 'h-auto py-1.5 items-start', text: 'whitespace-pre-line leading-5' }">
+              <span class="font-mono text-[13px] leading-5 whitespace-nowrap cursor-default" :class="servicesUp === servicesKnown ? 'text-(--ui-text)' : 'text-amber-400'">{{ servicesUp }} / {{ servicesKnown }} up</span>
+            </UTooltip>
           </div>
         </template>
       </template>

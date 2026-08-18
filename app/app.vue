@@ -19,7 +19,7 @@ useHead({
 })
 </script>
 <template>
-  <UApp>
+  <UApp :tooltip="{ delayDuration: 0 }">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

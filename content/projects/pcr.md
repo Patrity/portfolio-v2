@@ -11,7 +11,7 @@ images:
     - /images/projects/pcr/dashboard.png
     - /images/projects/pcr/metrics.png
 featured: true
-priority: 3
+priority: 4
 type: code
 sitemap: 
   lastmod: 2025-06-17
