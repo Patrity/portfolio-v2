@@ -23,8 +23,8 @@ interface PublicRig {
   engines: { model: string, running: number, waiting: number }[]
   services: { id: string, label: string, up: boolean | null }[]
   tokens24h: number | null
-  /** Models LiteLLM routed requests to in the last 24h, most-used first (added 2026-08-18). */
-  models24h?: { model: string, requests: number }[]
+  /** Models LiteLLM routed to in the last 24h, ranked by tokens (added 2026-08-18). */
+  models24h?: { model: string, tokens?: number, requests?: number }[]
 }
 
 const url = useRuntimeConfig().public.rigStatusUrl as string
@@ -59,11 +59,19 @@ const gpus = computed(() => data.value?.gpus ?? [])
 const roster = computed(() => {
   const r = data.value?.models24h
   if (r?.length) return r
-  return (data.value?.engines ?? []).map(e => ({ model: e.model, requests: 0 }))
+  return (data.value?.engines ?? []).map(e => ({ model: e.model, tokens: 0, requests: 0 }))
 })
-const rosterHead = computed(() => roster.value.slice(0, 3).map(m => m.model))
+// LiteLLM labels are provider-prefixed ("openai/qwen3.6-35b-a3b", "huggingface/tei/Qwen/Qwen3-Embedding-4B").
+// The strip shows the last segment, the tooltip keeps the full label.
+const shortName = (m: string) => m.split('/').filter(Boolean).pop() ?? m
+const rosterHead = computed(() => roster.value.slice(0, 3).map(m => shortName(m.model)))
 const rosterMore = computed(() => Math.max(0, roster.value.length - 3))
-const rosterTooltip = computed(() => roster.value.map(m => m.requests ? `${m.model} · ${compact(m.requests)} req` : m.model).join('\n'))
+const rosterTooltip = computed(() => roster.value.map((m) => {
+  const bits = [m.model]
+  if (m.tokens) bits.push(`${compact(m.tokens)} tok`)
+  if (m.requests) bits.push(`${compact(m.requests)} req`)
+  return bits.join(' · ')
+}).join('\n'))
 const servicesUp = computed(() => (data.value?.services ?? []).filter(s => s.up === true).length)
 const servicesKnown = computed(() => (data.value?.services ?? []).filter(s => s.up !== null).length)
 const servicesTooltip = computed(() => (data.value?.services ?? []).filter(s => s.up !== null).map(s => `${s.label}: ${s.up ? 'up' : 'down'}`).join('\n'))
