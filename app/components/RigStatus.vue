@@ -8,8 +8,12 @@
  * public + CORS * by design. Nothing runs on Vercel for this.
  *
  * States:
- *   - hidden:  no URL configured, or the endpoint answers 4xx (not deployed yet)
- *   - asleep:  5xx / network error, or a 200 with no GPU reporting (rig powered off)
+ *   - hidden:  no URL configured, a 4xx (endpoint not deployed), or a network/CORS
+ *              failure (no status code at all: the brain is unreachable, or an
+ *              upstream 401/502 arrived without CORS headers and the browser hid it).
+ *              An uninterpretable failure must not paint a status.
+ *   - asleep:  a 5xx that carried CORS (the endpoint itself says Prometheus is down),
+ *              or a 200 with no GPU reporting (rig powered off)
  *   - live:    at least one GPU reporting
  */
 interface PublicRigGpu { label: string, utilPct: number | null, vramUsedBytes: number | null, vramTotalBytes: number | null, tempC: number | null }
@@ -23,21 +27,29 @@ interface PublicRig {
 
 const url = useRuntimeConfig().public.rigStatusUrl as string
 
-const { data, error } = useFetch<PublicRig>(url, {
-  server: false,
-  lazy: true,
-  immediate: !!url,
-  key: 'rig-status',
-  retry: false,
-  timeout: 6000,
+// Raw client-side fetch rather than useFetch: useFetch normalises a network/CORS failure
+// into a generic statusCode 500, which is indistinguishable from the endpoint's own 502.
+// Here `status` is the real HTTP status when a response was readable, or null when the
+// browser never got one (unreachable host, or a CORS-less upstream error it hid from us).
+const data = ref<PublicRig | null>(null)
+const status = ref<number | null>(null)
+const failed = ref(false)
+
+onMounted(async () => {
+  if (!url) return
+  try {
+    const res = await $fetch.raw<PublicRig>(url, { timeout: 6000, retry: 0 })
+    status.value = res.status
+    data.value = res._data ?? null
+  } catch (e) {
+    failed.value = true
+    status.value = (e as { response?: { status?: number } })?.response?.status ?? null
+  }
 })
 
-const status4xx = computed(() => {
-  const code = (error.value as { statusCode?: number } | null)?.statusCode
-  return code != null && code >= 400 && code < 500
-})
-const show = computed(() => !!url && !status4xx.value && (data.value != null || error.value != null))
-const online = computed(() => !error.value && (data.value?.gpus?.length ?? 0) > 0)
+const upstreamDown = computed(() => status.value != null && status.value >= 500)
+const show = computed(() => !!url && (data.value != null || upstreamDown.value))
+const online = computed(() => !failed.value && (data.value?.gpus?.length ?? 0) > 0)
 
 const gpus = computed(() => data.value?.gpus ?? [])
 const models = computed(() => (data.value?.engines ?? []).map(e => e.model).slice(0, 3))

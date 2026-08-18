@@ -46,4 +46,4 @@ Required in `.env` (not committed):
 
 Optional:
 - `UMAMI_USERNAME` / `UMAMI_PASSWORD` (or `UMAMI_API_KEY`) — blog view counts; counters hide when unset
-- `NUXT_PUBLIC_RIG_STATUS_URL` — overrides the source of the homepage "Live from the rig" strip (default `https://brain.costanzoclan.com/api/public/rig`, MyMind's public curated homelab status; served with CORS `*`). Set to an empty string to hide the strip. The strip also hides itself on a 4xx (endpoint not deployed) and shows "rig asleep" on 5xx/network errors or when no GPU is reporting.
+- `NUXT_PUBLIC_RIG_STATUS_URL` — overrides the source of the homepage "Live from the rig" strip (default `https://brain.costanzoclan.com/api/public/rig`, MyMind's public curated homelab status; served with CORS `*`). Set to an empty string to hide the strip. The strip hides itself on a 4xx (endpoint not deployed) or a network/CORS failure (no readable status), shows "rig asleep" on a 5xx from the endpoint itself or when no GPU is reporting, and goes live otherwise.
