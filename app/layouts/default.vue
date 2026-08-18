@@ -10,9 +10,16 @@ const items = [
 ]
 
 const socials = [
-  { to: 'https://github.com/Patrity/portfolio-v2', icon: 'i-fa6-brands-github' },
-  { to: 'https://x.com/Patrity', icon: 'i-fa6-brands-x-twitter' },
-  { to: 'https://bsky.app/profile/patrity.com', icon: 'i-fa6-brands-bluesky' },
+  { to: 'https://github.com/Patrity', icon: 'i-fa6-brands-github', label: 'GitHub' },
+  { to: 'https://x.com/Patrity', icon: 'i-fa6-brands-x-twitter', label: 'X' },
+  { to: 'https://bsky.app/profile/patrity.com', icon: 'i-fa6-brands-bluesky', label: 'Bluesky' },
+  { to: 'https://www.linkedin.com/in/tonycos/', icon: 'i-fa6-brands-linkedin', label: 'LinkedIn' },
+]
+
+// Footer only: the feed lives with the rest of the "follow me" affordances.
+const footerLinks = [
+  ...socials,
+  { to: '/rss.xml', icon: 'i-heroicons-rss', label: 'RSS feed', external: true },
 ]
 </script>
 
@@ -32,7 +39,7 @@ const socials = [
     <template #right>
       <div class="flex flex-row items-center gap-2">
         <UColorModeButton size="xl" />
-        <UButton v-for="social in socials" :key="social.to" :to="social.to" :icon="social.icon" size="xl" variant="ghost" color="neutral" class="hidden lg:block hover:text-(--ui-primary) transition transform duration-200" />
+        <UButton v-for="social in socials" :key="social.to" :to="social.to" :icon="social.icon" :aria-label="social.label" target="_blank" size="xl" variant="ghost" color="neutral" class="hidden lg:block hover:text-(--ui-primary) transition transform duration-200" />
       </div>
     </template>
 
@@ -58,7 +65,7 @@ const socials = [
       <UNavigationMenu :items="items" variant="link" />
 
       <template #right>
-        <UButton v-for="social in socials" :key="social.to" :to="social.to" :icon="social.icon" size="xl" variant="ghost" color="neutral" class="hover:text-(--ui-primary) transition transform duration-200" />
+        <UButton v-for="link in footerLinks" :key="link.to" :to="link.to" :icon="link.icon" :aria-label="link.label" :target="link.to.startsWith('http') ? '_blank' : undefined" :external="link.external" size="xl" variant="ghost" color="neutral" class="hover:text-(--ui-primary) transition transform duration-200" />
       </template>
     </UFooter>
 </template>

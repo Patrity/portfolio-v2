@@ -11,6 +11,7 @@ export default defineNuxtConfig({
       },
       link: [
         { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'alternate', type: 'application/rss+xml', title: 'TechHive Labs', href: '/rss.xml' },
       ],
       meta: [
         { charset: 'utf-8' },
@@ -47,7 +48,8 @@ export default defineNuxtConfig({
         '/about',
         '/blog',
         '/projects',
-        '/sitemap.xml'
+        '/sitemap.xml',
+        '/rss.xml',
       ]
 
     }
@@ -60,7 +62,7 @@ export default defineNuxtConfig({
   site: {
     url: 'https://www.techhivelabs.net',
     name: 'TechHive Labs',
-    description: 'Full-stack developer specializing in web development, video production, and digital solutions.',
+    description: 'Tony Costanzo builds software on billion-dollar construction projects, runs a homelab full of GPUs, and writes field reports on AI agents, local inference, and whatever broke this weekend.',
     defaultLocale: 'en',
   },
   
@@ -89,6 +91,8 @@ export default defineNuxtConfig({
   ogImage: {
     enabled: true,
     defaults: {
+      width: 1200,
+      height: 630, // match the TechHive card so og:image:width/height are honest
       cacheMaxAgeSeconds: 60 * 60 * 24 * 7, // 7 days
       renderer: 'satori',
       props: {
@@ -98,6 +102,7 @@ export default defineNuxtConfig({
     fonts: [
       'Inter:400',
       'Inter:700',
+      'Teko:700',
     ],
   },
   
@@ -122,6 +127,12 @@ export default defineNuxtConfig({
   runtimeConfig: {
     turnstile: {
       secretKey: process.env.NUXT_TURNSTILE_SECRET_KEY
-    }
+    },
+    public: {
+      // "Live from the rig" strip on the homepage reads MyMind's public, curated homelab
+      // status (GET /api/public/rig, CORS *). Override with NUXT_PUBLIC_RIG_STATUS_URL; set it
+      // to an empty string to hide the strip entirely.
+      rigStatusUrl: 'https://brain.costanzoclan.com/api/public/rig',
+    },
   }
 })

@@ -5,19 +5,25 @@ import type { FormSubmitEvent } from '#ui/types'
 // SEO Metadata
 definePageMeta({
   title: 'Contact',
-  description: 'Get in touch with Tony Costanzo at TechHive Labs for web development, video production, and digital consulting services.',
+  description: 'Get in touch with Tony Costanzo at TechHive Labs for web development, AI implementation, and project controls consulting.',
 })
 
 useSeoMeta({
   title: 'Contact',
-  description: 'Get in touch with Tony Costanzo at TechHive Labs for web development, video production, and digital consulting services.',
+  description: 'Get in touch with Tony Costanzo at TechHive Labs for web development, AI implementation, and project controls consulting.',
   ogTitle: 'Contact - TechHive Labs',
-  ogDescription: 'Get in touch for web development, video production, and digital consulting services.',
+  ogDescription: 'Get in touch for web development, AI implementation, and project controls consulting.',
   ogUrl: 'https://www.techhivelabs.net/contact',
 })
 
 useHead({
   link: [{ rel: 'canonical', href: 'https://www.techhivelabs.net/contact' }],
+})
+
+defineOgImageComponent('TechHive', {
+  title: 'Get in Touch',
+  description: 'Web apps, AI implementations, and project controls consulting. Tell me what you are working on.',
+  photo: false,
 })
 
 // Form schema
@@ -49,9 +55,10 @@ const submitError = ref('')
 const subjectOptions = [
   { label: 'General Inquiry', value: 'General Inquiry' },
   { label: 'Web Development', value: 'Web Development' },
-  { label: 'Video Production', value: 'Video Production' },
   { label: 'Digital Consulting', value: 'Digital Consulting' },
   { label: 'AI Implementation', value: 'AI Implementation' },
+  { label: 'Project Controls / Construction Data', value: 'Project Controls / Construction Data' },
+  { label: 'YouTube / Creator Collab', value: 'YouTube / Creator Collab' },
   { label: 'Partnership Opportunity', value: 'Partnership Opportunity' },
   { label: 'Other', value: 'Other' }
 ]
@@ -102,8 +109,8 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
         Get in <span class="gradient-text">Touch</span>
       </template>
       <template #description>
-        Ready to bring your digital vision to life? Let's discuss your
-        project and see how TechHive Labs can help!
+        Ugly data, an AI idea, a web app that should already exist, or a collab.
+        Tell me what you're working on.
       </template>
     </UPageHeader>
 
@@ -117,8 +124,8 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
                 Let's Work <span class="gradient-text">Together</span>
               </h2>
               <p class="text-(--ui-text-muted) mb-6">
-                Whether you need a stunning website, an AI implementation, or strategic digital consulting,
-                I'm here to help transform your ideas into reality.
+                Web apps, AI implementations, and project controls consulting for teams that need it to
+                actually work. Small business or mega-project, same attention to detail.
               </p>
             </div>
 
@@ -143,7 +150,7 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
                 <UIcon name="i-heroicons-globe-alt" class="w-6 h-6 text-primary-500 mt-1" />
                 <div>
                   <h3 class="font-semibold">Services</h3>
-                  <p class="">Web Development, AI Implementation, Digital Consulting</p>
+                  <p class="">Web Development, AI Implementation, Project Controls Consulting</p>
                 </div>
               </div>
             </div>

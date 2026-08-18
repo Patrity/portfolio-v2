@@ -11,6 +11,7 @@ tags:
 images:
   - /images/projects/repcord/banner.webp
 featured: true
+priority: 7
 type: code
 sitemap: 
   lastmod: 2025-06-17

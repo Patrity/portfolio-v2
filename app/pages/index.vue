@@ -1,66 +1,26 @@
 <script setup lang="ts">
 useReveal()
 
+const SITE_DESCRIPTION = 'Tony Costanzo builds software on billion-dollar construction projects, runs a homelab full of GPUs, and writes field reports on AI agents, local inference, and whatever broke this weekend.'
+
 definePageMeta({
-  title: 'Full-Stack Development & Digital Solutions',
-  description: 'Full-stack developer specializing in web development, video production, and digital solutions. Founder of TechHive Labs. 20+ years of programming experience.',
+  title: 'Full-Stack Developer, Project Controls & Local AI',
+  description: SITE_DESCRIPTION,
 })
 
 useSeoMeta({
-  title: 'Full-Stack Development & Digital Solutions',
-  description: 'Full-stack developer specializing in web development, video production, and digital solutions. Founder of TechHive Labs. 20+ years of programming experience.',
-  ogTitle: 'TechHive Labs - Full-Stack Development & Digital Solutions',
-  ogDescription: 'Full-stack developer specializing in web development, video production, and digital solutions. Founder of TechHive Labs.',
+  title: 'Full-Stack Developer, Project Controls & Local AI',
+  description: SITE_DESCRIPTION,
+  ogTitle: 'Tony Costanzo | TechHive Labs',
+  ogDescription: SITE_DESCRIPTION,
   ogUrl: 'https://www.techhivelabs.net/',
-  ogImage: 'https://www.techhivelabs.net/og-image.png',
-  twitterTitle: 'TechHive Labs - Full-Stack Development & Digital Solutions',
-  twitterDescription: 'Full-stack developer specializing in web development, video production, and digital solutions.',
+  twitterTitle: 'Tony Costanzo | TechHive Labs',
+  twitterDescription: SITE_DESCRIPTION,
   twitterCard: 'summary_large_image',
 })
 
 useHead({
   link: [{ rel: 'canonical', href: 'https://www.techhivelabs.net/' }],
-})
-
-// Rotating roles for typewriter effect
-const roles = ['Full-Stack Developer', 'AI Solutions Architect', 'Project Controls Specialist', 'Content Creation', 'RAG Pipeline Builder', 'Digital Consultant', 'Agentic Workflow Engineer']
-const currentRole = ref(0)
-const displayedRole = ref('')
-const isTyping = ref(true)
-
-function typeRole() {
-  const role = roles[currentRole.value]
-  let charIndex = 0
-  isTyping.value = true
-
-  const typeInterval = setInterval(() => {
-    displayedRole.value = role.slice(0, charIndex + 1)
-    charIndex++
-    if (charIndex >= role.length) {
-      clearInterval(typeInterval)
-      isTyping.value = false
-      setTimeout(() => {
-        eraseRole()
-      }, 2200)
-    }
-  }, 60)
-}
-
-function eraseRole() {
-  let charIndex = displayedRole.value.length
-  const eraseInterval = setInterval(() => {
-    displayedRole.value = displayedRole.value.slice(0, charIndex - 1)
-    charIndex--
-    if (charIndex <= 0) {
-      clearInterval(eraseInterval)
-      currentRole.value = (currentRole.value + 1) % roles.length
-      setTimeout(() => typeRole(), 300)
-    }
-  }, 30)
-}
-
-onMounted(() => {
-  setTimeout(() => typeRole(), 800)
 })
 
 const testimonials = [
@@ -69,26 +29,18 @@ const testimonials = [
     name: 'Carrie Pledger',
     role: 'Owner - Adventure Zone Kids',
     url: 'https://adventurezonekids.com',
-    placeholder: false,
   },
   {
     quote: 'We\'ve worked with Tony on numerous projects and have always found his meticulous attention to detail and upbeat, can-do attitude to be hugely empowering. He writes clean code that we can easily build upon and he is able to quickly shift pace to accommodate changing requirements - an enormously useful trait to have!',
     name: 'Harry',
     role: 'Founder - HML Tech',
     url: 'https://hmltech.dev',
-    placeholder: false,
   },
   {
     quote: 'I had a great experience working with Tony. He is a skilled web developer, responsive, efficient, and focused on getting things done. With a well-defined scope, the work proceeded smoothly and matched what we planned. I would confidently recommend him to anyone looking for reliable development support.',
     name: 'Will',
     role: 'Founder',
-    placeholder: false,
-  }
-]
-
-const heroLinks = [
-  { label: 'View My Work', to: '#projects', color: 'primary' as const, variant: 'solid' as const, icon: 'i-heroicons-arrow-down' },
-  { label: 'Get In Touch', to: '/contact', color: 'neutral' as const, variant: 'outline' as const, icon: 'i-heroicons-envelope' },
+  },
 ]
 
 const socialLinks = [
@@ -100,24 +52,58 @@ const socialLinks = [
 
 const stats = [
   { value: 20, suffix: '+', label: 'Years Programming' },
-  { value: 4, suffix: 'M+', label: 'Subscribers Managed' },
+  { value: 4, prefix: '1→', suffix: 'M', label: 'Fireship Growth' },
   { value: 10, suffix: '+', label: 'Years Professional' },
   { value: 12, suffix: 'B+', prefix: '$', label: 'In Projects Managed' },
 ]
 
+// Newest posts drive both the hero ("latest" + "most read") and the Field Reports grid.
 const { data: blog } = await useAsyncData('blog-index', () => {
   return queryCollection('blog')
     .select('title', 'author', 'date', 'draft', 'description', 'image', 'tags', 'navigation', 'path', 'stem', 'id')
     .where('draft', '=', false)
     .order('date', 'DESC')
-    .limit(3)
+    .limit(8)
     .all()
+})
+
+// The latest post needs its body once, for the reading-time estimate on the hero card.
+const { data: latestFull } = await useAsyncData('blog-latest-body', () => {
+  return queryCollection('blog')
+    .select('path', 'body')
+    .where('draft', '=', false)
+    .order('date', 'DESC')
+    .first()
+})
+
+const latest = computed(() => blog.value?.[0] ?? null)
+const latestReadMins = computed(() => (latestFull.value?.body ? readingTime(latestFull.value.body) : 0))
+const fieldReports = computed(() => blog.value?.slice(0, 3) ?? [])
+
+// "Most read" ranks by Umami views (client-side, same batched endpoint the /blog
+// listing uses). Until counts arrive, fall back to the two posts after the latest so
+// the column never renders empty during prerender/hydration.
+const { data: viewCounts } = useFetch('/api/views-batch', {
+  server: false,
+  lazy: true,
+  query: { paths: (blog.value || []).map(p => p.path).join(',') },
+  default: () => ({ counts: {} as Record<string, number> }),
+})
+const mostRead = computed(() => {
+  const posts = (blog.value || []).filter(p => p.path !== latest.value?.path)
+  const counts = viewCounts.value?.counts || {}
+  const hasCounts = Object.keys(counts).length > 0
+  const ranked = hasCounts
+    ? [...posts].sort((a, b) => (counts[b.path] || 0) - (counts[a.path] || 0))
+    : posts
+  return ranked.slice(0, 2)
 })
 
 const { data: projects } = await useAsyncData('projects-index', () => {
   return queryCollection('projects')
-    .select('title', 'description', 'images', 'path', 'tags', 'id', 'type', 'featured')
+    .select('title', 'description', 'images', 'path', 'tags', 'id', 'type', 'featured', 'priority')
     .where('featured', '=', true)
+    .order('priority', 'ASC')
     .limit(4)
     .all()
 })
@@ -134,7 +120,6 @@ const cards = computed(() => {
       class: isWide ? 'lg:col-span-2' : 'lg:col-span-1',
       image: project.images?.[0],
       orientation: isWide ? 'horizontal' : 'vertical',
-      variant: isWide ? 'outline' : 'subtle',
       type: project.type,
     }
   })
@@ -144,68 +129,60 @@ const cards = computed(() => {
 <template>
   <!-- ═══════════════ HERO ═══════════════ -->
   <section class="relative min-h-[100dvh] flex items-center overflow-hidden">
-    <HeroBackground />
+    <HiveBackground />
 
-    <!-- Hero content — asymmetric left-aligned -->
-    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-16 py-20">
-      <div class="max-w-3xl">
-        <!-- Eyebrow -->
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-10 lg:px-8 py-20 lg:py-24 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <!-- Identity -->
+      <div class="lg:col-span-7 max-w-3xl">
         <div
           class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full glass-card text-sm text-green-400 mb-6"
           style="animation: fade-in 0.6s ease-out both;"
         >
-          <span class="relative flex size-2">
-            <span class="absolute inline-flex size-full rounded-full bg-green-400 opacity-75 animate-ping" />
-            <span class="relative inline-flex size-2 rounded-full bg-green-400" />
-          </span>
-          Available for new projects
+          <span class="inline-flex size-2 rounded-full bg-green-400" />
+          Open to freelance and consulting
         </div>
 
-        <!-- Main heading -->
         <h1
-          class="font-teko text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] font-bold leading-[0.85] tracking-tight"
+          class="font-teko text-5xl sm:text-7xl md:text-8xl lg:text-[6rem] font-bold leading-[0.86] tracking-tight"
           style="animation: fade-up 0.8s ease-out 0.15s both;"
         >
-          I Build<br />
-          <span class="gradient-text">Digital</span><br />
-          Futures
+          Construction data,<br />
+          AI agents, and<br />
+          <span class="gradient-text">whatever broke</span><br />
+          this weekend.
         </h1>
 
-        <!-- Typewriter subtitle -->
         <div
-          class="mt-6 text-lg sm:text-xl h-8 flex items-center gap-2"
+          class="mt-6 flex items-center gap-2 font-mono"
           style="animation: fade-in 1s ease-out 0.5s both;"
         >
-          <span class="text-green-500/60 font-mono text-sm">~/</span>
-          <span class="font-mono text-(--ui-text)">{{ displayedRole }}</span>
-          <span class="inline-block w-0.5 h-5 bg-green-400" :class="isTyping ? 'animate-pulse' : 'opacity-0'" />
+          <span class="text-green-500/60 text-sm">~/</span>
+          <span class="text-base sm:text-lg text-(--ui-text)">full-stack dev &middot; project controls &middot; local AI</span>
         </div>
 
-        <!-- Description -->
         <p
-          class="mt-5 max-w-lg text-(--ui-text-muted) text-base sm:text-lg leading-relaxed"
+          class="mt-4 max-w-xl text-(--ui-text-muted) text-base sm:text-lg leading-relaxed"
           style="animation: fade-up 0.8s ease-out 0.7s both;"
         >
-          Full-stack development, AI implementations, and digital consulting.
-          From RAG pipelines to production web apps — I build the tools that move businesses forward.
+          Twenty years of code, ten of them on billion-dollar EPC projects. I build RAG pipelines and
+          agentic workflows for the messiest data in industry, run a rack of 3090s at home, and write
+          down what breaks (a lot breaks).
         </p>
 
-        <!-- CTA buttons -->
         <div
-          class="mt-8 flex flex-wrap items-center gap-4"
+          class="mt-7 flex flex-wrap items-center gap-4"
           style="animation: fade-up 0.8s ease-out 0.9s both;"
         >
-          <UButton
-            v-for="link in heroLinks"
-            :key="link.label"
-            v-bind="link"
-            size="lg"
-          />
+          <UButton to="#field-reports" color="primary" variant="solid" size="lg" trailing-icon="i-heroicons-arrow-right">
+            Read the field reports
+          </UButton>
+          <UButton to="/contact" color="neutral" variant="outline" size="lg" icon="i-heroicons-envelope">
+            Work with me
+          </UButton>
         </div>
 
-        <!-- Social links -->
         <div
-          class="mt-10 flex items-center gap-4"
+          class="mt-9 flex items-center gap-4"
           style="animation: fade-in 1s ease-out 1.1s both;"
         >
           <span class="text-xs uppercase tracking-widest text-(--ui-text-dimmed)">Find me</span>
@@ -222,10 +199,69 @@ const cards = computed(() => {
           </NuxtLink>
         </div>
       </div>
+
+      <!-- Latest + most read -->
+      <div
+        v-if="latest"
+        class="lg:col-span-5 flex flex-col gap-4"
+        style="animation: fade-up 0.8s ease-out 0.5s both;"
+      >
+        <span class="text-xs uppercase tracking-widest text-(--ui-text-dimmed)">Latest field report</span>
+        <NuxtLink
+          :to="latest.path"
+          class="group relative block rounded-xl overflow-hidden ring-1 ring-(--ui-border) hover:ring-green-500/40 transition-all duration-300 hover:shadow-[0_0_30px_rgba(70,194,17,0.12)]"
+        >
+          <img
+            v-if="latest.image"
+            :src="latest.image"
+            :alt="latest.title"
+            width="960"
+            height="540"
+            fetchpriority="high"
+            class="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          >
+          <div class="absolute inset-0 bg-gradient-to-t from-neutral-950/95 via-neutral-950/50 to-transparent" />
+          <div class="absolute inset-x-0 bottom-0 p-5 flex flex-col gap-2">
+            <div v-if="latest.tags?.length" class="flex flex-wrap gap-1.5">
+              <UBadge v-for="t in latest.tags" :key="t" :label="t" size="sm" color="primary" variant="soft" />
+            </div>
+            <h2 class="text-lg sm:text-xl font-semibold leading-snug text-white text-pretty">{{ latest.title }}</h2>
+            <p class="text-xs sm:text-sm text-neutral-300">
+              {{ formatDate(latest.date) }}<template v-if="latestReadMins"> &middot; {{ latestReadMins }} min read</template>
+            </p>
+          </div>
+        </NuxtLink>
+
+        <div v-if="mostRead.length" class="flex flex-col gap-3 pt-1">
+          <span class="text-xs uppercase tracking-widest text-(--ui-text-dimmed)">Most read</span>
+          <NuxtLink
+            v-for="post in mostRead"
+            :key="post.path"
+            :to="post.path"
+            class="group flex items-center gap-3.5"
+          >
+            <img
+              v-if="post.image"
+              :src="post.image"
+              :alt="post.title"
+              width="208"
+              height="117"
+              loading="lazy"
+              class="w-26 h-[58px] shrink-0 rounded-md object-cover ring-1 ring-(--ui-border)"
+            >
+            <div class="min-w-0 flex flex-col gap-0.5">
+              <span class="text-sm font-semibold leading-tight text-(--ui-text) group-hover:text-green-400 transition-colors text-pretty">{{ post.title }}</span>
+              <span class="text-xs text-(--ui-text-dimmed)">
+                {{ formatDate(post.date) }}<template v-if="viewCounts?.counts?.[post.path]"> &middot; {{ viewCounts.counts[post.path].toLocaleString() }} views</template>
+              </span>
+            </div>
+          </NuxtLink>
+        </div>
+      </div>
     </div>
 
     <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10" style="animation: fade-in 1.5s ease-out 1.5s both;">
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 hidden lg:block" style="animation: fade-in 1.5s ease-out 1.5s both;">
       <NuxtLink to="#stats" class="flex flex-col items-center gap-2 text-(--ui-text-dimmed) hover:text-green-400 transition-colors">
         <span class="text-xs uppercase tracking-widest">Scroll</span>
         <UIcon name="i-heroicons-chevron-down" class="size-5" style="animation: scroll-hint 2s ease-in-out infinite;" />
@@ -253,20 +289,23 @@ const cards = computed(() => {
     </div>
   </section>
 
-  <!-- ═══════════════ RECENT ARTICLES ═══════════════ -->
-  <UPageSection :ui="{ title: 'font-teko' }">
+  <!-- Live telemetry from the homelab. Renders nothing until the rig endpoint is configured. -->
+  <RigStatus />
+
+  <!-- ═══════════════ FIELD REPORTS ═══════════════ -->
+  <UPageSection id="field-reports" :ui="{ title: 'font-teko' }">
     <template #title>
-      <span class="gradient-text">Recent Articles</span>
+      <span class="gradient-text">Field Reports</span>
     </template>
     <template #description>
       <p class="text-center text-(--ui-text-muted)">
-        Writing about the technology I use, the projects I build, and the things I learn along the way.
+        What broke, what I learned, and what it cost. Roughly monthly, always longer than planned.
       </p>
     </template>
 
     <UBlogPosts>
       <UBlogPost
-        v-for="(post, i) in blog"
+        v-for="(post, i) in fieldReports"
         :key="post.id"
         variant="subtle"
         :title="post.title"
@@ -296,16 +335,71 @@ const cards = computed(() => {
 
     <div class="flex justify-center mt-4 reveal">
       <UButton to="/blog" color="primary" variant="outline" size="lg" trailing-icon="i-heroicons-arrow-right">
-        Read All Articles
+        Read all field reports
       </UButton>
     </div>
   </UPageSection>
 
-  <!-- ═══════════════ ABOUT PREVIEW ═══════════════ -->
-  <section class="py-20 px-6 relative overflow-hidden">
+  <!-- ═══════════════ THINGS I'VE BUILT ═══════════════ -->
+  <UPageSection
+    id="projects"
+    class="border-t border-(--ui-border)"
+    :ui="{ title: 'font-teko' }"
+  >
+    <template #title>
+      Things I've <span class="gradient-text">Built</span>
+    </template>
+    <template #description>
+      <p class="text-center text-(--ui-text-muted)">
+        Products, internal tools, and the occasional game server. Curated to the last few years.
+      </p>
+    </template>
+
+    <UPageGrid>
+      <NuxtLink
+        v-for="(card, index) in cards"
+        :key="index"
+        :to="card.to"
+        class="group relative overflow-hidden rounded-xl border border-(--ui-border) transition-all duration-300 hover:border-green-500/30 hover:shadow-[0_0_30px_rgba(70,194,17,0.1)] reveal"
+        :class="card.class"
+        :style="{ transitionDelay: `${index * 0.1}s` }"
+      >
+        <div class="relative overflow-hidden" :class="card.orientation === 'horizontal' ? 'h-48' : 'h-40'">
+          <img
+            v-if="card.image"
+            :src="card.image"
+            :alt="card.title"
+            width="640"
+            height="360"
+            loading="lazy"
+            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+          >
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+
+          <div class="absolute top-3 right-3 glass-card rounded-full px-3 py-1 flex items-center gap-1.5 text-xs font-medium text-green-300">
+            <UIcon :name="card.icon" class="size-3.5" />
+            <span class="capitalize">{{ card.type }}</span>
+          </div>
+        </div>
+
+        <div class="p-5">
+          <h3 class="font-teko text-2xl font-semibold group-hover:text-green-400 transition-colors">{{ card.title }}</h3>
+          <p v-if="card.description" class="mt-1 text-sm text-(--ui-text-muted) line-clamp-2">{{ card.description }}</p>
+        </div>
+      </NuxtLink>
+    </UPageGrid>
+
+    <div class="flex justify-center mt-4 reveal">
+      <UButton to="/projects" color="primary" variant="outline" size="lg" trailing-icon="i-heroicons-arrow-right">
+        All projects
+      </UButton>
+    </div>
+  </UPageSection>
+
+  <!-- ═══════════════ WHO'S WRITING THIS ═══════════════ -->
+  <section class="py-20 px-6 relative overflow-hidden border-t border-(--ui-border)">
     <div class="absolute inset-0 bg-gradient-to-b from-transparent via-green-500/3 to-transparent" />
     <div class="relative max-w-5xl mx-auto flex flex-col md:flex-row items-center gap-10 md:gap-16">
-      <!-- Photo -->
       <div class="flex-shrink-0 reveal-left">
         <div class="relative">
           <img
@@ -320,19 +414,17 @@ const cards = computed(() => {
         </div>
       </div>
 
-      <!-- Text -->
       <div class="text-center md:text-left reveal-right">
         <h2 class="font-teko text-4xl sm:text-5xl font-bold">
-          The Person Behind the
-          <span class="gradient-text">Code</span>
+          Who's <span class="gradient-text">Writing</span> This
         </h2>
-        <p class="mt-4 text-(--ui-text-muted) text-lg leading-relaxed max-w-lg">
-          20+ years of programming, managing a 4M-subscriber YouTube channel, and wrangling
-          billion-dollar project data by day. I've worn a lot of hats — and I bring all of them
-          to every project.
+        <p class="mt-4 text-(--ui-text-muted) text-lg leading-relaxed max-w-xl">
+          Self-taught on MMORPG servers, ten years in construction project controls, and four years at
+          Fireship helping grow the channel from 1M to 4M subscribers. These days most of my week is AI
+          agents and industrial data. I've worn a lot of hats (some of them hard hats).
         </p>
         <UButton to="/about" color="primary" variant="soft" size="lg" class="mt-6" trailing-icon="i-heroicons-arrow-right">
-          Learn My Story
+          Learn my story
         </UButton>
       </div>
     </div>
@@ -352,7 +444,6 @@ const cards = computed(() => {
           class="glass-card rounded-xl p-6 relative reveal"
           :style="{ transitionDelay: `${i * 0.15}s` }"
         >
-          <!-- Quote mark -->
           <span class="text-5xl leading-none text-green-500/20 font-serif absolute top-4 left-5">&ldquo;</span>
 
           <p class="text-(--ui-text-muted) text-sm leading-relaxed mt-6 italic">
@@ -364,7 +455,7 @@ const cards = computed(() => {
               <UIcon name="i-heroicons-user" class="size-4 text-green-400" />
             </div>
             <ULink :to="t.url">
-              <p class="text-sm font-medium" :class="t.placeholder ? 'text-(--ui-text-dimmed)' : ''">{{ t.name }}</p>
+              <p class="text-sm font-medium">{{ t.name }}</p>
               <p class="text-xs text-(--ui-text-dimmed)">{{ t.role }}</p>
             </ULink>
           </div>
@@ -373,67 +464,8 @@ const cards = computed(() => {
     </div>
   </section>
 
-  <!-- ═══════════════ FEATURED PROJECTS ═══════════════ -->
-  <UPageSection
-    id="projects"
-    :ui="{ title: 'font-teko' }"
-  >
-    <template #title>
-      <span class="gradient-text">Featured Projects</span>
-    </template>
-    <template #description>
-      <p class="text-center text-(--ui-text-muted)">
-        A selection of work across web development, video production, and digital solutions.
-      </p>
-    </template>
-
-    <UPageGrid>
-      <NuxtLink
-        v-for="(card, index) in cards"
-        :key="index"
-        :to="card.to"
-        class="group relative overflow-hidden rounded-xl border border-(--ui-border) transition-all duration-300 hover:border-green-500/30 hover:shadow-[0_0_30px_rgba(70,194,17,0.1)] reveal"
-        :class="card.class"
-        :style="{ transitionDelay: `${index * 0.1}s` }"
-      >
-        <!-- Image -->
-        <div class="relative overflow-hidden" :class="card.orientation === 'horizontal' ? 'h-48' : 'h-40'">
-          <img
-            v-if="card.image"
-            :src="card.image"
-            :alt="card.title"
-            width="640"
-            height="360"
-            loading="lazy"
-            class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-          >
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-
-          <!-- Type badge -->
-          <div class="absolute top-3 right-3 glass-card rounded-full px-3 py-1 flex items-center gap-1.5 text-xs font-medium text-green-300">
-            <UIcon :name="card.icon" class="size-3.5" />
-            <span class="capitalize">{{ card.type }}</span>
-          </div>
-        </div>
-
-        <!-- Text -->
-        <div class="p-5">
-          <h3 class="font-teko text-2xl font-semibold group-hover:text-green-400 transition-colors">{{ card.title }}</h3>
-          <p v-if="card.description" class="mt-1 text-sm text-(--ui-text-muted) line-clamp-2">{{ card.description }}</p>
-        </div>
-      </NuxtLink>
-    </UPageGrid>
-
-    <div class="flex justify-center mt-4 reveal">
-      <UButton to="/projects" color="primary" variant="outline" size="lg" trailing-icon="i-heroicons-arrow-right">
-        View All Projects
-      </UButton>
-    </div>
-  </UPageSection>
-
   <!-- ═══════════════ CTA ═══════════════ -->
   <section class="relative py-24 px-6 overflow-hidden">
-    <!-- Background effects -->
     <div class="absolute inset-0">
       <div class="absolute rounded-full blur-[100px] opacity-15 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" style="width: 600px; height: 300px; background: var(--color-green-500);" />
     </div>
@@ -441,18 +473,18 @@ const cards = computed(() => {
 
     <div class="relative text-center max-w-2xl mx-auto reveal">
       <h2 class="font-teko text-5xl sm:text-6xl font-bold">
-        Let's Build Something
-        <span class="gradient-text">Together</span>
+        Let's Talk <span class="gradient-text">Shop</span>
       </h2>
       <p class="mt-4 text-(--ui-text-muted) text-lg">
-        Whether you need a website, a digital strategy, or a creative partner — I'd love to hear about your project.
+        Ugly data, an AI idea that needs to survive contact with reality, or a web app that should
+        already exist.. I'd like to hear about it.
       </p>
       <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
         <UButton to="/contact" color="primary" variant="solid" size="xl" icon="i-heroicons-envelope">
-          Start a Conversation
+          Get in touch
         </UButton>
-        <UButton to="https://github.com/Patrity" target="_blank" color="neutral" variant="ghost" size="xl" icon="i-fa6-brands-github">
-          View GitHub
+        <UButton to="https://www.linkedin.com/in/tonycos/" target="_blank" color="neutral" variant="ghost" size="xl" icon="i-fa6-brands-linkedin">
+          Follow on LinkedIn
         </UButton>
       </div>
     </div>

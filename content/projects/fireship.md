@@ -9,6 +9,7 @@ tags:
 images:
   - /images/projects/fireship/banner.webp
 featured: true
+priority: 5
 type: video
 sitemap: 
   lastmod: 2025-06-17

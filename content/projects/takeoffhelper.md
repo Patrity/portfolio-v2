@@ -10,6 +10,7 @@ tags:
 images:
   - /images/projects/takeoffhelper/concrete.webp
 featured: true
+priority: 4
 type: code
 sitemap: 
   lastmod: 2025-06-17

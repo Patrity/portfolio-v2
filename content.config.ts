@@ -36,6 +36,8 @@ export default defineContentConfig({
           tags: z.array(z.string()).optional(),
           images: z.array(z.string()).optional(),
           featured: z.boolean().optional(),
+          // Lower number = earlier in the homepage bento (only featured projects are shown there).
+          priority: z.number().optional(),
           type: z.enum(['video', 'code']).optional(),
         })
       })

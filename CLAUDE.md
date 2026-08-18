@@ -22,10 +22,11 @@ No test suite or linter is configured.
 **Key directories:**
 - `app/pages/` — File-based routing (index, about, contact, blog/[...slug], projects/[...slug])
 - `app/layouts/default.vue` — Single layout with UHeader/UFooter from Nuxt UI Pro
-- `app/components/` — Custom components (Contentvid video player, GlobalIcon logo)
+- `app/components/` — Custom components (Contentvid video player, GlobalIcon logo, HiveBackground reactive honeycomb canvas, RigStatus live homelab strip, BlogAuthorCard)
 - `content/blog/` and `content/projects/` — Markdown content with Zod-validated frontmatter (schemas in `content.config.ts`)
 - `public/images/` — Static images and videos served directly from Vercel's edge CDN
-- `server/api/` — Nitro API routes (contact form → Discord webhook)
+- `server/api/` — Nitro API routes (contact form → Discord webhook, Umami view counts)
+- `server/routes/rss.xml.ts` — RSS 2.0 feed for the blog collection (prerendered)
 
 **Content system:** Blog and project collections defined in `content.config.ts`. Fetched via `queryCollection()` composable. Blog posts support draft mode. Projects have a `featured` flag for homepage carousel and a `type` enum (video/code). Content is indexed via SQLite at build time (no runtime database needed).
 
@@ -42,3 +43,7 @@ No test suite or linter is configured.
 Required in `.env` (not committed):
 - `NUXT_TURNSTILE_SITE_KEY` / `NUXT_TURNSTILE_SECRET_KEY` — Cloudflare Turnstile
 - `NUXT_DISCORD_WEBHOOK_URL` — Contact form webhook
+
+Optional:
+- `UMAMI_USERNAME` / `UMAMI_PASSWORD` (or `UMAMI_API_KEY`) — blog view counts; counters hide when unset
+- `NUXT_PUBLIC_RIG_STATUS_URL` — overrides the source of the homepage "Live from the rig" strip (default `https://brain.costanzoclan.com/api/public/rig`, MyMind's public curated homelab status; served with CORS `*`). Set to an empty string to hide the strip. The strip also hides itself on a 4xx (endpoint not deployed) and shows "rig asleep" on 5xx/network errors or when no GPU is reporting.

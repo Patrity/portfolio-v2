@@ -84,10 +84,10 @@
   border: 3px solid var(--color-green-400);
 }
 
+/* Static gradient: the shimmer animation was retired in the round-2 refresh so the
+   headings read as confident type rather than a moving effect. */
 .gradient-text {
   background: linear-gradient(135deg, var(--color-green-300), var(--color-green-500), var(--color-green-300));
-  background-size: 200% 200%;
-  animation: gradient-shift 4s ease-in-out infinite;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

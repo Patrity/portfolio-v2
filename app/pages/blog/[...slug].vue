@@ -32,6 +32,45 @@ const { data: posts } = await useAsyncData('posts', () => {
   return null
 })
 
+// Article pages: the full non-draft list (newest first) drives the related
+// posts grid and the prev/next links. Keyed per route so each prerendered
+// article carries its own payload entry.
+const { data: allPosts } = await useAsyncData(`blog-list-${route.path}`, () => {
+  if (isHome.value) return null
+  return queryCollection('blog')
+    .select('title', 'path', 'date', 'tags', 'image', 'draft')
+    .where('draft', '=', false)
+    .order('date', 'DESC')
+    .all()
+})
+
+// Related: rank other posts by shared tag count, then by date. When nothing
+// shares a tag every score is 0 and the sort collapses to newest first.
+const relatedPosts = computed(() => {
+  const list = allPosts.value || []
+  const currentTags = new Set(page.value?.tags || [])
+  return list
+    .filter(p => p.path !== route.path)
+    .map(p => ({ post: p, score: (p.tags || []).filter(t => currentTags.has(t)).length }))
+    .sort((a, b) => b.score - a.score || new Date(b.post.date).getTime() - new Date(a.post.date).getTime())
+    .slice(0, 3)
+    .map(({ post }) => post)
+})
+
+// Prev / next follow publish order, not the alphabetical navigation order
+// queryCollectionItemSurroundings would give. List is date DESC, so the
+// older post ("Previous") sits after the current one and the newer before it.
+const prevPost = computed(() => {
+  const list = allPosts.value || []
+  const i = list.findIndex(p => p.path === route.path)
+  return i === -1 ? null : list[i + 1] ?? null
+})
+const nextPost = computed(() => {
+  const list = allPosts.value || []
+  const i = list.findIndex(p => p.path === route.path)
+  return i <= 0 ? null : list[i - 1] ?? null
+})
+
 // Blog index: client-side search + tag filtering over the prerendered list.
 const search = ref('')
 const activeTag = computed(() => (route.query.tag as string) || '')
@@ -154,6 +193,12 @@ if (isHome.value) {
   useHead({
     link: [{ rel: 'canonical', href: canonicalUrl }],
   })
+
+  defineOgImageComponent('TechHive', {
+    title: 'Field Reports',
+    description: 'What broke, what I learned, and what it cost. Local AI, RAG pipelines, construction data, and the homelab behind them.',
+    photo: false,
+  })
 }
 </script>
 
@@ -195,6 +240,69 @@ if (isHome.value) {
           class="w-full aspect-video object-cover rounded-xl border border-(--ui-border) mt-6 mb-8"
         >
         <ContentRenderer :value="page" />
+
+        <!-- Article footer: author, related posts, prev/next -->
+        <footer>
+          <div class="h-px bg-(--ui-border) mt-14" />
+
+          <BlogAuthorCard class="mt-10" />
+
+          <div class="flex items-baseline justify-between mt-12">
+            <h3 class="font-teko text-4xl font-bold">Keep <span class="gradient-text">Reading</span></h3>
+            <ULink
+              to="/blog"
+              class="inline-flex items-center gap-1 text-sm text-(--ui-text-muted) hover:text-(--ui-text-highlighted) transition-colors"
+            >
+              All field reports
+              <UIcon name="i-heroicons-arrow-right" class="size-4" />
+            </ULink>
+          </div>
+          <div v-if="relatedPosts.length" class="grid sm:grid-cols-3 gap-6 mt-5">
+            <NuxtLink
+              v-for="post in relatedPosts"
+              :key="post.path"
+              :to="post.path"
+              class="rounded-lg overflow-hidden ring-1 ring-(--ui-border) bg-(--ui-bg-elevated)/50 hover:ring-green-500/30 transition"
+            >
+              <img
+                v-if="post.image"
+                :src="post.image"
+                :alt="post.title"
+                loading="lazy"
+                width="640"
+                height="360"
+                class="w-full aspect-video object-cover"
+              >
+              <div v-else class="w-full aspect-video bg-(--ui-bg-elevated) flex items-center justify-center">
+                <UIcon name="i-heroicons-document-text" class="size-8 text-(--ui-text-dimmed)" />
+              </div>
+              <div class="p-4">
+                <p class="text-xs text-(--ui-text-dimmed)">{{ formatDate(post.date) }}</p>
+                <p class="mt-1 text-[15px] font-semibold leading-snug text-(--ui-text-highlighted)">{{ post.title }}</p>
+              </div>
+            </NuxtLink>
+          </div>
+
+          <div v-if="prevPost || nextPost" class="grid sm:grid-cols-2 gap-6 mt-8">
+            <NuxtLink
+              v-if="prevPost"
+              :to="prevPost.path"
+              class="rounded-xl ring-1 ring-(--ui-border) p-4 hover:ring-green-500/30 transition"
+            >
+              <p class="text-xs uppercase tracking-wider text-(--ui-text-dimmed)">&larr; Previous</p>
+              <p class="mt-1 text-sm font-semibold leading-snug text-(--ui-text-highlighted)">{{ prevPost.title }}</p>
+            </NuxtLink>
+            <div v-else class="hidden sm:block" />
+            <NuxtLink
+              v-if="nextPost"
+              :to="nextPost.path"
+              class="rounded-xl ring-1 ring-(--ui-border) p-4 hover:ring-green-500/30 transition text-right"
+            >
+              <p class="text-xs uppercase tracking-wider text-(--ui-text-dimmed)">Next &rarr;</p>
+              <p class="mt-1 text-sm font-semibold leading-snug text-(--ui-text-highlighted)">{{ nextPost.title }}</p>
+            </NuxtLink>
+          </div>
+        </footer>
       </div>
       <div v-else-if="isHome">
         <UPageHeader description="Latest posts" :ui="{ title: 'font-teko'}">

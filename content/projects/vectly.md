@@ -11,6 +11,7 @@ tags:
 images:
   - /images/projects/vectly/banner.webp
 featured: true
+priority: 2
 type: code
 sitemap:
   lastmod: 2026-03-25

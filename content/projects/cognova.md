@@ -12,6 +12,7 @@ tags:
 images:
   - /images/projects/cognova/banner.webp
 featured: true
+priority: 1
 type: code
 sitemap:
   lastmod: 2026-03-25

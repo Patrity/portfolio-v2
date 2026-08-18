@@ -1,16 +1,18 @@
 <script lang="ts" setup>
 useReveal()
 
+const ABOUT_DESCRIPTION = 'Full-stack developer and project controls consultant with 20+ years of code, ten of them on billion-dollar construction projects. The story, the timeline, and what I actually do.'
+
 definePageMeta({
   title: 'About - Tony Costanzo | TechHive Labs',
-  description: 'Full-stack developer, content creator, and digital consultant with 20+ years of experience. Learn about my journey and what drives me.',
+  description: ABOUT_DESCRIPTION,
 })
 
 useSeoMeta({
   title: 'About - Tony Costanzo',
-  description: 'Full-stack developer, content creator, and digital consultant with 20+ years of experience. Learn about my journey and what drives me.',
+  description: ABOUT_DESCRIPTION,
   ogTitle: 'About - Tony Costanzo',
-  ogDescription: 'Full-stack developer, content creator, and digital consultant with 20+ years of experience.',
+  ogDescription: ABOUT_DESCRIPTION,
   ogUrl: 'https://www.techhivelabs.net/about',
 })
 
@@ -18,11 +20,16 @@ useHead({
   link: [{ rel: 'canonical', href: 'https://www.techhivelabs.net/about' }],
 })
 
+defineOgImageComponent('TechHive', {
+  title: 'About Tony',
+  description: ABOUT_DESCRIPTION,
+})
+
 useSchemaOrg([
   definePerson({
     name: 'Tony Costanzo',
     alternateName: 'Patrity',
-    jobTitle: 'Full-Stack Developer & Founder',
+    jobTitle: 'Project Controller / Consultant and Full-Stack Developer',
     image: 'https://www.techhivelabs.net/images/tony.webp',
     url: 'https://www.techhivelabs.net/about',
     sameAs: [
@@ -43,17 +50,24 @@ const socialLinks = [
 
 const timeline = [
   {
-    date: '2025 - Present',
+    date: '2026 — Present',
+    title: 'Project Controller / Consultant',
+    company: 'Next Logical Step Solutions',
+    description: 'Project controls, reporting, and the data tooling underneath it on a large industrial project. AI agents on real Navisworks and Revit data, RAG over project documents, and the spreadsheet automated before anyone asks.',
+    icon: 'i-heroicons-cpu-chip',
+  },
+  {
+    date: '2025 — 2026',
     title: 'AI Implementation',
     company: 'McDermott & Consultancy',
-    description: 'Explore, develop, and integrate AI for practical business applications to reduce labor cost and improve efficiency and accuracy of data pipelines through methods including custom RAG pipelines, OCR implementations, Open AI/Anthropic API integrations, and Agentic workflows.',
-    icon: 'i-heroicons-cpu-chip'
+    description: 'Explored, developed, and integrated AI for practical business applications: custom RAG pipelines, OCR implementations, OpenAI and Anthropic API integrations, and agentic workflows that cut labor cost and cleaned up data pipelines.',
+    icon: 'i-heroicons-sparkles',
   },
   {
     date: '2022 — 2026',
     title: 'Content & Community Manager',
     company: 'Fireship',
-    description: 'Curate content, edit video, source sponsorships, manage social media, and create original content for one of the leading programming channels on YouTube with over 4 million subscribers.',
+    description: 'Helped grow one of the biggest programming channels on YouTube from 1M to 4M subscribers: content curation, video editing, sponsorship sourcing, community and social, and eventually scripts and full productions. The role ended when the company was acquired. Still one of the best chapters.',
     icon: 'i-heroicons-fire',
     color: '#f97316',
   },
@@ -61,73 +75,62 @@ const timeline = [
     date: '2021 — Present',
     title: 'Freelance Developer & Consultant',
     company: 'TechHive Labs',
-    description: 'Freelancing and consulting for small businesses while building my own products — Cognova, TakeoffHelper, Vectly, and more. Full-stack web development, AI implementations, and digital strategy.',
+    description: 'Freelancing and consulting for small businesses while building my own products: Cognova, TakeoffHelper, Vectly, and more. Full-stack web development, AI implementations, and digital strategy.',
     icon: 'i-heroicons-code-bracket',
   },
   {
     date: '2016 — Present',
     title: 'Project Controls Specialist',
     company: 'McDermott, Zachry & More',
-    description: 'Working at both small industrial contractors and large EPC firms on mega projects for oil & gas giants like Exxon, Chevron, Valero, and even SpaceX. Managing progress, forecasts, budgets, and building tools to automate the data.',
+    description: 'Small industrial contractors and large EPC firms on mega projects for oil and gas giants like Exxon, Chevron, Valero, and even SpaceX. Progress, forecasts, budgets, and the tools to automate all of it.',
     icon: 'i-heroicons-chart-bar',
   },
   {
     date: '2006 — 2016',
     title: 'The Starting Point',
     company: 'Construction Field + Self-Taught Dev',
-    description: 'By day (2011–2016), working hands-on in civil and survey crews — learning construction from the ground up. By night (2006–2016), teaching myself to code through game development, MMORPGs, and countless side projects. Learned HTTP, relational databases, OOP, and software architecture the hard way — by building things that broke.',
+    description: 'By day (2011–2016), hands-on in civil and survey crews, learning construction from the ground up. By night (2006–2016), teaching myself to code through game development, MMORPGs, and countless side projects. Learned HTTP, relational databases, OOP, and software architecture the hard way: by building things that broke.',
     icon: 'i-heroicons-academic-cap',
   },
 ]
 
 const stats = [
   { value: 20, suffix: '+', label: 'Years Programming', description: 'Started coding as a teenager, never stopped.' },
-  { value: 4, suffix: 'M+', label: 'Subscribers Managed', description: 'Growing and engaging the Fireship community.' },
+  { value: 4, prefix: '1→', suffix: 'M', label: 'Fireship Growth', description: 'Joined at a million subscribers, left at four.' },
   { value: 10, suffix: '+', label: 'Years Professional', description: 'From construction to content to code.' },
   { value: 12, suffix: 'B+', prefix: '$', label: 'In Projects Managed', description: 'Golden Pass LNG, GTPP, and more.' },
 ]
 
-const skillCategories = [
+const lanes = [
   {
-    title: 'Frontend',
-    icon: 'i-heroicons-computer-desktop',
-    skills: ['Vue', 'Nuxt', 'React', 'Tailwind CSS', 'TypeScript', 'HTML/CSS'],
-  },
-  {
-    title: 'Backend',
-    icon: 'i-heroicons-server-stack',
-    skills: ['Node.js', 'Fastify', 'Python', 'Java', 'Kotlin', 'Nitro', 'REST APIs', 'WebSockets'],
-  },
-  {
-    title: 'Data & Infrastructure',
-    icon: 'i-heroicons-circle-stack',
-    skills: ['PostgreSQL', 'Supabase', 'pgvector', 'SQLite', 'Vercel', 'Cloudflare', 'SQL Server', 'Redis & PubSub', 'Azure', 'AWS'],
-  },
-  {
-    title: 'AI & Automation',
-    icon: 'i-heroicons-cpu-chip',
-    skills: ['RAG Pipelines', 'Agentic Workflows', 'LLM Integration', 'Vector Search', 'Prompt Engineering', 'OCR Implementation', 'Anthropic & OpenAI APIs'],
-  },
-  {
-    title: 'Construction',
+    title: 'Construction data',
     icon: 'i-heroicons-building-office-2',
-    skills: ['Project Controls', 'Earned Value', 'Reporting', 'Scheduling', '3D Data', 'Project Forecasts', 'Change Management', 'AWP'],
+    body: 'Progress, forecasts, earned value, and the 3D model data underneath it all. Ten years on EPC mega-projects, most of it building the tools the department didn\'t have yet.',
+    proof: ['PCR', 'BIM extraction', 'Golden Pass LNG', 'Project controls'],
   },
   {
-    title: 'Creative & Content',
-    icon: 'i-heroicons-paint-brush',
-    skills: ['Premiere Pro', 'After Effects', 'Content Strategy', 'Script Writing', 'SEO', 'Social Media', 'Sponsorship Integrations'],
+    title: 'AI agents & inference',
+    icon: 'i-heroicons-cpu-chip',
+    body: 'RAG pipelines, agentic workflows, and a homelab that hosts most of it. Four 3090s, LiteLLM, and opinions about MoE models.',
+    proof: ['Cognova', 'Vectly', 'The rig', 'Anthropic API'],
+  },
+  {
+    title: 'Web apps that ship',
+    icon: 'i-heroicons-globe-alt',
+    body: 'Nuxt and Postgres, plus whatever the job needs. Products of my own and custom builds for small businesses that outgrew the template.',
+    proof: ['TakeoffHelper', 'Quadzilla', 'Adventure Zone Kids'],
   },
 ]
+
+const stack = ['Nuxt', 'Vue', 'TypeScript', 'Node', 'PostgreSQL', 'pgvector', 'Kotlin', 'Python', 'LiteLLM', 'Anthropic & OpenAI APIs', 'Cloudflare', 'Vercel']
 </script>
 
 <template>
   <!-- ═══════════════ HERO ═══════════════ -->
   <section class="relative py-20 sm:py-28 overflow-hidden">
-    <HeroBackground />
+    <HiveBackground />
 
     <div class="relative z-10 max-w-4xl mx-auto px-6 flex flex-col md:flex-row items-center gap-10 md:gap-14">
-      <!-- Photo -->
       <div class="flex-shrink-0" style="animation: scale-in 0.7s ease-out both;">
         <div class="relative">
           <img
@@ -141,21 +144,18 @@ const skillCategories = [
         </div>
       </div>
 
-      <!-- Info -->
       <div class="text-center md:text-left" style="animation: fade-up 0.8s ease-out 0.2s both;">
         <h1 class="font-teko text-5xl sm:text-6xl lg:text-7xl font-bold leading-[0.9]">
           Tony
           <span class="gradient-text">Costanzo</span>
         </h1>
         <p class="mt-2 text-lg text-(--ui-text-muted)">
-          TechHive Labs Founder &bull; Developer &bull; Creator
+          Full-stack developer &bull; Project controls consultant &bull; TechHive Labs founder
         </p>
         <p class="mt-4 text-(--ui-text-dimmed) max-w-md leading-relaxed">
-          Building digital futures with 20+ years of code, a love for creative problem-solving,
-          and more hats than a haberdasher.
+          Twenty years of code, ten of them on billion-dollar job sites, and more hats than a haberdasher.
         </p>
 
-        <!-- Social links -->
         <div class="mt-5 flex items-center justify-center md:justify-start gap-3">
           <NuxtLink
             v-for="social in socialLinks"
@@ -182,28 +182,27 @@ const skillCategories = [
       <div class="grid md:grid-cols-2 gap-8 text-(--ui-text-muted) leading-relaxed">
         <div class="space-y-4 reveal" style="transition-delay: 0.1s;">
           <p>
-            Hi! My name is Tony — I've also gone by <span class="text-(--ui-text) font-medium">Patrity</span> for many years.
+            Hi! My name is Tony. I've also gone by <span class="text-(--ui-text) font-medium">Patrity</span> for many years.
             I'm a full-stack developer with a passion for problem solving and a love for learning.
             I've been programming for over 20 years and working professionally for over 10.
           </p>
           <p>
-            I specialize in hands-on web development with local small businesses, bringing them to the
-            future and enhancing their online presence. In {{ new Date().getFullYear() }}, an online presence is
-            essential for any business. I've helped several small businesses build custom solutions —
-            customer portals, e-commerce platforms, and whatever unique challenges they face.
+            I still take on freelance and consulting work, mostly with small businesses that need something
+            custom: customer portals, e-commerce, AI implementations, and whatever unique challenge walks in the door.
+            In {{ new Date().getFullYear() }} an online presence is table stakes.. the interesting part is what you build on top of it.
           </p>
         </div>
         <div class="space-y-4 reveal" style="transition-delay: 0.2s;">
           <p>
-            Beyond code, I curate content, edit video, source sponsorships, and manage social media for
+            From 2022 to 2026 I curated content, edited video, sourced sponsorships, and managed the community for
             <ULink to="https://youtube.com/fireship" target="_blank" class="text-orange-400 font-semibold hover:underline">Fireship</ULink>,
-            one of the leading programming channels on YouTube with over 4 million subscribers.
-            I've been with the channel since 2022 and have expanded into script writing and full productions.
+            one of the biggest programming channels on YouTube. I joined at around a million subscribers and left at four.
+            The role ended when the company was acquired, and it's still one of the best chapters.
           </p>
           <p>
-            By day, I work in industrial construction project controls on multi-billion dollar mega projects —
-            managing progress, forecasts, projections, and budgets. This unique intersection lets me leverage
-            my development skills to aggregate, visualize, and manage data at massive scale.
+            By day I'm a project controller and consultant on multi-billion dollar industrial mega-projects: progress,
+            forecasts, budgets, and increasingly the AI agents and data tooling underneath them. That intersection is
+            where most of my interesting problems (and most of the blog) come from.
           </p>
         </div>
       </div>
@@ -219,51 +218,70 @@ const skillCategories = [
         Career <span class="gradient-text">Timeline</span>
       </h2>
 
-      <!-- Timeline line -->
       <div class="absolute left-6 md:left-1/2 top-32 bottom-16 w-px bg-gradient-to-b from-green-500/40 via-green-500/20 to-transparent" />
 
       <div class="space-y-2">
-        <div-
+        <div
           v-for="(item, i) in timeline"
           :key="i"
           class="reveal"
           :style="{ transitionDelay: `${i * 0.15}s` }"
         >
           <TimelineItem v-bind="item" />
-        </div->
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════════════ SKILLS BENTO GRID ═══════════════ -->
+  <!-- ═══════════════ WHAT I ACTUALLY DO ═══════════════ -->
   <section class="py-16 px-6 border-t border-(--ui-border)">
     <div class="max-w-4xl mx-auto">
-      <h2 class="font-teko text-4xl font-bold mb-10 text-center reveal">
-        Skills & <span class="gradient-text">Tools</span>
-      </h2>
+      <div class="text-center mb-10 reveal">
+        <h2 class="font-teko text-4xl font-bold">
+          What I <span class="gradient-text">Actually</span> Do
+        </h2>
+        <p class="mt-3 text-(--ui-text-muted)">Three lanes. They overlap more than you'd think.</p>
+      </div>
 
-      <div class="grid sm:grid-cols-2 gap-4">
+      <div class="grid sm:grid-cols-3 gap-4">
         <div
-          v-for="(cat, i) in skillCategories"
-          :key="cat.title"
-          class="glass-card rounded-xl p-6 group hover:border-green-500/20 transition-all duration-300 reveal"
+          v-for="(lane, i) in lanes"
+          :key="lane.title"
+          class="glass-card rounded-xl p-6 flex flex-col gap-4 group hover:border-green-500/20 transition-all duration-300 reveal"
           :style="{ transitionDelay: `${i * 0.1}s` }"
         >
-          <div class="flex items-center gap-3 mb-4">
-            <div class="size-10 rounded-lg bg-green-500/10 flex items-center justify-center group-hover:bg-green-500/20 transition-colors">
-              <UIcon :name="cat.icon" class="size-5 text-green-400" />
+          <div class="flex items-center gap-3">
+            <div class="size-10 shrink-0 rounded-lg bg-green-500/10 flex items-center justify-center group-hover:bg-green-500/20 transition-colors">
+              <UIcon :name="lane.icon" class="size-5 text-green-400" />
             </div>
-            <h3 class="font-teko text-2xl font-semibold">{{ cat.title }}</h3>
+            <h3 class="font-teko text-2xl font-semibold leading-tight">{{ lane.title }}</h3>
           </div>
-          <div class="flex flex-wrap gap-2">
-            <span
-              v-for="skill in cat.skills"
-              :key="skill"
-              class="px-3 py-1 text-sm rounded-full bg-white/5 text-(--ui-text-muted) border border-(--ui-border) group-hover:border-green-500/20 transition-colors"
-            >
-              {{ skill }}
-            </span>
+          <p class="text-sm text-(--ui-text-muted) leading-relaxed">{{ lane.body }}</p>
+          <div class="mt-auto flex flex-col gap-2">
+            <span class="text-[11px] uppercase tracking-[2px] text-(--ui-text-dimmed)">Proof</span>
+            <div class="flex flex-wrap gap-2">
+              <span
+                v-for="p in lane.proof"
+                :key="p"
+                class="px-3 py-1 text-sm rounded-full bg-white/5 text-(--ui-text-muted) border border-(--ui-border) group-hover:border-green-500/20 transition-colors"
+              >
+                {{ p }}
+              </span>
+            </div>
           </div>
+        </div>
+      </div>
+
+      <div class="mt-8 flex flex-col gap-3 reveal">
+        <span class="text-[11px] uppercase tracking-[2px] text-(--ui-text-dimmed)">Day-to-day stack</span>
+        <div class="flex flex-wrap gap-2">
+          <span
+            v-for="s in stack"
+            :key="s"
+            class="px-3 py-1 text-sm rounded-full bg-white/5 text-(--ui-text-muted) border border-(--ui-border)"
+          >
+            {{ s }}
+          </span>
         </div>
       </div>
     </div>

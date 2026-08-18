@@ -7,6 +7,7 @@ tags:
 images:
   - /images/projects/quadzilla/home.png
 featured: true
+priority: 6
 type: code
 sitemap: 
   lastmod: 2025-06-17

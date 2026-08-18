@@ -73,7 +73,7 @@ if (isHome.value) {
   const canonicalUrl = 'https://www.techhivelabs.net/projects'
   useSeoMeta({
     title: 'Projects',
-    description: 'Explore my portfolio of web development, video production, and digital solution projects.',
+    description: 'Products, internal tools, and the occasional game server: AI agent workspaces, construction data platforms, e-commerce builds, and more.',
     ogTitle: 'Projects',
     ogDescription: 'Explore my portfolio of web development and digital solution projects.',
     ogUrl: canonicalUrl,
@@ -84,6 +84,12 @@ if (isHome.value) {
 
   useHead({
     link: [{ rel: 'canonical', href: canonicalUrl }],
+  })
+
+  defineOgImageComponent('TechHive', {
+    title: 'Things I Have Built',
+    description: 'Products, internal tools, and the occasional game server. AI agent workspaces, construction data platforms, e-commerce builds, and more.',
+    photo: false,
   })
 }
 </script>
@@ -112,7 +118,7 @@ if (isHome.value) {
         <ContentRenderer :value="page" />
       </div>
       <div v-else-if="isHome">
-        <UPageHeader description="A collection of work across web development, video production, and digital solutions." :ui="{ title: 'font-teko'}" class="mb-8">
+        <UPageHeader description="Products, internal tools, and the occasional game server. Newest thinking first, old chapters kept for the record." :ui="{ title: 'font-teko'}" class="mb-8">
           <template #title>
             <span class="gradient-text">Projects</span>
           </template>
