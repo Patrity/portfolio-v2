@@ -22,7 +22,9 @@ interface PublicRig {
   gpus: PublicRigGpu[]
   engines: { model: string, running: number, waiting: number }[]
   services: { id: string, label: string, up: boolean | null }[]
+  /** Claude Code sessions + local inference at the engines (vLLM, llama.cpp); see breakdown. */
   tokens24h: number | null
+  tokensBreakdown24h?: { claudeCode: number | null, vllm: number | null, llamacpp: number | null, litellm: number | null }
   /** Models LiteLLM routed to in the last 24h, ranked by tokens (added 2026-08-18). */
   models24h?: { model: string, tokens?: number, requests?: number }[]
 }
@@ -72,6 +74,16 @@ const rosterTooltip = computed(() => roster.value.map((m) => {
   if (m.requests) bits.push(`${compact(m.requests)} req`)
   return bits.join(' · ')
 }).join('\n'))
+const tokensTooltip = computed(() => {
+  const b = data.value?.tokensBreakdown24h
+  if (!b) return 'All tokens in the last 24 hours'
+  const lines: string[] = []
+  if (b.claudeCode != null) lines.push(`Claude Code sessions · ${compact(b.claudeCode)}`)
+  if (b.vllm != null) lines.push(`vLLM on the rig · ${compact(b.vllm)}`)
+  if (b.llamacpp != null) lines.push(`llama.cpp on the rig · ${compact(b.llamacpp)}`)
+  if (b.litellm != null) lines.push(`via LiteLLM gateway · ${compact(b.litellm)} (overlaps, not summed)`)
+  return lines.join('\n') || 'All tokens in the last 24 hours'
+})
 const servicesUp = computed(() => (data.value?.services ?? []).filter(s => s.up === true).length)
 const servicesKnown = computed(() => (data.value?.services ?? []).filter(s => s.up !== null).length)
 const servicesTooltip = computed(() => (data.value?.services ?? []).filter(s => s.up !== null).map(s => `${s.label}: ${s.up ? 'up' : 'down'}`).join('\n'))
@@ -168,7 +180,9 @@ function gpuTitle(g: PublicRigGpu) {
           <div class="hidden sm:block w-px h-7 bg-(--ui-border-accented)" />
           <div class="flex flex-col gap-0.5">
             <span class="text-[10px] uppercase tracking-[1.5px] text-(--ui-text-dimmed) whitespace-nowrap">Tokens, 24h</span>
-            <span class="font-mono text-[13px] leading-5 text-(--ui-text) whitespace-nowrap">{{ compact(data.tokens24h) }}</span>
+            <UTooltip :text="tokensTooltip" :content="{ side: 'bottom' }" :ui="{ content: 'h-auto py-1.5 items-start', text: 'whitespace-pre-line leading-5' }">
+              <span class="font-mono text-[13px] leading-5 text-(--ui-text) whitespace-nowrap cursor-default">{{ compact(data.tokens24h) }}</span>
+            </UTooltip>
           </div>
         </template>
 
