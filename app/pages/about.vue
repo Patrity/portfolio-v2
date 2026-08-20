@@ -29,7 +29,7 @@ useSchemaOrg([
   definePerson({
     name: 'Tony Costanzo',
     alternateName: 'Patrity',
-    jobTitle: 'Project Controller / Consultant and Full-Stack Developer',
+    jobTitle: 'Project Controls SME / Consultant and Full-Stack Developer',
     image: 'https://www.techhivelabs.net/images/tony.webp',
     url: 'https://www.techhivelabs.net/about',
     sameAs: [
@@ -51,16 +51,16 @@ const socialLinks = [
 const timeline = [
   {
     date: '2026 — Present',
-    title: 'Project Controller / Consultant',
+    title: 'Project Controls SME / Consultant',
     company: 'Next Logical Step Solutions',
-    description: 'Project controls, reporting, and the data tooling underneath it on a large industrial project. AI agents on real Navisworks and Revit data, RAG over project documents, and the spreadsheet automated before anyone asks.',
+    description: 'Project controls SME on one side, AI and automation builder on the other.. bridging the gap between technology and construction for a company focused primarily on large data center builds. The spreadsheet still gets automated before anyone asks.',
     icon: 'i-heroicons-cpu-chip',
   },
   {
-    date: '2025 — 2026',
+    date: '2025 — Present',
     title: 'AI Implementation',
-    company: 'McDermott & Consultancy',
-    description: 'Explored, developed, and integrated AI for practical business applications: custom RAG pipelines, OCR implementations, OpenAI and Anthropic API integrations, and agentic workflows that cut labor cost and cleaned up data pipelines.',
+    company: 'McDermott, Consulting & NLS',
+    description: 'AI for practical business applications: custom RAG pipelines, OCR implementations, OpenAI and Anthropic API integrations, and agentic workflows that cut labor cost and clean up data pipelines. Started at McDermott, sharpened through consulting, and now core to the day job at NLS.',
     icon: 'i-heroicons-sparkles',
   },
   {
@@ -82,7 +82,7 @@ const timeline = [
     date: '2016 — Present',
     title: 'Project Controls Specialist',
     company: 'McDermott, Zachry & More',
-    description: 'Small industrial contractors and large EPC firms on mega projects for oil and gas giants like Exxon, Chevron, Valero, and even SpaceX. Progress, forecasts, budgets, and the tools to automate all of it.',
+    description: 'Small industrial contractors and large EPC firms on mega projects for giants like Exxon, Chevron, Valero, and even SpaceX. The first four years (2016 to 2020) were pure estimating, pricing oil and gas work and learning where every number comes from. After that: progress, forecasts, budgets, and the tools to automate all of it.',
     icon: 'i-heroicons-chart-bar',
   },
   {
