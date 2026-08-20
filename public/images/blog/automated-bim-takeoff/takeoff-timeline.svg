@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 586" width="1200" height="586" role="img" aria-label="Timeline of a four-day BIM takeoff sprint across five trades plus classification, showing per-day milestones">
+<rect x="0.5" y="0.5" width="1199" height="585" rx="14" fill="#1a1a19" stroke="#33322f"/>
+<text x="36" y="44" font-size="24" fill="#e8e6e1" text-anchor="start" font-weight="700" font-family="system-ui, -apple-system, sans-serif">Five trades of takeoff. Four days.</text>
+<text x="36" y="72" font-size="15" fill="#a8a59e" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">What shipped each day, straight from the session logs (July 2026)</text>
+<text x="1164" y="44" font-size="20" fill="#3987e5" text-anchor="end" font-weight="700" font-family="system-ui, -apple-system, sans-serif">77,403 objects</text>
+<text x="1164" y="66" font-size="13" fill="#898781" text-anchor="end" font-weight="400" font-family="system-ui, -apple-system, sans-serif">one 923 MB Navisworks model</text>
+<text x="292.5" y="134" font-size="14" fill="#a8a59e" text-anchor="middle" font-weight="600" font-family="system-ui, -apple-system, sans-serif">Day 1</text>
+<text x="541.5" y="134" font-size="14" fill="#a8a59e" text-anchor="middle" font-weight="600" font-family="system-ui, -apple-system, sans-serif">Day 2</text>
+<line x1="417" y1="146" x2="417" y2="500" stroke="#33322f" stroke-dasharray="2 4"/>
+<text x="790.5" y="134" font-size="14" fill="#a8a59e" text-anchor="middle" font-weight="600" font-family="system-ui, -apple-system, sans-serif">Day 3</text>
+<line x1="666" y1="146" x2="666" y2="500" stroke="#33322f" stroke-dasharray="2 4"/>
+<text x="1039.5" y="134" font-size="14" fill="#a8a59e" text-anchor="middle" font-weight="600" font-family="system-ui, -apple-system, sans-serif">Day 4</text>
+<line x1="915" y1="146" x2="915" y2="500" stroke="#33322f" stroke-dasharray="2 4"/>
+<text x="150" y="186" font-size="15" fill="#e8e6e1" text-anchor="end" font-weight="600" font-family="system-ui, -apple-system, sans-serif">Piping</text>
+<line x1="176" y1="181" x2="1156" y2="181" stroke="#33322f"/>
+<circle cx="190" cy="181" r="7" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="206" y="177" font-size="13.5" fill="#e8e6e1" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">full inventory,</text>
+<text x="206" y="194" font-size="13.5" fill="#a8a59e" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">7 data tables</text>
+<circle cx="439" cy="181" r="7" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="455" y="177" font-size="13.5" fill="#e8e6e1" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">re-derived from raw</text>
+<text x="455" y="194" font-size="13.5" fill="#a8a59e" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">data.. numbers held</text>
+<line x1="36" y1="210" x2="1164" y2="210" stroke="#33322f"/>
+<text x="150" y="244" font-size="15" fill="#e8e6e1" text-anchor="end" font-weight="600" font-family="system-ui, -apple-system, sans-serif">Concrete</text>
+<line x1="176" y1="239" x2="1156" y2="239" stroke="#33322f"/>
+<circle cx="190" cy="239" r="7" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="206" y="235" font-size="13.5" fill="#e8e6e1" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">full scope confirmed</text>
+<text x="206" y="252" font-size="13.5" fill="#a8a59e" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">from two sets</text>
+<line x1="36" y1="268" x2="1164" y2="268" stroke="#33322f"/>
+<text x="150" y="302" font-size="15" fill="#e8e6e1" text-anchor="end" font-weight="600" font-family="system-ui, -apple-system, sans-serif">Structural steel</text>
+<line x1="176" y1="297" x2="1156" y2="297" stroke="#33322f"/>
+<circle cx="439" cy="297" r="7" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="455" y="293" font-size="13.5" fill="#e8e6e1" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">found hiding in a</text>
+<text x="455" y="310" font-size="13.5" fill="#a8a59e" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">Tekla IFC *</text>
+<line x1="36" y1="326" x2="1164" y2="326" stroke="#33322f"/>
+<text x="150" y="360" font-size="15" fill="#e8e6e1" text-anchor="end" font-weight="600" font-family="system-ui, -apple-system, sans-serif">Electrical</text>
+<line x1="176" y1="355" x2="1156" y2="355" stroke="#33322f"/>
+<circle cx="439" cy="355" r="7" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="455" y="351" font-size="13.5" fill="#e8e6e1" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">family inventory</text>
+<text x="455" y="368" font-size="13.5" fill="#a8a59e" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">built</text>
+<circle cx="937" cy="355" r="7" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="953" y="351" font-size="13.5" fill="#e8e6e1" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">quantity basis settled</text>
+<text x="953" y="368" font-size="13.5" fill="#a8a59e" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">(overlap resolved)</text>
+<line x1="36" y1="384" x2="1164" y2="384" stroke="#33322f"/>
+<text x="150" y="418" font-size="15" fill="#e8e6e1" text-anchor="end" font-weight="600" font-family="system-ui, -apple-system, sans-serif">Equipment</text>
+<line x1="176" y1="413" x2="1156" y2="413" stroke="#33322f"/>
+<circle cx="937" cy="413" r="7" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="953" y="409" font-size="13.5" fill="#e8e6e1" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">mech + gear</text>
+<text x="953" y="426" font-size="13.5" fill="#a8a59e" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">imports built</text>
+<line x1="36" y1="442" x2="1164" y2="442" stroke="#33322f"/>
+<text x="150" y="476" font-size="15" fill="#e8e6e1" text-anchor="end" font-weight="600" font-family="system-ui, -apple-system, sans-serif">Classification</text>
+<line x1="176" y1="471" x2="1156" y2="471" stroke="#33322f"/>
+<circle cx="688" cy="471" r="7" fill="#3987e5" stroke="#1a1a19" stroke-width="2"/>
+<text x="704" y="467" font-size="13.5" fill="#e8e6e1" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">every line mapped</text>
+<text x="704" y="484" font-size="13.5" fill="#a8a59e" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">to CSI codes</text>
+<text x="36" y="540" font-size="13" fill="#898781" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">* the model’s own six search sets never included the steel.. the agent found it by reading every file, not the rules.</text>
+<text x="36" y="560" font-size="13" fill="#898781" text-anchor="start" font-weight="400" font-family="system-ui, -apple-system, sans-serif">Every milestone is timestamped in the working session logs. A hardening pass the following week added durable keys and caught a 7.2% double-count.</text>
+</svg>
