@@ -21,13 +21,20 @@
    base style (isometric low-poly, dark, green #39a10e). Recommend one and say
    why. Save all variants to `distribution/<slug>/image-prompts.md` and mark
    which was chosen — needed again for regeneration and for style continuity
-   across posts. Tony generates externally (Gemini) and returns an image.
-2. **Ask for the full-size original** (Gemini outputs ~2752×1536). The chat
-   preview is a downscaled copy and patches/crops on it waste the resolution.
-3. **Remove the sparkle watermark by cropping, not patching.** Find the sparkle
-   (bottom-right region), check where the actual composition ends, and take a
-   left-anchored 16:9 crop that excludes it. Pixel-surgery on AI art fails —
-   the geometry is never as regular as it looks.
+   across posts.
+2. **Preferred path (proven on automated-bim-takeoff, 2026-08-19): generate on
+   the rig** via MyMind's `generate_image` tool (ComfyUI Qwen-Image) at
+   1600x900 with a negative prompt like "text, letters, words, watermark,
+   people, hands, photorealism, blur, pastel colors". No watermark to crop.
+   Gotcha: the MCP call times out at ~60s while the render takes ~7 min on the
+   shared PNY — the job still completes. Poll `http://192.168.2.25:8188/queue`
+   until empty, read the filename from `/history?max_items=2`, download via
+   `/view?filename=...&type=output`. Generate the top 2 variants and pick.
+   Fallback: Tony generates externally (Gemini) — then the two steps below.
+3. **Gemini only — ask for the full-size original** (~2752×1536; the chat
+   preview is downscaled) and **remove the sparkle watermark by cropping, not
+   patching**: left-anchored 16:9 crop that excludes the bottom-right sparkle.
+   Pixel-surgery on AI art fails — the geometry is never as regular as it looks.
 4. Finalize: resize to **1920 wide** (site standard, other heroes are
    1920×1026–1080), webp, start `-quality 88` and step down until **<150KB**.
    Save as `public/images/blog/<slug>/hero.webp`, set frontmatter `image:`.
