@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 444" role="img" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+<title>Two panels showing a reversal between the same two models. Top panel, decode speed: Ornith-1.5-35B-A3B reaches 143.8 tokens per second against 70 for Qwen3.8-Flash-Next. Bottom panel, Aider polyglot pass at 2 across 225 compiled and tested exercises: Ornith scores 28.9 percent against 64.4 percent for Qwen3.8-Flash-Next, a paired McNemar p value of 1.1 times ten to the negative seventeenth</title>
+<rect x="0.5" y="0.5" width="799" height="443" rx="14" fill="#1a1a19" stroke="rgba(255,255,255,0.10)"/>
+<text x="28" y="40" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="17" font-weight="600" fill="#ffffff" text-anchor="start">The fast model lost the only test that ran the code</text>
+<text x="28" y="63" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Same two models, same card. The top panel is why I picked the wrong one.</text>
+<text x="28" y="98" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#898781" text-anchor="start" style="letter-spacing:0.06em">DECODE SPEED, SINGLE STREAM AT 2.4K PROMPT TOKENS</text>
+<text x="772" y="98" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="end">tokens/sec</text>
+<text x="28" y="124" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="600" fill="#ffffff" text-anchor="start">Ornith-1.5-35B-A3B</text>
+<path d="M 28 132 H 692.6700000000001 Q 696.6700000000001 132 696.6700000000001 136 V 150 Q 696.6700000000001 154 692.6700000000001 154 H 28 Z" fill="#3987e5"/>
+<text x="706.6700000000001" y="148" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="start" style="font-variant-numeric: tabular-nums">143.8</text>
+<text x="28" y="180" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Qwen3.8-Flash-Next</text>
+<path d="M 28 188 H 349.5 Q 353.5 188 353.5 192 V 206 Q 353.5 210 349.5 210 H 28 Z" fill="#199e70"/>
+<text x="363.5" y="204" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="start" style="font-variant-numeric: tabular-nums">70.0</text>
+<line x1="28.5" y1="108" x2="28.5" y2="212" stroke="#383835" stroke-width="1"/>
+<text x="772" y="180" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#898781" text-anchor="end">2.1x faster</text>
+<line x1="28" y1="238" x2="772" y2="238" stroke="#2c2c2a" stroke-width="1"/>
+<text x="28" y="272" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="600" fill="#898781" text-anchor="start" style="letter-spacing:0.06em">AIDER POLYGLOT PASS@2, 225 EXERCISES, COMPILED AND TESTED</text>
+<text x="772" y="272" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="end">percent solved</text>
+<text x="28" y="298" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Ornith-1.5-35B-A3B</text>
+<path d="M 28 306 H 331.1657142857143 Q 335.1657142857143 306 335.1657142857143 310 V 324 Q 335.1657142857143 328 331.1657142857143 328 H 28 Z" fill="#3987e5"/>
+<text x="345.1657142857143" y="322" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="start" style="font-variant-numeric: tabular-nums">28.9%</text>
+<text x="28" y="354" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="600" fill="#ffffff" text-anchor="start">Qwen3.8-Flash-Next</text>
+<path d="M 28 362 H 708.48 Q 712.48 362 712.48 366 V 380 Q 712.48 384 708.48 384 H 28 Z" fill="#199e70"/>
+<text x="722.48" y="378" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="600" fill="#ffffff" text-anchor="start" style="font-variant-numeric: tabular-nums">64.4%</text>
+<line x1="28.5" y1="282" x2="28.5" y2="386" stroke="#383835" stroke-width="1"/>
+<text x="772" y="324" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="600" fill="#ffffff" text-anchor="end">2.2x better</text>
+<text x="28" y="412" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="start">Paired McNemar test on identical exercises: p = 1.1e-17. The two panels use separate scales.</text>
+</svg>

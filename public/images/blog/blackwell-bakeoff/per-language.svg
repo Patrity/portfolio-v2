@@ -1,0 +1,47 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 508" role="img" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif">
+<title>Aider polyglot pass at 2 by language. Ornith-1.5-35B-A3B scores 35.3 percent on Python, 40.8 on JavaScript, 28.2 on Go, 34.6 on C++ and 27.7 on Java. Qwen3.8-Flash-Next scores 82.4, 81.6, 71.8, 69.2 and 66.0 on the same languages. Rust is omitted because the benchmark container has a broken cargo toolchain and both models score zero</title>
+<rect x="0.5" y="0.5" width="799" height="507" rx="14" fill="#1a1a19" stroke="rgba(255,255,255,0.10)"/>
+<text x="28" y="40" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="17" font-weight="600" fill="#ffffff" text-anchor="start">Not one language was close</text>
+<text x="28" y="63" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Aider polyglot pass@2 by language, graded by compiling the result and running its tests</text>
+<rect x="28" y="81" width="12" height="12" rx="3" fill="#3987e5"/>
+<text x="46" y="91" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">Ornith-1.5-35B-A3B</text>
+<rect x="187.2" y="81" width="12" height="12" rx="3" fill="#199e70"/>
+<text x="205.2" y="91" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#c3c2b7" text-anchor="start">Qwen3.8-Flash-Next</text>
+<line x1="214.5" y1="112" x2="214.5" y2="422" stroke="#2c2c2a" stroke-width="1"/>
+<text x="214" y="440" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="middle" style="font-variant-numeric: tabular-nums">25%</text>
+<line x1="400.5" y1="112" x2="400.5" y2="422" stroke="#2c2c2a" stroke-width="1"/>
+<text x="400" y="440" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="middle" style="font-variant-numeric: tabular-nums">50%</text>
+<line x1="586.5" y1="112" x2="586.5" y2="422" stroke="#2c2c2a" stroke-width="1"/>
+<text x="586" y="440" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="middle" style="font-variant-numeric: tabular-nums">75%</text>
+<line x1="772.5" y1="112" x2="772.5" y2="422" stroke="#2c2c2a" stroke-width="1"/>
+<text x="772" y="440" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="middle" style="font-variant-numeric: tabular-nums">100%</text>
+<text x="28" y="440" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="middle" style="font-variant-numeric: tabular-nums">0%</text>
+<text x="28" y="128" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Python</text>
+<path d="M 28 136 H 286.632 Q 290.632 136 290.632 140 V 146 Q 290.632 150 286.632 150 H 28 Z" fill="#3987e5"/>
+<text x="298.632" y="147" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start" style="font-variant-numeric: tabular-nums">35.3%</text>
+<path d="M 28 152 H 637.056 Q 641.056 152 641.056 156 V 162 Q 641.056 166 637.056 166 H 28 Z" fill="#199e70"/>
+<text x="649.056" y="163" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11.5" font-weight="600" fill="#ffffff" text-anchor="start" style="font-variant-numeric: tabular-nums">82.4%</text>
+<text x="28" y="190" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">JavaScript</text>
+<path d="M 28 198 H 327.552 Q 331.552 198 331.552 202 V 208 Q 331.552 212 327.552 212 H 28 Z" fill="#3987e5"/>
+<text x="339.552" y="209" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start" style="font-variant-numeric: tabular-nums">40.8%</text>
+<path d="M 28 214 H 631.104 Q 635.104 214 635.104 218 V 224 Q 635.104 228 631.104 228 H 28 Z" fill="#199e70"/>
+<text x="643.104" y="225" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11.5" font-weight="600" fill="#ffffff" text-anchor="start" style="font-variant-numeric: tabular-nums">81.6%</text>
+<text x="28" y="252" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Go</text>
+<path d="M 28 260 H 233.808 Q 237.808 260 237.808 264 V 270 Q 237.808 274 233.808 274 H 28 Z" fill="#3987e5"/>
+<text x="245.808" y="271" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start" style="font-variant-numeric: tabular-nums">28.2%</text>
+<path d="M 28 276 H 558.192 Q 562.192 276 562.192 280 V 286 Q 562.192 290 558.192 290 H 28 Z" fill="#199e70"/>
+<text x="570.192" y="287" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11.5" font-weight="600" fill="#ffffff" text-anchor="start" style="font-variant-numeric: tabular-nums">71.8%</text>
+<text x="28" y="314" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">C++</text>
+<path d="M 28 322 H 281.42400000000004 Q 285.42400000000004 322 285.42400000000004 326 V 332 Q 285.42400000000004 336 281.42400000000004 336 H 28 Z" fill="#3987e5"/>
+<text x="293.42400000000004" y="333" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start" style="font-variant-numeric: tabular-nums">34.6%</text>
+<path d="M 28 338 H 538.8480000000001 Q 542.8480000000001 338 542.8480000000001 342 V 348 Q 542.8480000000001 352 538.8480000000001 352 H 28 Z" fill="#199e70"/>
+<text x="550.8480000000001" y="349" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11.5" font-weight="600" fill="#ffffff" text-anchor="start" style="font-variant-numeric: tabular-nums">69.2%</text>
+<text x="28" y="376" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12.5" font-weight="400" fill="#c3c2b7" text-anchor="start">Java</text>
+<path d="M 28 384 H 230.088 Q 234.088 384 234.088 388 V 394 Q 234.088 398 230.088 398 H 28 Z" fill="#3987e5"/>
+<text x="242.088" y="395" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11.5" font-weight="400" fill="#c3c2b7" text-anchor="start" style="font-variant-numeric: tabular-nums">27.7%</text>
+<path d="M 28 400 H 515.04 Q 519.04 400 519.04 404 V 410 Q 519.04 414 515.04 414 H 28 Z" fill="#199e70"/>
+<text x="527.04" y="411" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11.5" font-weight="600" fill="#ffffff" text-anchor="start" style="font-variant-numeric: tabular-nums">66.0%</text>
+<line x1="28.5" y1="112" x2="28.5" y2="422" stroke="#383835" stroke-width="1"/>
+<text x="28" y="468" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="start">Rust is omitted: the benchmark container cannot resolve a cargo toolchain, so both models score 0.0% on all 30 Rust exercises.</text>
+<text x="28" y="486" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="11" font-weight="400" fill="#898781" text-anchor="start">Excluding Rust, the overall figures are roughly 33% against 74%.</text>
+</svg>
