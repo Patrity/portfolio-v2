@@ -165,7 +165,7 @@ const cards = computed(() => {
           style="animation: fade-up 0.8s ease-out 0.7s both;"
         >
           Twenty years of code, ten of them on billion-dollar EPC projects. I build RAG pipelines and
-          agentic workflows for the messiest data in industry, run a rack of 3090s at home, and write
+          agentic workflows for the messiest data in industry, run a rack of 3090s and a Blackwell at home, and write
           down what breaks (a lot breaks).
         </p>
 
