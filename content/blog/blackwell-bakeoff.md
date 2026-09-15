@@ -93,7 +93,7 @@ Before the settled conclusion got unsettled, three things every forum will tell 
 
 **Bigger and newer both lost.** GLM-5.3-Flash is 320 billion parameters with 18 billion active and sat at number three on the open-weight index. It did 32.7 tokens per second. Flash-next, 131B with 6B active, did 70. Ornith, 35B with *3B* active, did 143.8.
 
-Active parameter count dominates decode speed. Not total size, not release date, not benchmark reputation.
+Active parameter count dominates decode speed. Total size and release date barely move it.
 
 ## The Benchmark That Actually Compiles the Code
 
@@ -135,7 +135,7 @@ Ornith can write code. What Ornith cannot do is reliably emit a valid search-and
 
 Forty percent well-formed when asked for diffs. One hundred percent when asked to rewrite whole files. The intelligence was there the entire time and it kept falling out of the envelope on the way to disk.
 
-For an agent that edits files in place, that isn't a quality gap. That's disqualifying. The output has to *apply*.
+For an agent that edits files in place, that's disqualifying. The output has to *apply*.
 
 And it reframes the speed win completely. Ornith was twice as fast at producing work I'd have to throw away.
 
@@ -159,7 +159,7 @@ Nine configurations, four benchmark suites, an entire night, and a conclusion I 
 
 Every synthetic test favored the fast model. Decode, prefill, concurrency, KV capacity, my own quiz. Then one execution-graded benchmark that mirrors the actual work inverted the answer completely.
 
-If I'd specced that node off night one, I'd have sized it around a model that can't reliably hand back an edit that applies. Run the workload-representative test *first*, not last. That's the whole post.
+If I'd specced that node off night one, I'd have sized it around a model that can't reliably hand back an edit that applies. Run the workload-representative test *first*. That's the whole post.
 
 Oh, and one thing got switched off along the way. My camera system's AI description feature had quietly burned about 27,000 requests and 100 million tokens describing my driveway to nobody. Not once has a human read one. I turned it off on every camera and the only thing that changed is the GPU got quieter.
 
