@@ -21,7 +21,7 @@ them as worked examples.
 This is an orchestration skill: each phase delegates to a specialist skill and a
 reference file. Create a todo per phase so nothing gets dropped. Phases are
 sequential, but a cycle can enter anywhere (e.g. "just give me a tweet for post X"
-→ Phase 7 only).
+→ Phase 8 only).
 
 ## The cycle at a glance
 
@@ -32,10 +32,11 @@ sequential, but a cycle can enter anywhere (e.g. "just give me a tweet for post 
 | 2 | Charts & data viz | `dataviz` skill (REQUIRED before chart code) | `references/charts.md` |
 | 3 | Inline images | `::content-image` component | `references/images.md` |
 | 4 | Hero image | `blog-image-generator` skill → Tony generates → process | `references/images.md` |
-| 5 | Verify in the app | `browser-testing` skill | `references/publish.md` |
-| 6 | Publish | `blog-post-publication` skill | `references/publish.md` |
-| 7 | Distribution | `marketing-skills:social-content` | `references/distribution.md` |
-| 8 | Wrap-up | MyMind tasks + memory | below |
+| 5 | Narration (audio) | `blog-narration` skill | skill carries its own gotchas |
+| 6 | Verify in the app | `browser-testing` skill | `references/publish.md` |
+| 7 | Publish | `blog-post-publication` skill | `references/publish.md` |
+| 8 | Distribution | `marketing-skills:social-content` | `references/distribution.md` |
+| 9 | Wrap-up | MyMind tasks + memory | below |
 
 ## Phase 0 — Setup
 
@@ -48,13 +49,19 @@ sequential, but a cycle can enter anywhere (e.g. "just give me a tweet for post 
 - Read 1–2 recent posts in `content/blog/` and the previous cycle's
   `distribution/` folder before producing anything. Calibration beats rules.
 
-## Phases 1–7
+## Phases 1–8
 
 Each has a reference file — read it when you reach that phase, not before.
 The reference files carry the conventions that were learned by getting them
 wrong once; treat deviations as needing a reason.
 
-## Phase 8 — Wrap-up
+**Phase 5 (Narration) is optional and gated on the network** — Breeze TTS is
+LAN-only, so it cannot run off-network or from CI. Skip it if unreachable and
+note it as a follow-up rather than blocking publish; the audio can be added to a
+published post later. It runs *before* Verify so the audio player gets checked in
+the app, and before Publish because the mp3 is a committed repo asset.
+
+## Phase 9 — Wrap-up
 
 - Mark the MyMind cycle task completed with a summary of what shipped (URLs,
   commits) and remaining follow-ups as separate tasks with due dates.

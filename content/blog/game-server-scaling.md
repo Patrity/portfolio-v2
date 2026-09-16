@@ -15,6 +15,9 @@ imageWidth: 1920
 imageHeight: 1080
 ---
 
+::audio-player
+::
+
 ## Links
 - [Thundoria](https://thundoria.com)
 - [The live server fleet](https://thundoria.com/worlds)

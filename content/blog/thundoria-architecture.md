@@ -14,6 +14,10 @@ image: /images/blog/thundoria/hero.webp
 imageWidth: 1920
 imageHeight: 1052
 ---
+
+::audio-player
+::
+
 ## Links
 - [Thundoria Site](https://thundoria.com)
 - [X / Twitter](https://x.com/Patrity)

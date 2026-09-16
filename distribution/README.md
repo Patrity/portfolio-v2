@@ -32,3 +32,9 @@ Not every post has every file — only what was actually produced for it.
   chart images must be PNG (their proxy is unreliable with SVG). Best window:
   Tue-Thu 7-9 AM ET.
 - The full workflow lives in `.claude/skills/blog-cycle/SKILL.md`.
+
+- **2026-08-19 (automated-bim-takeoff):** hero generated ON THE RIG via
+  MyMind `generate_image` (ComfyUI Qwen-Image) instead of Gemini — no
+  watermark crop needed. See blog-cycle references/images.md for the
+  poll-ComfyUI gotcha. Also: chart footnotes must not carry day-level dates
+  (leak surface); month-level is fine.

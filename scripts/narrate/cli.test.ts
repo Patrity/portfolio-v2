@@ -56,9 +56,32 @@ describe('buildText reuse (via CLI)', () => {
 
 describe('parseArgs — positional detection', () => {
   it('finds post path when a value-flag precedes it', () => {
-    const a = parseArgs(['--voice', 'fast1-us', 'post.md'])
+    const a = parseArgs(['--instruction', 'A calm narrator.', 'post.md'])
     expect(a.post).toBe('post.md')
-    expect(a.opts.voice).toBe('fast1-us.wav')
+    expect(a.opts.instruction).toBe('A calm narrator.')
+  })
+
+  it('defaults to the Breeze server and the in-repo voice reference', () => {
+    const a = parseArgs(['post.md'])
+    expect(a.opts.server).toBe('http://192.168.2.25:8880')
+    expect(a.opts.refAudio).toBe('assets/voice/tony.wav')
+    expect(a.refTextPath).toBe('assets/voice/tony.txt')
+    expect(a.opts.cfgScale).toBe(4)      // also what lifts the prompt cap 256 -> 512
+    // 100 put text at the tail of ~90-word chunks, where Breeze degrades into babble.
+    expect(a.opts.maxWords).toBe(60)
+    // 0.9 reproduced babble on the same chunk 4/4; 0.7 was clean 3/3.
+    expect(a.opts.temperature).toBe(0.7)
+    expect(a.opts.maxRetries).toBe(3)
+    expect(a.opts.sttUrl).toBeTruthy()
+  })
+
+  it('--no-verify disables the read-back check', () => {
+    const a = parseArgs(['post.md', '--no-verify'])
+    expect(a.opts.sttUrl).toBeUndefined()
+  })
+
+  it('--max-retries is configurable', () => {
+    expect(parseArgs(['post.md', '--max-retries', '0']).opts.maxRetries).toBe(0)
   })
 
   it('finds post path when a boolean flag follows it', () => {

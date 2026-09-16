@@ -15,6 +15,9 @@ imageWidth: 1920
 imageHeight: 1080
 ---
 
+::audio-player
+::
+
 ## Links
 - [The original rig writeup](/blog/local-ai-rig)
 - [The MoE vs dense showdown](/blog/local-ai-moe-vs-dense)

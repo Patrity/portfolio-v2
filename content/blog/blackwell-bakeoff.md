@@ -15,6 +15,9 @@ imageWidth: 1536
 imageHeight: 864
 ---
 
+::audio-player
+::
+
 ## Links
 - [The original rig writeup](/blog/local-ai-rig)
 - [The upgrade that the server voted down](/blog/local-ai-upgrade)

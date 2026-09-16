@@ -15,6 +15,9 @@ imageWidth: 1920
 imageHeight: 1080
 ---
 
+::audio-player
+::
+
 ## Links
 - [The original rig writeup](https://www.techhivelabs.net/blog/local-ai-rig)
 - [The Saturday I failed to upgrade](https://www.techhivelabs.net/blog/local-ai-upgrade)

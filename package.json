@@ -10,7 +10,8 @@
     "postinstall": "nuxt prepare",
     "audit:seo": "node scripts/seo-audit.mjs",
     "narrate": "tsx scripts/narrate.ts",
-    "test:narrate": "vitest run scripts/narrate"
+    "test:narrate": "vitest run scripts/narrate",
+    "narrate:timings": "tsx scripts/narrate-timings.ts"
   },
   "dependencies": {
     "@nuxt/content": "^3.6.0",

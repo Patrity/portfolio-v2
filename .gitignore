@@ -30,3 +30,8 @@ audit-output
 
 # Blog distribution working files (briefs + social variants) — repo is public, keep these local
 distribution/
+
+# Voice-cloning reference. A clean sample of Tony's voice plus its exact transcript is
+# all Breeze needs to clone him, and this repo is public. The narration pipeline reads
+# these from disk locally; the built audio is committed, so nothing in the site needs them.
+assets/voice/

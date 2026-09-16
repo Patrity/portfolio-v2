@@ -15,6 +15,9 @@ imageWidth: 1920
 imageHeight: 1052
 ---
 
+::audio-player
+::
+
 ## Links
 - [The original rig writeup](https://www.techhivelabs.net/blog/local-ai-rig)
 - [vLLM hybrid attention bug (#38643)](https://github.com/vllm-project/vllm/issues/38643)

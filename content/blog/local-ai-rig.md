@@ -14,6 +14,9 @@ imageWidth: 1920
 imageHeight: 1052
 ---
 
+::audio-player
+::
+
 ## Links
 - [Qwen3.5-122B-A10B on HuggingFace](https://huggingface.co/Qwen/Qwen3.5-122B-A10B-GGUF)
 - [llama.cpp](https://github.com/ggml-org/llama.cpp)
