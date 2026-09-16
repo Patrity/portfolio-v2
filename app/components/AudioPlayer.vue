@@ -71,8 +71,19 @@ async function setUpFollowing() {
   } catch { return }
   if (!timed.value.length) return
 
-  await nextTick()
-  nodes.value = collectNodes()
+  // On a prerendered page the article content is not necessarily in the DOM when this
+  // component mounts, so a single nextTick can count a fraction of the real nodes and the
+  // alignment fails on a post that is actually fine. Dev's HMR timing hid this: the same
+  // posts followed locally and fell back in production. Wait for the node count to settle.
+  let settled: HTMLElement[] = []
+  for (let attempt = 0; attempt < 12; attempt++) {
+    await nextTick()
+    const found = collectNodes()
+    if (found.length && found.length === settled.length) break
+    settled = found
+    await new Promise(res => setTimeout(res, 120))
+  }
+  nodes.value = settled
   if (!nodes.value.length) return
 
   const texts = nodes.value.map(n => n.textContent ?? '')
