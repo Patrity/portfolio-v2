@@ -37,9 +37,14 @@ moved it 17%. Speed, pitch, tone and emotion **all** live in the instruction str
 | Post type | Instruction |
 |---|---|
 | Technical deep-dive (default) | `Warm, measured documentary narration. Unhurried, with clear emphasis on technical terms.` |
-| Personal essay / reflective | `A thoughtful, reflective delivery. Conversational and unhurried, with natural pauses.` |
+| Personal essay / reflective | `Direct and confident, with dry understatement. Brisk, fluent conversational pace with smooth phrasing and no hesitations.` (see gotcha below) |
 | Opinion / punchy | `Direct and confident, with dry understatement. Conversational pace, light emphasis.` |
 | Tutorial / walkthrough | `Clear and instructional. Steady pace, deliberate emphasis on steps and commands.` |
+
+**Never ask for pauses or an unhurried pace.** On `autocomplete-retired` (2026-10-15) "unhurried, with
+natural pauses" doubled the dead air (191 gaps / 122 s vs ~100 gaps / ~55 s on other posts) and Tony
+heard it as stuttering. Check it with
+`ffmpeg -i <mp3> -af silencedetect=noise=-35dB:d=0.35 -f null -`: around 100 gaps per 1,500 words is normal.
 
 Keep `--cfg-scale 4`. It is both the documented sweet spot *and* what lifts the prompt
 cap from 256 to 512 tokens — dropping it to 1 will break long chunks.
