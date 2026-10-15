@@ -111,7 +111,7 @@ const lanes = [
   {
     title: 'AI agents & inference',
     icon: 'i-heroicons-cpu-chip',
-    body: 'RAG pipelines, agentic workflows, and a homelab that hosts most of it. Four 3090s, LiteLLM, and opinions about MoE models.',
+    body: 'RAG pipelines, agentic workflows, and a homelab that hosts most of it. Four 3090s, an RTX PRO 6000 Blackwell, LiteLLM, and opinions about MoE models.',
     proof: ['Cognova', 'Vectly', 'The rig', 'Anthropic API'],
   },
   {

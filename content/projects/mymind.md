@@ -37,7 +37,7 @@ One Nuxt 4 service does all of it, the web app, the HTTP API, and the MCP server
 - **Search:** hybrid semantic + keyword, pgvector embeddings fused with trigram matching, so you find the thing by what it means, not the words you happen to remember
 - **Data:** Postgres + pgvector via Drizzle, canonical projects keyed on the git remote so the same repo cloned to five machines resolves to one identity
 - **AI:** everything runs against models on my rig through LiteLLM (embeddings, vision OCR, transcription, memory extraction, TTS), reviewable and never silently "magic"
-- **Voice:** a hands-free agent with Silero VAD in the browser, faster-whisper STT and Kokoro TTS on the rig, barge-in that actually works, and a Three.js particle reactor with 50k particles in a custom vertex shader that breathes when idle and erupts with the reply
+- **Voice:** a hands-free agent with Silero VAD in the browser, faster-whisper STT and Breeze TTS 2 on the rig, barge-in that actually works, and a Three.js particle reactor with 50k particles in a custom vertex shader that breathes when idle and erupts with the reply
 - **Analytics:** a read-only dashboard over the homelab's Prometheus and LiteLLM (per-GPU telemetry, engine activity, token and spend history), plus one curated public endpoint for this site
 - **Deploy:** native systemd app in a Proxmox LXC, Postgres and SearXNG in Docker beside it, GitHub Actions test + deploy on every push to master
 
